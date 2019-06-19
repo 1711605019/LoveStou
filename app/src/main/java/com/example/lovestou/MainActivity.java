@@ -9,7 +9,7 @@ import android.os.Bundle;
 import com.example.lovestou.fragment.FindFragment;
 import com.example.lovestou.fragment.HomeFragment;
 import com.example.lovestou.fragment.NavFragment;
-import com.example.lovestou.fragment.VideoFragment;
+import com.example.lovestou.fragment.NewsFragment;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -27,9 +27,10 @@ public class MainActivity extends AppCompatActivity {
 
         spaceTabLayout = findViewById(R.id.spaceTabLayout);
         viewPager = findViewById(R.id.viewPager);
+        viewPager.setOffscreenPageLimit(4);
         fragmentList = new ArrayList<>();
         fragmentList.add(new HomeFragment());
-        fragmentList.add(new VideoFragment());
+        fragmentList.add(new NewsFragment());
         fragmentList.add(new NavFragment());
         fragmentList.add(new FindFragment());
 

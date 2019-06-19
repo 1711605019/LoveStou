@@ -16,6 +16,10 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
+    compileOptions {
+        sourceCompatibility 1.8
+        targetCompatibility 1.8
+    }
 }
 
 dependencies {
@@ -32,5 +36,9 @@ dependencies {
     implementation 'com.youth.banner:banner:1.4.10'
     implementation 'com.github.bumptech.glide:glide:4.9.0'
     implementation 'org.jsoup:jsoup:1.12.1'
+    implementation 'com.sunfusheng:MarqueeView:1.4.1'
+    implementation("com.squareup.okhttp3:okhttp:3.14.2")
+    implementation 'com.google.code.gson:gson:2.8.5'
+    implementation 'com.jcodecraeer:xrecyclerview:1.5.9'
 
 }

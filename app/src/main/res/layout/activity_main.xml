@@ -27,7 +27,7 @@
             app:button_color="@color/orgTheme"
             app:layout_behavior="eu.long1.spacetablayout.SpaceTabLayoutBehavior"
             app:icon_one="@mipmap/home"
-            app:icon_two="@mipmap/video"
+            app:icon_two="@mipmap/news"
             app:icon_three="@mipmap/nav"
             app:number_of_tabs="four"
             app:starting_position="one"
