@@ -24,7 +24,7 @@
                 android:orientation="vertical">
 
                 <TextView
-                    android:id="@+id/tv_main_title"
+                    android:id="@+id/tv_title"
                     android:layout_width="match_parent"
                     android:layout_height="45dp"
                     android:background="@color/blueTheme"
@@ -44,6 +44,39 @@
             </LinearLayout>
         </android.support.design.widget.CollapsingToolbarLayout>
 
+        <android.support.design.widget.TabLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:tabMode="scrollable"
+            app:tabIndicatorColor="@color/blueTheme"
+            app:tabSelectedTextColor="@color/blueTheme">
+
+            <android.support.design.widget.TabItem
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="11111111111"/>
+            <android.support.design.widget.TabItem
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="22222222222"/>
+            <android.support.design.widget.TabItem
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="33333333333"/>
+            <android.support.design.widget.TabItem
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="44444444444"/>
+            <android.support.design.widget.TabItem
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="44444444444"/>
+            <android.support.design.widget.TabItem
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="44444444444"/>
+
+        </android.support.design.widget.TabLayout>
     </android.support.design.widget.AppBarLayout>
 
 </android.support.design.widget.CoordinatorLayout>
