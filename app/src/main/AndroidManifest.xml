@@ -12,7 +12,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.Light.NoActionBar">
-        <activity android:name=".activity.IDActivity"></activity>
+        <activity android:name=".activity.PostActivity"></activity>
+        <activity android:name=".activity.IDActivity" />
         <activity android:name=".activity.IPActivity" />
         <activity android:name=".activity.PhoneActivity" />
         <activity android:name=".activity.NoticeActivity" />

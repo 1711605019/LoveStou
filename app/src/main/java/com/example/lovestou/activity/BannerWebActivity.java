@@ -6,6 +6,7 @@ import android.os.Build;
 import android.support.annotation.RequiresApi;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
@@ -29,6 +30,7 @@ public class BannerWebActivity extends AppCompatActivity {
         webView = findViewById(R.id.bannerWeb);
         Intent intent = getIntent();
         String url = intent.getStringExtra("url");
+        Log.e("ssss",url);
         String name = intent.getStringExtra("name");
         webView.getSettings().setJavaScriptCanOpenWindowsAutomatically(true);//设置js可以直接打开窗口，如window.open()，默认为false
         webView.getSettings().setJavaScriptEnabled(true);//是否允许JavaScript脚本运行，默认为false。设置true时，会提醒可能造成XSS漏洞

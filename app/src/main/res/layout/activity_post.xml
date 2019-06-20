@@ -4,11 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:fitsSystemWindows="true"
     android:orientation="vertical"
-    android:background="@android:color/white"
-    tools:context=".activity.PhoneActivity">
-
+    tools:context=".activity.PostActivity">
     <android.support.constraint.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="45dp"
@@ -33,7 +30,7 @@
             android:layout_width="wrap_content"
             android:layout_height="45dp"
             android:gravity="center"
-            android:text="IP地址查询"
+            android:text="邮编查询"
             android:textColor="@android:color/white"
             android:textSize="18sp"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -73,7 +70,8 @@
                     android:background="@null"
                     android:drawablePadding="10dp"
                     android:gravity="center"
-                    android:hint="请输入IP地址号码"
+                    android:hint="请输邮政编码"
+                    android:inputType="number"
                     android:paddingLeft="8dp"
                     android:singleLine="true"
                     android:textColor="#000000"
@@ -122,26 +120,6 @@
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="20dp"
                         android:gravity="center"
-                        android:text="国    家:"
-                        android:textSize="16sp" />
-
-                    <TextView
-                        android:id="@+id/tv_country"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="20dp" />
-                </LinearLayout>
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp"
-                    android:orientation="horizontal">
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="20dp"
-                        android:gravity="center"
                         android:text="省    份:"
                         android:textSize="16sp" />
 
@@ -149,7 +127,7 @@
                         android:id="@+id/tv_province"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginLeft="20dp" />
+                        android:layout_marginLeft="20dp"/>
                 </LinearLayout>
 
                 <LinearLayout
@@ -169,9 +147,10 @@
                     <TextView
                         android:id="@+id/tv_city"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="20dp" />
+                        android:layout_marginLeft="20dp"
+                        android:layout_height="wrap_content" />
                 </LinearLayout>
+
 
 
                 <LinearLayout
@@ -186,11 +165,11 @@
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="20dp"
                         android:gravity="center"
-                        android:text="运营商:"
+                        android:text="区    县:"
                         android:textSize="16sp" />
 
                     <TextView
-                        android:id="@+id/tv_type"
+                        android:id="@+id/tv_town"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="20dp" />

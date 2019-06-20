@@ -6,6 +6,7 @@
     android:layout_height="match_parent"
     android:fitsSystemWindows="true"
     android:orientation="vertical"
+    android:background="@android:color/white"
     tools:context=".activity.PhoneActivity">
 
     <android.support.constraint.ConstraintLayout
@@ -71,7 +72,7 @@
                     android:layout_toStartOf="@+id/btn_send"
                     android:background="@null"
                     android:drawablePadding="10dp"
-                    android:gravity="center_vertical"
+                    android:gravity="center"
                     android:hint="请输入身份证号码"
                     android:inputType="textPersonName"
                     android:paddingLeft="8dp"
@@ -120,16 +121,16 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_weight="1"
+                        android:layout_marginLeft="20dp"
                         android:gravity="center"
                         android:text="省    份:"
                         android:textSize="16sp" />
 
                     <TextView
                         android:id="@+id/tv_province"
-                        android:layout_width="wrap_content"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_weight="4" />
+                        android:layout_marginLeft="20dp" />
                 </LinearLayout>
 
                 <LinearLayout
@@ -141,16 +142,16 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_weight="1"
+                        android:layout_marginLeft="20dp"
                         android:gravity="center"
                         android:text="城    市:"
                         android:textSize="16sp" />
 
                     <TextView
                         android:id="@+id/tv_city"
-                        android:layout_width="wrap_content"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_weight="4" />
+                        android:layout_marginLeft="20dp" />
                 </LinearLayout>
 
                 <LinearLayout
@@ -162,16 +163,16 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_weight="1"
+                        android:layout_marginLeft="20dp"
                         android:gravity="center"
                         android:text="区    县:"
                         android:textSize="16sp" />
 
                     <TextView
                         android:id="@+id/tv_town"
-                        android:layout_width="wrap_content"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_weight="4" />
+                        android:layout_marginLeft="20dp" />
                 </LinearLayout>
 
                 <LinearLayout
@@ -183,16 +184,16 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_weight="1"
+                        android:layout_marginLeft="20dp"
                         android:gravity="center"
                         android:text="性    别:"
                         android:textSize="16sp" />
 
                     <TextView
                         android:id="@+id/tv_sex"
-                        android:layout_width="wrap_content"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_weight="4" />
+                        android:layout_marginLeft="20dp" />
                 </LinearLayout>
 
                 <LinearLayout
@@ -205,16 +206,16 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_weight="1"
+                        android:layout_marginLeft="20dp"
                         android:gravity="center"
                         android:text="生    日:"
                         android:textSize="16sp" />
 
                     <TextView
                         android:id="@+id/tv_birth"
-                        android:layout_width="wrap_content"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_weight="4" />
+                        android:layout_marginLeft="20dp" />
                 </LinearLayout>
 
             </LinearLayout>
