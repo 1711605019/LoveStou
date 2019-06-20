@@ -14,11 +14,15 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.example.lovestou.R;
+import com.example.lovestou.activity.BannerWebActivity;
+import com.example.lovestou.activity.HomeWebActivity;
+import com.example.lovestou.activity.NoticeActivity;
 import com.example.lovestou.adapter.CarsAdapter;
 import com.example.lovestou.adapter.EducationAdapter;
 import com.example.lovestou.adapter.FoodAdapter;
@@ -60,14 +64,16 @@ public class HomeFragment extends Fragment {
     private View homeView;
     private Banner banner;
     private MarqueeView marqueeView;
+    private List<Integer> imgs;
 
     private ImageView stNews_img1,stNews_img2,today_img1,today_img2;
     private TextView stNews_title1,stNews_title2,today_title1,today_title2;
 
+    private LinearLayout ll_fuwu,ll_gongkai,ll_tousu,ll_daohang;
+
     public HomeFragment() {
         // Required empty public constructor
     }
-
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -75,10 +81,63 @@ public class HomeFragment extends Fragment {
         // Inflate the layout for this fragment
         homeView = inflater.inflate(R.layout.fragment_home, container, false);
         initBanner();
-        initBannerView();
+//        initBannerView();
         initNotice();
         initVideo();
+        initllView();
         return homeView;
+    }
+
+    private void initllView() {
+        ll_fuwu = homeView.findViewById(R.id.ll_fuwu);
+        ll_gongkai = homeView.findViewById(R.id.ll_gongkai);
+        ll_tousu = homeView.findViewById(R.id.ll_tousu);
+        ll_daohang = homeView.findViewById(R.id.ll_daohang);
+
+        ll_fuwu.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String url = "http://www.gdzwfw.gov.cn/portal/index?region=440500";
+                String name = "政务服务";
+                Intent intent = new Intent(getActivity(), HomeWebActivity.class);
+                intent.putExtra("url",url);
+                intent.putExtra("name",name);
+                startActivity(intent);
+            }
+        });
+        ll_tousu.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String url = "http://admin.st.gov.cn/u/consult/index/cnst/zfpy";
+                String name = "作风投诉";
+                Intent intent = new Intent(getActivity(), HomeWebActivity.class);
+                intent.putExtra("url",url);
+                intent.putExtra("name",name);
+                startActivity(intent);
+            }
+        });
+        ll_gongkai.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String url = "http://www.shantou.gov.cn/cnst/index.shtml?s=1";
+                String name = "政务公开";
+                Intent intent = new Intent(getActivity(), BannerWebActivity.class);
+                intent.putExtra("url",url);
+                intent.putExtra("name",name);
+                startActivity(intent);
+            }
+        });
+        ll_daohang.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String url = "http://www.shantou.gov.cn/cnst/index.shtml?s=7";
+                String name = "部门导航";
+                Intent intent = new Intent(getActivity(), BannerWebActivity.class);
+                intent.putExtra("url",url);
+                intent.putExtra("name",name);
+                startActivity(intent);
+            }
+        });
     }
 
     private void initVideo() {
@@ -137,8 +196,6 @@ public class HomeFragment extends Fragment {
             }
         }).start();
     }
-
-
     private void initNotice() {
         marqueeView = homeView.findViewById(R.id.marqueeView);
         new Thread(new Runnable() {
@@ -149,7 +206,7 @@ public class HomeFragment extends Fragment {
                     Elements elements = doc.select("div.wzlm_right").select("ul").select("li");
                     List<String> notice = new ArrayList<>();
                     List<String> noHref = new ArrayList<>();
-                    for (int i = 0 ;i < elements.size() ;i ++) {
+                    for (int i = 0 ;i < 10 ;i ++) {
                         String no = elements.get(i).select("a").text();
                         String hr = "http://www.shantou.gov.cn"+elements.get(i).select("a").attr("href");
                         notice.add(no);
@@ -159,7 +216,8 @@ public class HomeFragment extends Fragment {
                     marqueeView.setOnItemClickListener(new MarqueeView.OnItemClickListener() {
                         @Override
                         public void onItemClick(int position, TextView textView) {
-
+                            Intent intent = new Intent(getActivity(), NoticeActivity.class);
+                            startActivity(intent);
                         }
                     });
                 } catch (IOException e) {
@@ -170,6 +228,12 @@ public class HomeFragment extends Fragment {
         }).start();
     }
     private void initBanner() {
+        imgs = new ArrayList<>();
+        imgs.add(R.mipmap.banner1);
+        imgs.add(R.mipmap.banner2);
+        imgs.add(R.mipmap.banner3);
+        imgs.add(R.mipmap.banner4);
+        imgs.add(R.mipmap.banner5);
         banner = homeView.findViewById(R.id.banner);
         banner.setBannerStyle(BannerConfig.CIRCLE_INDICATOR);
         //设置banner动画效果
@@ -185,9 +249,11 @@ public class HomeFragment extends Fragment {
             @Override
             public void displayImage(Context context, Object path, ImageView imageView) {
                 Glide.with(context).load(path).into(imageView);
+
             }
         });
-
+        banner.setImages(imgs);
+        banner.start();
     }
     private void initBannerView() {
         new Thread(new Runnable() {
@@ -218,7 +284,5 @@ public class HomeFragment extends Fragment {
             }
         }).start();
     }
-
-
 
 }

@@ -127,7 +127,7 @@
                         android:background="#ebebeb" />
 
                     <LinearLayout
-                        android:id="@+id/ll_nav"
+                        android:id="@+id/ll_daohang"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"

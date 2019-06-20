@@ -12,7 +12,13 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.Light.NoActionBar">
-        <activity android:name=".activity.NewsWebActivity"></activity>
+        <activity android:name=".activity.IDActivity"></activity>
+        <activity android:name=".activity.IPActivity" />
+        <activity android:name=".activity.PhoneActivity" />
+        <activity android:name=".activity.NoticeActivity" />
+        <activity android:name=".activity.BannerWebActivity" />
+        <activity android:name=".activity.HomeWebActivity" />
+        <activity android:name=".activity.NewsWebActivity" />
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
