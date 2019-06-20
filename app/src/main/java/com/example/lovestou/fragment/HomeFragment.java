@@ -61,6 +61,9 @@ public class HomeFragment extends Fragment {
     private Banner banner;
     private MarqueeView marqueeView;
 
+    private ImageView stNews_img1,stNews_img2,today_img1,today_img2;
+    private TextView stNews_title1,stNews_title2,today_title1,today_title2;
+
     public HomeFragment() {
         // Required empty public constructor
     }
@@ -74,8 +77,65 @@ public class HomeFragment extends Fragment {
         initBanner();
         initBannerView();
         initNotice();
-
+        initVideo();
         return homeView;
+    }
+
+    private void initVideo() {
+        stNews_img1 = homeView.findViewById(R.id.stNews_img1);
+        stNews_img2 = homeView.findViewById(R.id.stNews_img2);
+        today_img1 = homeView.findViewById(R.id.today_img1);
+        today_img2 = homeView.findViewById(R.id.today_img2);
+
+        stNews_title1 = homeView.findViewById(R.id.stNews_title1);
+        stNews_title2 = homeView.findViewById(R.id.stNews_title2);
+        today_title1 = homeView.findViewById(R.id.today_title1);
+        today_title2 = homeView.findViewById(R.id.today_title2);
+
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                try {
+                    Document doc_stNews = Jsoup.connect("http://st.cutv.com/t/c/index.shtml").timeout(3000).get();
+                    Document doc_today = Jsoup.connect("http://st.cutv.com/e/d/index.shtml").timeout(3000).get();
+
+                    getActivity().runOnUiThread(new Runnable() {
+                        @Override
+                        public void run() {
+                            Elements eles_stNews = doc_stNews.select("div.lp_line").select("ul").select("li");
+                            Elements eles_today = doc_today.select("div.lp_line").select("ul").select("li");
+                            List<String> stNews_titles = new ArrayList<>();
+                            List<String> stNews_imgs = new ArrayList<>();
+                            List<String> today_titles = new ArrayList<>();
+                            List<String> today_imgs = new ArrayList<>();
+                            for (int i = 0; i < 2;i ++) {
+                                String stNews_title = eles_stNews.get(i).select("a").attr("title");
+                                String stNews_img = eles_stNews.get(i).select("img").attr("src");
+                                String today_title = eles_today.get(i).select("a").attr("title");
+                                String today_img = eles_today.get(i).select("img").attr("src");
+
+                                stNews_titles.add(stNews_title);
+                                stNews_imgs.add(stNews_img);
+                                today_titles.add(today_title);
+                                today_imgs.add(today_img);
+                            }
+                            stNews_title1.setText(stNews_titles.get(0));
+                            stNews_title2.setText(stNews_titles.get(1));
+                            Glide.with(getActivity()).load(stNews_imgs.get(0)).placeholder(R.drawable.error).into(stNews_img1);
+                            Glide.with(getActivity()).load(stNews_imgs.get(1)).placeholder(R.drawable.error).into(stNews_img2);
+                            today_title1.setText(today_titles.get(0));
+                            today_title2.setText(today_titles.get(1));
+                            Glide.with(getActivity()).load(today_imgs.get(0)).placeholder(R.drawable.error).into(today_img1);
+                            Glide.with(getActivity()).load(today_imgs.get(1)).placeholder(R.drawable.error).into(today_img2);
+                        }
+                    });
+
+
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+        }).start();
     }
 
 
@@ -148,17 +208,6 @@ public class HomeFragment extends Fragment {
                                 titles.add(title);
                                 imgs.add(img);
                             }
-//                            banner.setOnBannerListener(new OnBannerListener() {
-//                                @Override
-//                                public void OnBannerClick(int position) {
-//                                    Intent intent = new Intent(getActivity(), BannerWebActivity.class);
-//                                    intent.putExtra("url",hrefs.get(position));
-//                                    startActivity(intent);
-//                                }
-//                            });
-                            //设置标题集合（当banner样式有显示title时）
-//                            banner.setBannerTitles(titles);
-                            //设置图片集合
                             banner.setImages(imgs);
                             banner.start();
                         }

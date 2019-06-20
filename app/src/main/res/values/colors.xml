@@ -3,6 +3,9 @@
     <color name="colorPrimary">#008577</color>
     <color name="colorPrimaryDark">#00574B</color>
     <color name="colorAccent">#D81B60</color>
+
     <color name="blueTheme">#22ABF1</color>
     <color name="orgTheme">#FEB21F</color>
+    <color name="fenge">#f5f5f5</color>
+    <color name="fontColor">#bfbfbf</color>
 </resources>
