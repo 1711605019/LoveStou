@@ -83,7 +83,7 @@ public class HomeFragment extends Fragment {
         // Inflate the layout for this fragment
         homeView = inflater.inflate(R.layout.fragment_home, container, false);
         initBanner();
-//        initBannerView();
+        initBannerView();
         initNotice();
         initVideo();
         initllView();
@@ -187,11 +187,13 @@ public class HomeFragment extends Fragment {
                             List<String> today_titles = new ArrayList<>();
                             List<String> today_imgs = new ArrayList<>();
                             for (int i = 0; i < 2;i ++) {
-                                String stNews_title = eles_stNews.get(i).select("a").attr("title");
+                                String stNews_t = eles_stNews.get(i).select("a").attr("title");
                                 String stNews_img = eles_stNews.get(i).select("img").attr("src");
-                                String today_title = eles_today.get(i).select("a").attr("title");
+                                String today_t = eles_today.get(i).select("a").attr("title");
                                 String today_img = eles_today.get(i).select("img").attr("src");
 
+                                String stNews_title = stNews_t.substring(0,stNews_t.length()-10);
+                                String today_title = today_t.substring(0,today_t.length()-10);
                                 stNews_titles.add(stNews_title);
                                 stNews_imgs.add(stNews_img);
                                 today_titles.add(today_title);
@@ -247,12 +249,12 @@ public class HomeFragment extends Fragment {
         }).start();
     }
     private void initBanner() {
-        imgs = new ArrayList<>();
-        imgs.add(R.mipmap.banner1);
-        imgs.add(R.mipmap.banner2);
-        imgs.add(R.mipmap.banner3);
-        imgs.add(R.mipmap.banner4);
-        imgs.add(R.mipmap.banner5);
+//        imgs = new ArrayList<>();
+//        imgs.add(R.mipmap.banner1);
+//        imgs.add(R.mipmap.banner2);
+//        imgs.add(R.mipmap.banner3);
+//        imgs.add(R.mipmap.banner4);
+//        imgs.add(R.mipmap.banner5);
         banner = homeView.findViewById(R.id.banner);
         banner.setBannerStyle(BannerConfig.CIRCLE_INDICATOR);
         //设置banner动画效果
@@ -271,37 +273,36 @@ public class HomeFragment extends Fragment {
 
             }
         });
-        banner.setImages(imgs);
-        banner.start();
+
     }
-//    private void initBannerView() {
-//        new Thread(new Runnable() {
-//            @Override
-//            public void run() {
-//                try {
-//                    final Document doc = Jsoup.connect("http://st.cutv.com/").get();
-//                    getActivity().runOnUiThread(new Runnable() {
-//                        @Override
-//                        public void run() {
-//                            Elements elements = doc.select("div.focus_img").select("ul").select("li").select("a");
-//                            List<String> titles = new ArrayList<>();
-//                            List<String> imgs = new ArrayList<>();
-//                            for (int i = 0; i < 5; i++) {
-//                                String img = elements.get(i).select("img").attr("src");
-//                                String title = elements.get(i).select("img").attr("title");
-////                                String href = elements.get(i).attr("href");
-//                                titles.add(title);
-//                                imgs.add(img);
-//                            }
-//                            banner.setImages(imgs);
-//                            banner.start();
-//                        }
-//                    });
-//                } catch (IOException e) {
-//                    e.printStackTrace();
-//                }
-//            }
-//        }).start();
-//    }
+    private void initBannerView() {
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                try {
+                    final Document doc = Jsoup.connect("http://st.cutv.com/").get();
+                    getActivity().runOnUiThread(new Runnable() {
+                        @Override
+                        public void run() {
+                            Elements elements = doc.select("div.focus_img").select("ul").select("li").select("a");
+                            List<String> titles = new ArrayList<>();
+                            List<String> imgs = new ArrayList<>();
+                            for (int i = 0; i < 5; i++) {
+                                String img = elements.get(i).select("img").attr("src");
+                                String title = elements.get(i).select("img").attr("title");
+//                                String href = elements.get(i).attr("href");
+                                titles.add(title);
+                                imgs.add(img);
+                            }
+                            banner.setImages(imgs);
+                            banner.start();
+                        }
+                    });
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+        }).start();
+    }
 
 }

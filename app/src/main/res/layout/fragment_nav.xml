@@ -18,6 +18,7 @@
         android:textSize="18sp" />
 
     <ImageView
+        android:id="@+id/iv_hmst"
         android:layout_width="match_parent"
         android:layout_height="60dp"
         android:layout_marginTop="1px"

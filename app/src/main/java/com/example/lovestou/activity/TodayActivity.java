@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.support.v7.widget.GridLayoutManager;
 import android.view.View;
 import android.widget.ImageButton;
+import android.widget.Toast;
 
 import com.example.lovestou.R;
 import com.example.lovestou.adapter.TodayAdapter;
@@ -27,7 +28,7 @@ public class TodayActivity extends AppCompatActivity {
     private ImageButton imageButton;
     private TodayAdapter adapter;
     private List<TodayBean> todayList = new ArrayList<>();
-    private int page=1;
+    private int page = 1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,17 +36,16 @@ public class TodayActivity extends AppCompatActivity {
         setContentView(R.layout.activity_today);
         overridePendingTransition(R.anim.push_left_in, R.anim.push_left_out);
 
-
         initThread();
         initView();
     }
+
     private void initThread() {
         new Thread(new Runnable() {
             @Override
             public void run() {
                 try {
-
-                    Document document = Jsoup.connect("http://st.cutv.com/e/d/index" + (page > 1 ? "_" + page : "") + ".shtml").get();
+                    Document document = Jsoup.connect("http://st.cutv.com/e/d/index" + (page > 1 ? "_" + page : "") + ".shtml").timeout(100000).get();
                     Elements elements = document.select("div.lp_line").select("ul").select("li");
                     for (int j = 0; j < elements.size(); j++) {
                         String title = elements.get(j).select("a").attr("title");
@@ -55,25 +55,18 @@ public class TodayActivity extends AppCompatActivity {
                         TodayBean bean = new TodayBean(title, img, href);
                         todayList.add(bean);
                     }
-                    adapter = new TodayAdapter(getApplicationContext(),todayList);
-                    recyclerView.setAdapter(adapter);
+                    runOnUiThread(new Runnable() {
+                        @Override
+                        public void run() {
+                            page++;
+                            adapter = new TodayAdapter(getApplicationContext(), todayList);
+                            recyclerView.setAdapter(adapter);
+                        }
+                    });
 
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
-                finally {
-                    if(recyclerView!=null){
-                        runOnUiThread(new Runnable() {
-                            @Override
-                            public void run() {
-                                recyclerView.refreshComplete();
-                                page+=1;
-                                adapter.notifyDataSetChanged();
-                            }
-                        });
-                    }
-                }
-
             }
         }).start();
     }
@@ -88,7 +81,7 @@ public class TodayActivity extends AppCompatActivity {
         });
 
         recyclerView = findViewById(R.id.rv_today);
-        GridLayoutManager gridLayoutManager = new GridLayoutManager(getApplicationContext(),2);
+        GridLayoutManager gridLayoutManager = new GridLayoutManager(getApplicationContext(), 2);
         recyclerView.setLayoutManager(gridLayoutManager);
 
         adapter = new TodayAdapter(this, todayList);
@@ -101,17 +94,11 @@ public class TodayActivity extends AppCompatActivity {
         // 如果设置上这个，下拉刷新的时候会显示上次刷新的时间
         recyclerView.getDefaultRefreshHeaderView() // get default refresh header view
                 .setRefreshTimeVisible(true);  // make refresh time visible,false means hiding
-        adapter.addData(todayList);
-        // 添加数据
-//        lookAdapter.addData(lookList());
-
         // 添加刷新和加载更多的监听
         recyclerView.setLoadingListener(new XRecyclerView.LoadingListener() {
             @Override
             public void onRefresh() {
-//                lookAdapter.setData(lookList());
                 // 为了看效果，加了一个等待效果，正式的时候直接写mRecyclerView.refreshComplete();
-//                initLooknews();
                 new Handler().postDelayed(new Runnable() {
                     @Override
                     public void run() {
@@ -122,17 +109,47 @@ public class TodayActivity extends AppCompatActivity {
 
             @Override
             public void onLoadMore() {
-                // 为了看效果，加了一个等待效果，正式的时候直接写mRecyclerView.loadMoreComplete();
-               /* new Handler().postDelayed(new Runnable() {
-                    @Override
-                    public void run() {
-
-                    }
-                }, 2000);*/
-                initThread();
+                LoadMore();
             }
         });
     }
+
+    private void LoadMore() {
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                try {
+                    Document document = Jsoup.connect("http://st.cutv.com/e/d/index" + (page > 1 ? "_" + page : "") + ".shtml").timeout(100000).get();
+                    Elements elements = document.select("div.lp_line").select("ul").select("li");
+                    for (int j = 0; j < elements.size(); j++) {
+                        String title = elements.get(j).select("a").attr("title");
+                        String img = elements.get(j).select("img").attr("src");
+                        String href = "http://st.cutv.com" + elements.get(j).select("a").attr("href");
+
+                        TodayBean bean = new TodayBean(title, img, href);
+                        todayList.add(bean);
+                    }
+                    runOnUiThread(new Runnable() {
+                        @Override
+                        public void run() {
+                            //  adapter = new stNewsAdapter(getApplicationContext(),stNewsList);
+                            //recyclerView.setAdapter(adapter);
+                            if (adapter != null) {
+                                adapter.addData(todayList);
+                                recyclerView.loadMoreComplete();
+                                page += 1;
+                                adapter.notifyDataSetChanged();
+                            }
+                        }
+                    });
+
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+        }).start();
+    }
+
     @Override
     public void finish() {
         super.finish();

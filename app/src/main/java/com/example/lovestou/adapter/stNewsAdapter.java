@@ -1,7 +1,9 @@
 package com.example.lovestou.adapter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,6 +12,7 @@ import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.example.lovestou.R;
+import com.example.lovestou.activity.VideoActivity;
 import com.example.lovestou.bean.stNewsBean;
 
 import java.util.List;
@@ -47,7 +50,9 @@ public class stNewsAdapter extends RecyclerView.Adapter<stNewsAdapter.ViewHolder
     @Override
     public void onBindViewHolder( ViewHolder viewHolder, int i) {
         stNewsBean stNewsBean = stNewsList.get(i);
-        viewHolder.textView.setText(stNewsBean.getTitle());
+        String t = stNewsBean.getTitle().substring(0,stNewsBean.getTitle().length()-10);
+        String time = stNewsBean.getTitle().substring(stNewsBean.getTitle().length()-10);
+        viewHolder.textView.setText(t);
         Glide
                 .with(context)
                 .load(stNewsBean.getImg())
@@ -57,10 +62,12 @@ public class stNewsAdapter extends RecyclerView.Adapter<stNewsAdapter.ViewHolder
         viewHolder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-//                Intent intent = new Intent(context, VideoActivity.class);
-//                intent.putExtra("url",stNewsBean.getHref());
-//                intent.putExtra("title",stNewsBean.getTitle());
-//                context.startActivity(intent);
+                Intent intent = new Intent(context, VideoActivity.class);
+                intent.putExtra("url",stNewsBean.getHref());
+                intent.putExtra("title",t);
+                intent.putExtra("time",time);
+                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK );
+                context.startActivity(intent);
             }
         });
     }

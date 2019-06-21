@@ -8,7 +8,6 @@ import android.view.View;
 import android.widget.ImageButton;
 
 import com.example.lovestou.R;
-import com.example.lovestou.adapter.NoticeAdapter;
 import com.example.lovestou.adapter.stNewsAdapter;
 import com.example.lovestou.bean.stNewsBean;
 import com.jcodecraeer.xrecyclerview.ProgressStyle;
@@ -26,7 +25,7 @@ public class stNewsActivity extends AppCompatActivity {
     private ImageButton imageButton;
     private stNewsAdapter adapter;
     private List<stNewsBean> stNewsList = new ArrayList<>();
-    private int page=1;
+    private int page = 1;
 
 
     @Override
@@ -37,15 +36,14 @@ public class stNewsActivity extends AppCompatActivity {
 
         initThread();
         initView();
-
     }
+
     private void initThread() {
         new Thread(new Runnable() {
             @Override
             public void run() {
                 try {
-
-                    Document document = Jsoup.connect("http://st.cutv.com/t/c/index" + (page > 1 ? "_" + page : "") + ".shtml").get();
+                    Document document = Jsoup.connect("http://st.cutv.com/t/c/index" + (page > 1 ? "_" + page : "") + ".shtml").timeout(100000).get();
                     Elements elements = document.select("div.lp_line").select("ul").select("li");
                     for (int j = 0; j < elements.size(); j++) {
                         String title = elements.get(j).select("a").attr("title");
@@ -55,25 +53,17 @@ public class stNewsActivity extends AppCompatActivity {
                         stNewsBean bean = new stNewsBean(title, img, href);
                         stNewsList.add(bean);
                     }
-                    adapter = new stNewsAdapter(getApplicationContext(),stNewsList);
-                    recyclerView.setAdapter(adapter);
-
+                    runOnUiThread(new Runnable() {
+                        @Override
+                        public void run() {
+                            page++;
+                            adapter = new stNewsAdapter(getApplicationContext(), stNewsList);
+                            recyclerView.setAdapter(adapter);
+                        }
+                    });
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
-                finally {
-                    if(recyclerView!=null){
-                        runOnUiThread(new Runnable() {
-                            @Override
-                            public void run() {
-                                recyclerView.refreshComplete();
-                                page+=1;
-                                adapter.notifyDataSetChanged();
-                            }
-                        });
-                    }
-                }
-
             }
         }).start();
     }
@@ -88,7 +78,7 @@ public class stNewsActivity extends AppCompatActivity {
         });
 
         recyclerView = findViewById(R.id.rv_stNews);
-        GridLayoutManager gridLayoutManager = new GridLayoutManager(getApplicationContext(),2);
+        GridLayoutManager gridLayoutManager = new GridLayoutManager(getApplicationContext(), 2);
         recyclerView.setLayoutManager(gridLayoutManager);
 
         adapter = new stNewsAdapter(this, stNewsList);
@@ -101,17 +91,11 @@ public class stNewsActivity extends AppCompatActivity {
         // 如果设置上这个，下拉刷新的时候会显示上次刷新的时间
         recyclerView.getDefaultRefreshHeaderView() // get default refresh header view
                 .setRefreshTimeVisible(true);  // make refresh time visible,false means hiding
-        adapter.addData(stNewsList);
-        // 添加数据
-//        lookAdapter.addData(lookList());
-
         // 添加刷新和加载更多的监听
         recyclerView.setLoadingListener(new XRecyclerView.LoadingListener() {
             @Override
             public void onRefresh() {
-//                lookAdapter.setData(lookList());
                 // 为了看效果，加了一个等待效果，正式的时候直接写mRecyclerView.refreshComplete();
-//                initLooknews();
                 new Handler().postDelayed(new Runnable() {
                     @Override
                     public void run() {
@@ -122,17 +106,46 @@ public class stNewsActivity extends AppCompatActivity {
 
             @Override
             public void onLoadMore() {
-                // 为了看效果，加了一个等待效果，正式的时候直接写mRecyclerView.loadMoreComplete();
-               /* new Handler().postDelayed(new Runnable() {
-                    @Override
-                    public void run() {
-
-                    }
-                }, 2000);*/
-                initThread();
+                LoadMore();
             }
         });
     }
+
+    private void LoadMore() {
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                try {
+                    Document document = Jsoup.connect("http://st.cutv.com/t/c/index" + (page > 1 ? "_" + page : "") + ".shtml").timeout(100000).get();
+                    Elements elements = document.select("div.lp_line").select("ul").select("li");
+                    for (int j = 0; j < elements.size(); j++) {
+                        String title = elements.get(j).select("a").attr("title");
+                        String img = elements.get(j).select("img").attr("src");
+                        String href = "http://st.cutv.com" + elements.get(j).select("a").attr("href");
+
+                        stNewsBean bean = new stNewsBean(title, img, href);
+                        stNewsList.add(bean);
+                    }
+                    runOnUiThread(new Runnable() {
+                        @Override
+                        public void run() {
+                            //  adapter = new stNewsAdapter(getApplicationContext(),stNewsList);
+                            //recyclerView.setAdapter(adapter);
+                            if (adapter != null) {
+                                adapter.addData(stNewsList);
+                                recyclerView.loadMoreComplete();
+                                page += 1;
+                                adapter.notifyDataSetChanged();
+                            }
+                        }
+                    });
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+        }).start();
+    }
+
     @Override
     public void finish() {
         super.finish();
