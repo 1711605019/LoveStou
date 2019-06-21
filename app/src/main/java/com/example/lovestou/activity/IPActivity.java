@@ -14,8 +14,10 @@ import com.example.lovestou.bean.IpBean;
 import com.example.lovestou.utils.NetworkListining;
 import com.example.lovestou.utils.OkhttpUntil;
 
+import me.james.biuedittext.BiuEditText;
+
 public class IPActivity extends AppCompatActivity {
-    private EditText ed_input;
+    private BiuEditText ed_input;
     private Button btn_send;
     private TextView tv_country,tv_province,tv_city,tv_type;
     private ImageButton ib_return;

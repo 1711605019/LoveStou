@@ -3,13 +3,14 @@ package com.example.lovestou.activity;
 import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.GridLayoutManager;
 import android.view.View;
 import android.widget.ImageButton;
 
 import com.example.lovestou.R;
 import com.example.lovestou.adapter.NoticeAdapter;
-import com.example.lovestou.bean.NoticeBean;
+import com.example.lovestou.adapter.stNewsAdapter;
+import com.example.lovestou.bean.stNewsBean;
 import com.jcodecraeer.xrecyclerview.ProgressStyle;
 import com.jcodecraeer.xrecyclerview.XRecyclerView;
 
@@ -20,53 +21,57 @@ import org.jsoup.select.Elements;
 import java.util.ArrayList;
 import java.util.List;
 
-public class NoticeActivity extends AppCompatActivity {
+public class stNewsActivity extends AppCompatActivity {
     private XRecyclerView recyclerView;
     private ImageButton imageButton;
-    private NoticeAdapter noticeAdapter;
-    private List<NoticeBean> noticeList;
+    private stNewsAdapter adapter;
+    private List<stNewsBean> stNewsList = new ArrayList<>();
     private int page=1;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_notice);
+        setContentView(R.layout.activity_st_news);
         overridePendingTransition(R.anim.push_left_in, R.anim.push_left_out);
-        initView();
+
         initThread();
+        initView();
 
     }
-
     private void initThread() {
         new Thread(new Runnable() {
             @Override
             public void run() {
                 try {
 
-                        Document document = Jsoup.connect("http://www.shantou.gov.cn/cnst/bmzx/wzllist" + (page > 1 ? "_" + page : "") + ".shtml").get();
-                        Elements elements = document.select("div.wzlm_right").select("ul").select("li");
-                        for (int j = 0; j < elements.size(); j++) {
-                            String title = elements.get(j).select("a").text();
-                            String time = elements.get(j).select("span").text();
-                            String href = "http://www.shantou.gov.cn" + elements.get(j).select("a").attr("href");
+                    Document document = Jsoup.connect("http://st.cutv.com/t/c/index" + (page > 1 ? "_" + page : "") + ".shtml").get();
+                    Elements elements = document.select("div.lp_line").select("ul").select("li");
+                    for (int j = 0; j < elements.size(); j++) {
+                        String title = elements.get(j).select("a").attr("title");
+                        String img = elements.get(j).select("img").attr("src");
+                        String href = "http://st.cutv.com" + elements.get(j).select("a").attr("href");
 
-                            NoticeBean noticeBean = new NoticeBean(title, time, href);
-                            noticeList.add(noticeBean);
-                        }
-
+                        stNewsBean bean = new stNewsBean(title, img, href);
+                        stNewsList.add(bean);
+                    }
+                    adapter = new stNewsAdapter(getApplicationContext(),stNewsList);
+                    recyclerView.setAdapter(adapter);
 
                 } catch (Exception e) {
                     e.printStackTrace();
-                }finally {
-                   if(recyclerView!=null){
-                       runOnUiThread(new Runnable() {
-                           @Override
-                           public void run() {
-                               recyclerView.refreshComplete();
-                               page+=1;
-                               noticeAdapter.notifyDataSetChanged();
-                           }
-                       });
-                   }
+                }
+                finally {
+                    if(recyclerView!=null){
+                        runOnUiThread(new Runnable() {
+                            @Override
+                            public void run() {
+                                recyclerView.refreshComplete();
+                                page+=1;
+                                adapter.notifyDataSetChanged();
+                            }
+                        });
+                    }
                 }
 
             }
@@ -81,13 +86,13 @@ public class NoticeActivity extends AppCompatActivity {
                 finish();
             }
         });
-        noticeList = new ArrayList<>();
-        recyclerView = findViewById(R.id.rv_notice);
-        LinearLayoutManager layoutManager = new LinearLayoutManager(getApplicationContext());
-        layoutManager.setOrientation(LinearLayoutManager.VERTICAL);
-        recyclerView.setLayoutManager(layoutManager);
-        noticeAdapter = new NoticeAdapter(this, noticeList);
-        recyclerView.setAdapter(noticeAdapter);
+
+        recyclerView = findViewById(R.id.rv_stNews);
+        GridLayoutManager gridLayoutManager = new GridLayoutManager(getApplicationContext(),2);
+        recyclerView.setLayoutManager(gridLayoutManager);
+
+        adapter = new stNewsAdapter(this, stNewsList);
+        recyclerView.setAdapter(adapter);
         recyclerView.setRefreshProgressStyle(ProgressStyle.BallSpinFadeLoader);
         // 可以设置是否开启加载更多/下拉刷新
         recyclerView.setLoadingMoreEnabled(true);
@@ -96,7 +101,7 @@ public class NoticeActivity extends AppCompatActivity {
         // 如果设置上这个，下拉刷新的时候会显示上次刷新的时间
         recyclerView.getDefaultRefreshHeaderView() // get default refresh header view
                 .setRefreshTimeVisible(true);  // make refresh time visible,false means hiding
-        noticeAdapter.addData(noticeList);
+        adapter.addData(stNewsList);
         // 添加数据
 //        lookAdapter.addData(lookList());
 
@@ -128,7 +133,6 @@ public class NoticeActivity extends AppCompatActivity {
             }
         });
     }
-
     @Override
     public void finish() {
         super.finish();

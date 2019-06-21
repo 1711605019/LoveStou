@@ -3,7 +3,6 @@ package com.example.lovestou.adapter;
 import android.content.Context;
 import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,7 +10,6 @@ import android.widget.TextView;
 
 import com.example.lovestou.R;
 import com.example.lovestou.activity.BannerWebActivity;
-import com.example.lovestou.activity.NewsWebActivity;
 import com.example.lovestou.bean.NoticeBean;
 
 import java.util.ArrayList;

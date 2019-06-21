@@ -23,6 +23,8 @@ import com.example.lovestou.R;
 import com.example.lovestou.activity.BannerWebActivity;
 import com.example.lovestou.activity.HomeWebActivity;
 import com.example.lovestou.activity.NoticeActivity;
+import com.example.lovestou.activity.TodayActivity;
+import com.example.lovestou.activity.stNewsActivity;
 import com.example.lovestou.adapter.CarsAdapter;
 import com.example.lovestou.adapter.EducationAdapter;
 import com.example.lovestou.adapter.FoodAdapter;
@@ -69,7 +71,7 @@ public class HomeFragment extends Fragment {
     private ImageView stNews_img1,stNews_img2,today_img1,today_img2;
     private TextView stNews_title1,stNews_title2,today_title1,today_title2;
 
-    private LinearLayout ll_fuwu,ll_gongkai,ll_tousu,ll_daohang;
+    private LinearLayout ll_fuwu,ll_gongkai,ll_tousu,ll_daohang,ll_stNews,ll_today;
 
     public HomeFragment() {
         // Required empty public constructor
@@ -93,6 +95,8 @@ public class HomeFragment extends Fragment {
         ll_gongkai = homeView.findViewById(R.id.ll_gongkai);
         ll_tousu = homeView.findViewById(R.id.ll_tousu);
         ll_daohang = homeView.findViewById(R.id.ll_daohang);
+        ll_stNews = homeView.findViewById(R.id.ll_stNews);
+        ll_today = homeView.findViewById(R.id.ll_today);
 
         ll_fuwu.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -138,8 +142,23 @@ public class HomeFragment extends Fragment {
                 startActivity(intent);
             }
         });
-    }
 
+        ll_stNews.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getActivity(), stNewsActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        ll_today.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getActivity(), TodayActivity.class);
+                startActivity(intent);
+            }
+        });
+    }
     private void initVideo() {
         stNews_img1 = homeView.findViewById(R.id.stNews_img1);
         stNews_img2 = homeView.findViewById(R.id.stNews_img2);
@@ -255,34 +274,34 @@ public class HomeFragment extends Fragment {
         banner.setImages(imgs);
         banner.start();
     }
-    private void initBannerView() {
-        new Thread(new Runnable() {
-            @Override
-            public void run() {
-                try {
-                    final Document doc = Jsoup.connect("http://st.cutv.com/").get();
-                    getActivity().runOnUiThread(new Runnable() {
-                        @Override
-                        public void run() {
-                            Elements elements = doc.select("div.focus_img").select("ul").select("li").select("a");
-                            List<String> titles = new ArrayList<>();
-                            List<String> imgs = new ArrayList<>();
-                            for (int i = 0; i < 5; i++) {
-                                String img = elements.get(i).select("img").attr("src");
-                                String title = elements.get(i).select("img").attr("title");
-//                                String href = elements.get(i).attr("href");
-                                titles.add(title);
-                                imgs.add(img);
-                            }
-                            banner.setImages(imgs);
-                            banner.start();
-                        }
-                    });
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-            }
-        }).start();
-    }
+//    private void initBannerView() {
+//        new Thread(new Runnable() {
+//            @Override
+//            public void run() {
+//                try {
+//                    final Document doc = Jsoup.connect("http://st.cutv.com/").get();
+//                    getActivity().runOnUiThread(new Runnable() {
+//                        @Override
+//                        public void run() {
+//                            Elements elements = doc.select("div.focus_img").select("ul").select("li").select("a");
+//                            List<String> titles = new ArrayList<>();
+//                            List<String> imgs = new ArrayList<>();
+//                            for (int i = 0; i < 5; i++) {
+//                                String img = elements.get(i).select("img").attr("src");
+//                                String title = elements.get(i).select("img").attr("title");
+////                                String href = elements.get(i).attr("href");
+//                                titles.add(title);
+//                                imgs.add(img);
+//                            }
+//                            banner.setImages(imgs);
+//                            banner.start();
+//                        }
+//                    });
+//                } catch (IOException e) {
+//                    e.printStackTrace();
+//                }
+//            }
+//        }).start();
+//    }
 
 }
