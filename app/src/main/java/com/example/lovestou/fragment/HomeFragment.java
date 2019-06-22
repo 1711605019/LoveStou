@@ -249,12 +249,6 @@ public class HomeFragment extends Fragment {
         }).start();
     }
     private void initBanner() {
-//        imgs = new ArrayList<>();
-//        imgs.add(R.mipmap.banner1);
-//        imgs.add(R.mipmap.banner2);
-//        imgs.add(R.mipmap.banner3);
-//        imgs.add(R.mipmap.banner4);
-//        imgs.add(R.mipmap.banner5);
         banner = homeView.findViewById(R.id.banner);
         banner.setBannerStyle(BannerConfig.CIRCLE_INDICATOR);
         //设置banner动画效果

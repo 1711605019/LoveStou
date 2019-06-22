@@ -139,7 +139,7 @@
                 android:layout_height="1dp"
                 android:background="#ffeeff" />
             <RelativeLayout
-                android:id="@+id/rl_xiaoxi"
+                android:id="@+id/rl_robot"
                 android:layout_width="fill_parent"
                 android:layout_height="50dp"
                 android:layout_marginLeft="8dp"
@@ -150,7 +150,7 @@
                     android:layout_height="wrap_content"
                     android:layout_centerVertical="true"
                     android:layout_marginLeft="8dp"
-                    android:text="智能机器人"
+                    android:text="小智在线"
                     android:textSize="14sp" />
 
                 <ImageView
