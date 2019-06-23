@@ -21,9 +21,11 @@ import com.example.lovestou.utils.UiChart;
 import java.util.ArrayList;
 import java.util.List;
 
+import me.james.biuedittext.BiuEditText;
+
 public class ChatActivity extends AppCompatActivity implements ChartRespong {
     private ListView listView;
-    private EditText input_box;
+    private BiuEditText input_box;
     private Button send_btn;
     private List<MsgItem> msg_list;
     private LayoutMsgViewAdapter msgAdapter;

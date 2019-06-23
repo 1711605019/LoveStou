@@ -36,6 +36,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
+
     </android.support.constraint.ConstraintLayout>
 
     <ListView
@@ -61,13 +62,18 @@
             app:cardCornerRadius="5dp"
             app:cardElevation="3dp">
 
-            <EditText
+            <me.james.biuedittext.BiuEditText
                 android:id="@+id/input_box"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_marginBottom="0dp"
                 android:background="@android:color/white"
-                android:textColor="#bfbfbf" />
+                android:textColor="#bfbfbf"
+                app:biu_duration="1000"
+                app:biu_text_color="@android:color/white"
+                app:biu_text_scale="1.5"
+                app:biu_text_start_size="12sp"
+                app:biu_type="flyup"/>
         </android.support.v7.widget.CardView>
 
         <android.support.v7.widget.CardView

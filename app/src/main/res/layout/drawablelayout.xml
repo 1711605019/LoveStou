@@ -2,7 +2,6 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/blueTheme"
     android:orientation="horizontal">
 
     <LinearLayout
@@ -226,56 +225,54 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
+                android:gravity="center"
                 android:paddingTop="8dp"
                 android:paddingBottom="8dp">
 
                 <LinearLayout
                     android:id="@+id/ll_calendar"
-                    android:layout_width="0dp"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1"
                     android:gravity="center_horizontal"
                     android:orientation="vertical">
-
-                    <ImageView
-                        android:layout_width="25dp"
-                        android:layout_height="25dp"
-                        android:scaleType="fitXY"
-                        android:src="@drawable/night" />
-
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="4dp"
-                        android:text="夜间"
+                        android:text="汕头"
+                        android:textSize="18sp" />
+                    <TextView
+                        android:id="@+id/tv_weather"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="4dp"
+                        android:text="多云转暴雨"
                         android:textSize="14sp" />
+
+
                 </LinearLayout>
-
-                <View
-                    android:layout_width="1dp"
-                    android:layout_height="fill_parent"
-                    android:background="#ffeeff" />
-
 
                 <LinearLayout
                     android:id="@+id/ll_map"
-                    android:layout_width="0dp"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1"
                     android:gravity="center_horizontal"
+                    android:layout_marginLeft="20dp"
                     android:orientation="vertical">
 
                     <ImageView
-                        android:layout_width="25dp"
-                        android:layout_height="25dp"
+                        android:id="@+id/iv_weather"
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
                         android:scaleType="fitXY"
                         android:src="@drawable/weather" />
 
                     <TextView
+                        android:id="@+id/tv_temp"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="4dp"
-                        android:text="天气"
+                        android:text="20 ~ 23℃"
                         android:textSize="14sp" />
                 </LinearLayout>
             </LinearLayout>
