@@ -170,7 +170,7 @@
             </LinearLayout>
 
             <LinearLayout
-                android:id="@+id/ll_rate"
+                android:id="@+id/ll_oil"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
@@ -178,10 +178,10 @@
                 android:orientation="vertical">
 
                 <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_width="64dp"
+                    android:layout_height="64dp"
                     android:scaleType="fitXY"
-                    android:src="@drawable/rate" />
+                    android:src="@drawable/oil" />
 
                 <TextView
                     android:layout_width="150dp"
@@ -190,7 +190,7 @@
                     android:ellipsize="end"
                     android:gravity="center"
                     android:lines="2"
-                    android:text="汇率查询"
+                    android:text="今日油价"
                     android:textSize="12sp" />
             </LinearLayout>
 

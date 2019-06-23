@@ -10,8 +10,10 @@ import android.view.ViewGroup;
 import android.widget.LinearLayout;
 
 import com.example.lovestou.R;
+import com.example.lovestou.activity.CalendarActivity;
 import com.example.lovestou.activity.IDActivity;
 import com.example.lovestou.activity.IPActivity;
+import com.example.lovestou.activity.OilActivity;
 import com.example.lovestou.activity.PhoneActivity;
 import com.example.lovestou.activity.PostActivity;
 
@@ -20,7 +22,7 @@ import com.example.lovestou.activity.PostActivity;
  */
 public class FindFragment extends Fragment implements View.OnClickListener{
     private View findView;
-    private LinearLayout ll_phone,ll_ID,ll_IP,ll_Post;
+    private LinearLayout ll_phone,ll_ID,ll_IP,ll_Post,ll_calendar,ll_oil;
 
     public FindFragment() {
         // Required empty public constructor
@@ -42,10 +44,15 @@ public class FindFragment extends Fragment implements View.OnClickListener{
         ll_ID = findView.findViewById(R.id.ll_sfz);
         ll_IP = findView.findViewById(R.id.ll_ip);
         ll_Post = findView.findViewById(R.id.ll_post);
+        ll_calendar = findView.findViewById(R.id.ll_calendar);
+        ll_oil = findView.findViewById(R.id.ll_oil);
+
         ll_phone.setOnClickListener(this);
         ll_ID.setOnClickListener(this);
         ll_IP.setOnClickListener(this);
         ll_Post.setOnClickListener(this);
+        ll_calendar.setOnClickListener(this);
+        ll_oil.setOnClickListener(this);
     }
 
     @Override
@@ -66,6 +73,15 @@ public class FindFragment extends Fragment implements View.OnClickListener{
             case R.id.ll_post:
                 Intent post = new Intent(getActivity(), PostActivity.class);
                 startActivity(post);
+                break;
+            case R.id.ll_calendar:
+                Intent calendar = new Intent(getActivity(), CalendarActivity.class);
+                startActivity(calendar);
+                break;
+            case R.id.ll_oil:
+                Intent oil = new Intent(getActivity(), OilActivity.class);
+                startActivity(oil);
+                break;
         }
     }
 }

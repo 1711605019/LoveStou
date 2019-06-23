@@ -1,0 +1,270 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v4.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#fff"
+        android:orientation="vertical"
+        tools:context=".MainActivity">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="60dp">
+
+            <TextView
+                android:id="@+id/tv_date"
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:background="#03A9F4"
+                android:gravity="center"
+                android:text="2019年6月"
+                android:textColor="#ffffff"
+                android:textSize="30dp" />
+
+
+            <FrameLayout
+                android:id="@+id/fl_current"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:layout_marginRight="12dp"
+                android:background="@drawable/bg_ripple">
+
+                <ImageView
+                    android:id="@+id/ib_calendar"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:contentDescription="@string/app_name"
+                    android:scaleType="centerInside"
+                    android:src="@mipmap/ic_calendar"
+                    android:tint="#FFFFFF" />
+
+                <TextView
+                    android:id="@+id/tv_current_day"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="2dp"
+                    android:gravity="center"
+                    android:text="今"
+                    android:textColor="#FFFFFF"
+                    android:textSize="12sp" />
+            </FrameLayout>
+
+        </RelativeLayout>
+
+        <com.haibin.calendarview.CalendarView
+            android:id="@+id/calendarView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#FDF2BB"
+            app:calendar_padding="10dp"
+            app:current_month_lunar_text_color="#bfbfbf"
+            app:current_month_text_color="#333333"
+            app:max_year="2050"
+            app:min_year="1900"
+            app:select_mode="single_mode"
+            app:selected_lunar_text_color="#FF9800"
+            app:selected_text_color="#FF9800"
+            app:selected_theme_color="#108cd4"
+            app:year_view_day_text_color="#333333"
+            app:year_view_day_text_size="9sp"
+            app:year_view_month_text_color="#ff0000"
+            app:year_view_month_text_size="20sp"
+            app:month_view_show_mode="mode_only_current"
+            app:year_view_scheme_color="#f17706" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="10dp"
+            android:background="@color/fenge" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:padding="5dp">
+
+            <ImageView
+                android:layout_width="35dp"
+                android:layout_height="35dp"
+                android:layout_marginLeft="10dp"
+                android:src="@mipmap/yi" />
+
+            <TextView
+                android:id="@+id/tv_yi"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:text="纳采, 嫁娶, 出行, 开市, 立券, 纳畜, 牧养, 出火, 移徙, 入宅" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:padding="5dp">
+
+            <ImageView
+                android:layout_width="35dp"
+                android:layout_height="35dp"
+                android:layout_marginLeft="10dp"
+                android:src="@mipmap/ji" />
+
+            <TextView
+                android:id="@+id/tv_ji"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:text="祈福,动土,破土,安葬,入殓" />
+        </LinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="10dp"
+            android:background="@color/fenge" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:layout_weight="1"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="5dp"
+                    android:textColor="#F44336"
+                    android:textSize="18sp"
+                    android:text="财神"/>
+                <TextView
+                    android:id="@+id/tv_caishen"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="5dp"
+                    android:text="正东"/>
+            </LinearLayout>
+            <View
+                android:layout_width="1dp"
+                android:layout_height="fill_parent"
+                android:background="#ffeeff" />
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="5dp"
+                    android:textColor="#F44336"
+                    android:textSize="18sp"
+                    android:text="喜神"/>
+                <TextView
+                    android:id="@+id/tv_xishen"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="5dp"
+                    android:text="东北"/>
+            </LinearLayout>
+            <View
+                android:layout_width="1dp"
+                android:layout_height="fill_parent"
+                android:background="#ffeeff" />
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="5dp"
+                    android:textColor="#F44336"
+                    android:textSize="18sp"
+                    android:text="福神"/>
+                <TextView
+                    android:id="@+id/fushen"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="5dp"
+                    android:text="西南"/>
+            </LinearLayout>
+            <View
+                android:layout_width="1dp"
+                android:layout_height="fill_parent"
+                android:background="#ffeeff" />
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1.2"
+                android:gravity="center"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="5dp"
+                    android:textColor="#F44336"
+                    android:textSize="18sp"
+                    android:text="胎神"/>
+                <TextView
+                    android:id="@+id/taishen"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="5dp"
+                    android:text="厨灶门外正北"/>
+            </LinearLayout>
+
+
+
+        </LinearLayout>
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="10dp"
+            android:background="@color/fenge" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="10dp"
+            android:orientation="horizontal">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:ems="1"
+                android:layout_marginLeft="20dp"
+                android:textColor="#F44336"
+                android:textSize="22sp"
+                android:textStyle="bold"
+                android:text="凶神"/>
+            <TextView
+                android:id="@+id/tv_xiongshen"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
+                android:lineSpacingExtra="5dp"
+                android:layout_gravity="center"
+                android:textSize="16sp"
+                android:text="八座 财离 刀砧 河魁 离巢 鲁班 土忌 瓦陷 往亡 五鬼 咸池 血忌 重日"/>
+        </LinearLayout>
+    </LinearLayout>
+</android.support.v4.widget.NestedScrollView>
