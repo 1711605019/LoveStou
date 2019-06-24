@@ -117,18 +117,10 @@
                     android:orientation="horizontal">
 
                     <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="20dp"
                         android:gravity="center"
-                        android:text="更新时间:"
-                        android:textSize="16sp" />
-
-                    <TextView
                         android:id="@+id/tv_time"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="20dp" />
+                        android:layout_height="wrap_content" />
                 </LinearLayout>
 
                 <LinearLayout

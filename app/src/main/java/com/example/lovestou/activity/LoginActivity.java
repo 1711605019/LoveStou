@@ -47,6 +47,12 @@ public class LoginActivity extends AppCompatActivity {
 //        loginSuccessView=findViewById(R.id.login_success_view);
 //        loginSuccessShow=(TextView) findViewById(R.id.login_success_show);
 
+        Intent intent = getIntent();
+        String username = intent.getStringExtra("username");
+        String psw = intent.getStringExtra("psw");
+        mAccount.setText(username);
+        mPwd.setText(psw);
+
         mChangepwdText = (TextView) findViewById(R.id.login_text_change_pwd);
         mRememberCheck = (CheckBox) findViewById(R.id.Login_Remember);
 

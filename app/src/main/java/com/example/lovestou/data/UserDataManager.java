@@ -121,8 +121,7 @@ public class UserDataManager {             //用户数据管理类
         return columnValue;
     }
     //
-    public boolean updateUserDataById(String columnName, int id,
-                                      String columnValue) {
+    public boolean updateUserDataById(String columnName, int id,String columnValue) {
         ContentValues values = new ContentValues();
         values.put(columnName, columnValue);
         return mSQLiteDatabase.update(TABLE_NAME, values, ID + "=" + id, null) > 0;

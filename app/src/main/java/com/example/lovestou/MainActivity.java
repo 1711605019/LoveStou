@@ -7,10 +7,12 @@ import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.KeyEvent;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.example.lovestou.activity.ChatActivity;
@@ -102,7 +104,11 @@ public class MainActivity extends AppCompatActivity {
         });
         Intent intent = getIntent();
         String name = intent.getStringExtra("name");
-        tv_login.setText(name);
+        if (name != null) {
+            tv_login.setText(name);
+        } else {
+            tv_login.setText("登录/注册");
+        }
 //        return meview;
     }
 
@@ -122,5 +128,22 @@ public class MainActivity extends AppCompatActivity {
     protected void onSaveInstanceState(Bundle outState) {
         spaceTabLayout.saveState(outState);
         super.onSaveInstanceState(outState);
+    }
+
+    protected long exitTime; //记录第一次点击时的时间
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        if (keyCode == KeyEvent.KEYCODE_BACK
+                && event.getAction() == KeyEvent.ACTION_DOWN) {
+            if ((System.currentTimeMillis() - exitTime) > 2000) {
+                Toast.makeText(MainActivity.this, "再按一次退出",Toast.LENGTH_SHORT).show();
+                exitTime = System.currentTimeMillis();
+            } else {
+                MainActivity.this.finish();
+                System.exit(0);
+            }
+            return true;
+        }
+        return super.onKeyDown(keyCode, event);
     }
 }

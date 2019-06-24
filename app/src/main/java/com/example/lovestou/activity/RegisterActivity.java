@@ -77,7 +77,10 @@ public class RegisterActivity extends AppCompatActivity {
                     Toast.makeText(this, getString(R.string.register_fail),Toast.LENGTH_SHORT).show();
                 }else{
                     Toast.makeText(this, getString(R.string.register_success),Toast.LENGTH_SHORT).show();
-                    Intent intent_Register_to_Login = new Intent(RegisterActivity.this,LoginActivity.class) ;    //切换User Activity至Login Activity
+                    Intent intent_Register_to_Login = new Intent(RegisterActivity.this,LoginActivity.class) ;
+                    intent_Register_to_Login.putExtra("username",userName);
+                    intent_Register_to_Login.putExtra("psw",userPwd);
+                    //切换User Activity至Login Activity
                     startActivity(intent_Register_to_Login);
                     finish();
                 }

@@ -10,13 +10,16 @@ import android.view.View;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
+import android.widget.CheckBox;
 import android.widget.ImageButton;
+import android.widget.Toast;
 
 import com.example.lovestou.R;
 
 public class NewsWebActivity extends AppCompatActivity {
     private WebView webView;
     private ImageButton ib_return;
+    private CheckBox ck_collection;
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -88,6 +91,19 @@ public class NewsWebActivity extends AppCompatActivity {
                 finish();
             }
         });
+        
+        ck_collection = findViewById(R.id.ck_collection);
+        ck_collection.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (ck_collection.isChecked()) {
+                    Toast.makeText(NewsWebActivity.this, "已收藏", Toast.LENGTH_SHORT).show();
+                } else {
+                    Toast.makeText(NewsWebActivity.this, "已取消", Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
+
     }
 
     @Override
