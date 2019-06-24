@@ -23,7 +23,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Design.Light.NoActionBar">
-        <activity android:name=".activity.ResetpwdActivity"></activity>
+        <activity android:name=".MainActivity"></activity>
+        <activity android:name=".activity.ResetpwdActivity" />
         <activity android:name=".activity.RegisterActivity" />
         <activity android:name=".activity.LoginActivity" />
         <activity android:name=".activity.OilActivity" />
@@ -47,7 +48,7 @@
         <activity android:name=".activity.BannerWebActivity" />
         <activity android:name=".activity.HomeWebActivity" />
         <activity android:name=".activity.NewsWebActivity" />
-        <activity android:name=".MainActivity">
+        <activity android:name=".activity.WelcomeActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
