@@ -14,6 +14,7 @@ import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.example.lovestou.activity.ChatActivity;
+import com.example.lovestou.activity.LoginActivity;
 import com.example.lovestou.fragment.FindFragment;
 import com.example.lovestou.fragment.HomeFragment;
 import com.example.lovestou.fragment.NavFragment;
@@ -33,8 +34,8 @@ public class MainActivity extends AppCompatActivity {
     private SpaceTabLayout spaceTabLayout;
     private ViewPager viewPager;
     private List<Fragment> fragmentList;
-    private RelativeLayout rl_robot;
-    private TextView tv_weather,tv_temp;
+    private RelativeLayout rl_login,rl_robot;
+    private TextView tv_login,tv_weather,tv_temp;
     private ImageView iv_weather;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,6 +56,7 @@ public class MainActivity extends AppCompatActivity {
 
         initWeather();
         initView();
+        initLogin();
     }
 
     private void initWeather() {
@@ -87,6 +89,23 @@ public class MainActivity extends AppCompatActivity {
                 }
         ).start();
     }
+
+    private void initLogin(){
+        tv_login = findViewById(R.id.tv_login);
+        rl_login = findViewById(R.id.rl_login);
+        rl_login.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(), LoginActivity.class);
+                startActivity(intent);
+            }
+        });
+        Intent intent = getIntent();
+        String name = intent.getStringExtra("name");
+        tv_login.setText(name);
+//        return meview;
+    }
+
 
     private void initView() {
         rl_robot = findViewById(R.id.rl_robot);
