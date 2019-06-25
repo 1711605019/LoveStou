@@ -1,7 +1,6 @@
 package com.example.lovestou.adapter;
 
 import android.content.Context;
-import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -11,34 +10,32 @@ import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.example.lovestou.R;
-import com.example.lovestou.activity.NewsWebActivity;
-import com.example.lovestou.bean.TravelBean;
-import com.example.lovestou.utils.NewsInterface;
+import com.example.lovestou.bean.DataBean;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class TravelAdapter extends RecyclerView.Adapter<TravelAdapter.RecyclerHolder> {
+public class CollectionAdapter extends RecyclerView.Adapter<CollectionAdapter.RecyclerHolder> {
     private Context mContext;
-    private List<TravelBean.ItemsBean> travelList = new ArrayList<>();
+    private List<DataBean.ItemsBean> foodList = new ArrayList<>();
 
 
-    public TravelAdapter(Context mContext, List<TravelBean.ItemsBean> travelList) {
+    public CollectionAdapter(Context mContext, List<DataBean.ItemsBean> foodList) {
         this.mContext = mContext;
-        this.travelList = travelList;
+        this.foodList = foodList;
     }
 
-    public void addData(List<TravelBean.ItemsBean> travelList) {
-        if (null != travelList) {
-            this.travelList.addAll(travelList);
+    public void addData(List<DataBean.ItemsBean> foodList) {
+        if (null != foodList) {
+            this.foodList.addAll(foodList);
             notifyDataSetChanged();
         }
     }
 
-    public void setData(List<TravelBean.ItemsBean> travelList) {
-        if (null != travelList) {
-            this.travelList.clear();
-            this.travelList.addAll(travelList);
+    public void setData(List<DataBean.ItemsBean> foodList) {
+        if (null != foodList) {
+            this.foodList.clear();
+            this.foodList.addAll(foodList);
             notifyDataSetChanged();
         }
     }
@@ -51,33 +48,34 @@ public class TravelAdapter extends RecyclerView.Adapter<TravelAdapter.RecyclerHo
 
     @Override
     public void onBindViewHolder(RecyclerHolder holder, int position) {
-        TravelBean.ItemsBean TravelBean = travelList.get(position);
-        holder.item_title.setText(TravelBean.getTitle());
-        holder.item_clicks.setText(TravelBean.getClicks()+" 阅读");
-        holder.item_time.setText(TravelBean.getAddTime());
+        DataBean.ItemsBean FoodBean = foodList.get(position);
+        holder.item_title.setText(FoodBean.getTitle());
+        holder.item_clicks.setText(FoodBean.getClicks() + " 阅读");
+        holder.item_time.setText(FoodBean.getAddTime());
         Glide
                 .with(mContext)
-                .load(TravelBean.getImg())
+                .load(FoodBean.getImg())
                 .placeholder(R.drawable.error)
                 .into(holder.iv_img);
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(mContext, NewsWebActivity.class);
-                intent.putExtra("url", NewsInterface.WEB_SITE +TravelBean.getHref());
-                mContext.startActivity(intent);
+//                Intent intent = new Intent(mContext, NewsWebActivity.class);
+//                intent.putExtra("url", NewsInterface.WEB_SITE + FoodBean.getHref());
+//                mContext.startActivity(intent);
             }
         });
     }
 
     @Override
     public int getItemCount() {
-        return travelList.size();
+        return foodList.size();
     }
 
     class RecyclerHolder extends RecyclerView.ViewHolder {
-        public TextView item_title,item_clicks,item_time;
+        public TextView item_title, item_clicks, item_time;
         public ImageView iv_img;
+
         private RecyclerHolder(View itemView) {
             super(itemView);
             item_title = itemView.findViewById(R.id.item_title);

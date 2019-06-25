@@ -13,19 +13,9 @@ import android.view.ViewGroup;
 import android.widget.Toast;
 
 import com.example.lovestou.R;
-import com.example.lovestou.adapter.CarsAdapter;
-import com.example.lovestou.adapter.EducationAdapter;
-import com.example.lovestou.adapter.FoodAdapter;
-import com.example.lovestou.adapter.HouseAdapter;
-import com.example.lovestou.adapter.LookAdapter;
+import com.example.lovestou.adapter.DataAdapter;
 import com.example.lovestou.adapter.NewsAdapter;
-import com.example.lovestou.adapter.TravelAdapter;
-import com.example.lovestou.bean.CarsBean;
-import com.example.lovestou.bean.EducationBean;
-import com.example.lovestou.bean.FoodBean;
-import com.example.lovestou.bean.HouseBean;
-import com.example.lovestou.bean.LookBean;
-import com.example.lovestou.bean.TravelBean;
+import com.example.lovestou.bean.DataBean;
 import com.example.lovestou.utils.NewsInterface;
 import com.example.lovestou.utils.OkhttpUntil;
 import com.example.lovestou.utils.TostringNetworkListining;
@@ -55,21 +45,12 @@ public class NewsFragment extends Fragment {
     private List<View> mViewList = new ArrayList<>();
     private View view_look, view_house, view_education, view_travel, view_food, view_cars;
     private XRecyclerView list_look,list_house,list_education,list_travel,list_food,list_cars;
-    private List<LookBean.ItemsBean> lookList = new ArrayList<>();
-    private List<HouseBean.ItemsBean> houseList = new ArrayList<>();
-    private List<EducationBean.ItemsBean> educationList = new ArrayList<>();
-    private List<TravelBean.ItemsBean> travelList = new ArrayList<>();
-    private List<FoodBean.ItemsBean> foodList = new ArrayList<>();
-    private List<CarsBean.ItemsBean> carsList = new ArrayList<>();
+
+    private List<DataBean.ItemsBean> dataList = new ArrayList<>();
 
     public int pageCount = 1;
 
-    private LookAdapter lookAdapter;
-    private HouseAdapter houseAdapter;
-    private EducationAdapter educationAdapter;
-    private TravelAdapter travelAdapter;
-    private FoodAdapter foodAdapter;
-    private CarsAdapter carsAdapter;
+    private DataAdapter dataAdapter;
 
     public NewsFragment() {
         // Required empty public constructor
@@ -124,14 +105,14 @@ public class NewsFragment extends Fragment {
     }
 
     private void initLookView() {
-        GetLookNews(look_url, pageCount);
+        GetNews(look_url, pageCount);
         view_look = mInflater.inflate(R.layout.vp_look, null);
         list_look = view_look.findViewById(R.id.list_look);
         LinearLayoutManager layoutManager = new LinearLayoutManager(getActivity());
         layoutManager.setOrientation(LinearLayoutManager.VERTICAL);
         list_look.setLayoutManager(layoutManager);
-        lookAdapter = new LookAdapter(getActivity(), lookList);
-        list_look.setAdapter(lookAdapter);
+        dataAdapter = new DataAdapter(getActivity(), dataList);
+        list_look.setAdapter(dataAdapter);
         list_look.setRefreshProgressStyle(ProgressStyle.BallSpinFadeLoader);
         // 可以设置是否开启加载更多/下拉刷新
         list_look.setLoadingMoreEnabled(true);
@@ -140,7 +121,7 @@ public class NewsFragment extends Fragment {
         // 如果设置上这个，下拉刷新的时候会显示上次刷新的时间
         list_look.getDefaultRefreshHeaderView() // get default refresh header view
                 .setRefreshTimeVisible(true);  // make refresh time visible,false means hiding
-        lookAdapter.addData(lookList);
+        dataAdapter.addData(dataList);
         // 添加数据
 //        lookAdapter.addData(lookList());
 
@@ -163,7 +144,7 @@ public class NewsFragment extends Fragment {
             public void onLoadMore() {
 //                lookAdapter.addData(lookList());
                 // 为了看效果，加了一个等待效果，正式的时候直接写mRecyclerView.loadMoreComplete();
-                GetLookNews(look_url, pageCount);
+                GetNews(look_url, pageCount);
                 new Handler().postDelayed(new Runnable() {
                     @Override
                     public void run() {
@@ -174,14 +155,14 @@ public class NewsFragment extends Fragment {
         });
     }
     private void initHouseView() {
-        GetHouseNews(house_url, pageCount);
+        GetNews(house_url, pageCount);
         view_house = mInflater.inflate(R.layout.vp_house, null);
         list_house = view_house.findViewById(R.id.list_house);
         LinearLayoutManager layoutManager = new LinearLayoutManager(getActivity());
         layoutManager.setOrientation(LinearLayoutManager.VERTICAL);
         list_house.setLayoutManager(layoutManager);
-        houseAdapter = new HouseAdapter(getActivity(),houseList);
-        list_house.setAdapter(houseAdapter);
+        dataAdapter = new DataAdapter(getActivity(),dataList);
+        list_house.setAdapter(dataAdapter);
         list_house.setRefreshProgressStyle(ProgressStyle.BallSpinFadeLoader);
         // 可以设置是否开启加载更多/下拉刷新
         list_house.setLoadingMoreEnabled(true);
@@ -190,7 +171,7 @@ public class NewsFragment extends Fragment {
         // 如果设置上这个，下拉刷新的时候会显示上次刷新的时间
         list_house.getDefaultRefreshHeaderView() // get default refresh header view
                 .setRefreshTimeVisible(true);  // make refresh time visible,false means hiding
-        houseAdapter.addData(houseList);
+        dataAdapter.addData(dataList);
         // 添加数据
 //        lookAdapter.addData(lookList());
 
@@ -213,7 +194,7 @@ public class NewsFragment extends Fragment {
             public void onLoadMore() {
 //                lookAdapter.addData(lookList());
                 // 为了看效果，加了一个等待效果，正式的时候直接写mRecyclerView.loadMoreComplete();
-                GetHouseNews(house_url, pageCount);
+                GetNews(house_url, pageCount);
                 new Handler().postDelayed(new Runnable() {
                     @Override
                     public void run() {
@@ -224,14 +205,14 @@ public class NewsFragment extends Fragment {
         });
     }
     private void initEducationView() {
-        GetEducationNews(education_url, pageCount);
+        GetNews(education_url, pageCount);
         view_education = mInflater.inflate(R.layout.vp_education, null);
         list_education = view_education.findViewById(R.id.list_sport);
         LinearLayoutManager layoutManager = new LinearLayoutManager(getActivity());
         layoutManager.setOrientation(LinearLayoutManager.VERTICAL);
         list_education.setLayoutManager(layoutManager);
-        educationAdapter = new EducationAdapter(getActivity(),educationList);
-        list_education.setAdapter(educationAdapter);
+        dataAdapter = new DataAdapter(getActivity(),dataList);
+        list_education.setAdapter(dataAdapter);
         list_education.setRefreshProgressStyle(ProgressStyle.BallSpinFadeLoader);
         // 可以设置是否开启加载更多/下拉刷新
         list_education.setLoadingMoreEnabled(true);
@@ -240,7 +221,7 @@ public class NewsFragment extends Fragment {
         // 如果设置上这个，下拉刷新的时候会显示上次刷新的时间
         list_education.getDefaultRefreshHeaderView() // get default refresh header view
                 .setRefreshTimeVisible(true);  // make refresh time visible,false means hiding
-        educationAdapter.addData(educationList);
+        dataAdapter.addData(dataList);
         // 添加数据
 //        lookAdapter.addData(lookList());
 
@@ -263,7 +244,7 @@ public class NewsFragment extends Fragment {
             public void onLoadMore() {
 //                lookAdapter.addData(lookList());
                 // 为了看效果，加了一个等待效果，正式的时候直接写mRecyclerView.loadMoreComplete();
-                GetEducationNews(education_url, pageCount);
+                GetNews(education_url, pageCount);
                 new Handler().postDelayed(new Runnable() {
                     @Override
                     public void run() {
@@ -274,14 +255,14 @@ public class NewsFragment extends Fragment {
         });
     }
     private void initTravelView() {
-        GetTravelNews(travel_url, pageCount);
+        GetNews(travel_url, pageCount);
         view_travel = mInflater.inflate(R.layout.vp_travel, null);
         list_travel = view_travel.findViewById(R.id.list_travel);
         LinearLayoutManager layoutManager = new LinearLayoutManager(getActivity());
         layoutManager.setOrientation(LinearLayoutManager.VERTICAL);
         list_travel.setLayoutManager(layoutManager);
-        travelAdapter = new TravelAdapter(getActivity(),travelList);
-        list_travel.setAdapter(travelAdapter);
+        dataAdapter = new DataAdapter(getActivity(),dataList);
+        list_travel.setAdapter(dataAdapter);
         list_travel.setRefreshProgressStyle(ProgressStyle.BallSpinFadeLoader);
         // 可以设置是否开启加载更多/下拉刷新
         list_travel.setLoadingMoreEnabled(true);
@@ -290,7 +271,7 @@ public class NewsFragment extends Fragment {
         // 如果设置上这个，下拉刷新的时候会显示上次刷新的时间
         list_travel.getDefaultRefreshHeaderView() // get default refresh header view
                 .setRefreshTimeVisible(true);  // make refresh time visible,false means hiding
-        travelAdapter.addData(travelList);
+        dataAdapter.addData(dataList);
         // 添加数据
 //        lookAdapter.addData(lookList());
 
@@ -313,7 +294,7 @@ public class NewsFragment extends Fragment {
             public void onLoadMore() {
 //                lookAdapter.addData(lookList());
                 // 为了看效果，加了一个等待效果，正式的时候直接写mRecyclerView.loadMoreComplete();
-                GetTravelNews(travel_url, pageCount);
+                GetNews(travel_url, pageCount);
                 new Handler().postDelayed(new Runnable() {
                     @Override
                     public void run() {
@@ -324,14 +305,14 @@ public class NewsFragment extends Fragment {
         });
     }
     private void initFoodView() {
-        GetFoodNews(food_url, pageCount);
+        GetNews(food_url, pageCount);
         view_food = mInflater.inflate(R.layout.vp_food, null);
         list_food = view_food.findViewById(R.id.list_food);
         LinearLayoutManager layoutManager = new LinearLayoutManager(getActivity());
         layoutManager.setOrientation(LinearLayoutManager.VERTICAL);
         list_food.setLayoutManager(layoutManager);
-        foodAdapter = new FoodAdapter(getActivity(),foodList);
-        list_food.setAdapter(foodAdapter);
+        dataAdapter = new DataAdapter(getActivity(),dataList);
+        list_food.setAdapter(dataAdapter);
         list_food.setRefreshProgressStyle(ProgressStyle.BallSpinFadeLoader);
         // 可以设置是否开启加载更多/下拉刷新
         list_food.setLoadingMoreEnabled(true);
@@ -340,7 +321,7 @@ public class NewsFragment extends Fragment {
         // 如果设置上这个，下拉刷新的时候会显示上次刷新的时间
         list_food.getDefaultRefreshHeaderView() // get default refresh header view
                 .setRefreshTimeVisible(true);  // make refresh time visible,false means hiding
-        foodAdapter.addData(foodList);
+        dataAdapter.addData(dataList);
         // 添加数据
 //        lookAdapter.addData(lookList());
 
@@ -363,7 +344,7 @@ public class NewsFragment extends Fragment {
             public void onLoadMore() {
 //                lookAdapter.addData(lookList());
                 // 为了看效果，加了一个等待效果，正式的时候直接写mRecyclerView.loadMoreComplete();
-                GetFoodNews(food_url, pageCount);
+                GetNews(food_url, pageCount);
                 new Handler().postDelayed(new Runnable() {
                     @Override
                     public void run() {
@@ -374,14 +355,14 @@ public class NewsFragment extends Fragment {
         });
     }
     private void initCarsView() {
-        GetCarsNews(cars_url, pageCount);
+        GetNews(cars_url, pageCount);
         view_cars = mInflater.inflate(R.layout.vp_cars,null);
         list_cars = view_cars.findViewById(R.id.list_cars);
         LinearLayoutManager layoutManager = new LinearLayoutManager(getActivity());
         layoutManager.setOrientation(LinearLayoutManager.VERTICAL);
         list_cars.setLayoutManager(layoutManager);
-        carsAdapter = new CarsAdapter(getActivity(),carsList);
-        list_cars.setAdapter(carsAdapter);
+        dataAdapter = new DataAdapter(getActivity(),dataList);
+        list_cars.setAdapter(dataAdapter);
         list_cars.setRefreshProgressStyle(ProgressStyle.BallSpinFadeLoader);
         // 可以设置是否开启加载更多/下拉刷新
         list_cars.setLoadingMoreEnabled(true);
@@ -390,7 +371,7 @@ public class NewsFragment extends Fragment {
         // 如果设置上这个，下拉刷新的时候会显示上次刷新的时间
         list_cars.getDefaultRefreshHeaderView() // get default refresh header view
                 .setRefreshTimeVisible(true);  // make refresh time visible,false means hiding
-        carsAdapter.addData(carsList);
+        dataAdapter.addData(dataList);
         // 添加数据
 //        lookAdapter.addData(lookList());
 
@@ -413,7 +394,7 @@ public class NewsFragment extends Fragment {
             public void onLoadMore() {
 //                lookAdapter.addData(lookList());
                 // 为了看效果，加了一个等待效果，正式的时候直接写mRecyclerView.loadMoreComplete();
-                GetCarsNews(cars_url, pageCount);
+                GetNews(cars_url, pageCount);
                 new Handler().postDelayed(new Runnable() {
                     @Override
                     public void run() {
@@ -424,7 +405,7 @@ public class NewsFragment extends Fragment {
         });
     }
 
-    public void GetLookNews(final String url, int page) {
+    public void GetNews(final String url, int page) {
         OkhttpUntil.enqueueGetrequest(url + page, new TostringNetworkListining() {
             @Override
             public void BackResultFail(Exception errow) {
@@ -435,198 +416,78 @@ public class NewsFragment extends Fragment {
             public void tostring(String responseString) {
              /*   temp temp = OkhttpUntil.toObject(temp.class, responseString);
                 Toast.makeText(getActivity(), temp.getItems().size() + "", Toast.LENGTH_SHORT).show();*/
-                LookBean lookBean = OkhttpUntil.toObject(LookBean.class, responseString);
+                DataBean dataBean = OkhttpUntil.toObject(DataBean.class, responseString);
                 // Toast.makeText(activity, lookBean.getItems().size()+"", Toast.LENGTH_SHORT).show();
-                if (lookBean != null) {
-                    for (int i = 0; i < lookBean.getItems().size(); i++) {
+                if (dataBean != null) {
+                    for (int i = 0; i < dataBean.getItems().size(); i++) {
                         if (pageCount == 1) {
                             if (i == 0) {
                                 continue;
                             }
                         }
-                        lookList.add(lookBean.getItems().get(i));
+                        dataList.add(dataBean.getItems().get(i));
                     }
                     //   Toast.makeText(activity, lookList.size()+"", Toast.LENGTH_SHORT).show();
-                    lookAdapter.notifyDataSetChanged();
+                    dataAdapter.notifyDataSetChanged();
                     pageCount += 1;
                 }
             }
         });
 
-    }
-    public void GetHouseNews(final String url, int page) {
-        OkhttpUntil.enqueueGetrequest(url + page, new TostringNetworkListining() {
-            @Override
-            public void BackResultFail(Exception errow) {
-
-            }
-
-            @Override
-            public void tostring(String responseString) {
-             /*   temp temp = OkhttpUntil.toObject(temp.class, responseString);
-                Toast.makeText(getActivity(), temp.getItems().size() + "", Toast.LENGTH_SHORT).show();*/
-                HouseBean houseBean = OkhttpUntil.toObject(HouseBean.class, responseString);
-                // Toast.makeText(activity, lookBean.getItems().size()+"", Toast.LENGTH_SHORT).show();
-                if (houseBean != null) {
-                    for (int i = 0; i < houseBean.getItems().size(); i++) {
-                        houseList.add(houseBean.getItems().get(i));
-                    }
-                    //   Toast.makeText(activity, lookList.size()+"", Toast.LENGTH_SHORT).show();
-                    houseAdapter.notifyDataSetChanged();
-                    pageCount += 1;
-                }
-            }
-        });
-    }
-    public void GetEducationNews(final String url, int page) {
-        OkhttpUntil.enqueueGetrequest(url + page, new TostringNetworkListining() {
-            @Override
-            public void BackResultFail(Exception errow) {
-
-            }
-
-            @Override
-            public void tostring(String responseString) {
-             /*   temp temp = OkhttpUntil.toObject(temp.class, responseString);
-                Toast.makeText(getActivity(), temp.getItems().size() + "", Toast.LENGTH_SHORT).show();*/
-                EducationBean educationBean = OkhttpUntil.toObject(EducationBean.class, responseString);
-                // Toast.makeText(activity, lookBean.getItems().size()+"", Toast.LENGTH_SHORT).show();
-                if (educationBean != null) {
-                    for (int i = 0; i < educationBean.getItems().size(); i++) {
-                        educationList.add(educationBean.getItems().get(i));
-                    }
-                    //   Toast.makeText(activity, lookList.size()+"", Toast.LENGTH_SHORT).show();
-                    educationAdapter.notifyDataSetChanged();
-                    pageCount += 1;
-                }
-            }
-        });
-    }
-    public void GetTravelNews(final String url, int page) {
-        OkhttpUntil.enqueueGetrequest(url + page, new TostringNetworkListining() {
-            @Override
-            public void BackResultFail(Exception errow) {
-
-            }
-
-            @Override
-            public void tostring(String responseString) {
-             /*   temp temp = OkhttpUntil.toObject(temp.class, responseString);
-                Toast.makeText(getActivity(), temp.getItems().size() + "", Toast.LENGTH_SHORT).show();*/
-                TravelBean travelBean = OkhttpUntil.toObject(TravelBean.class, responseString);
-                // Toast.makeText(activity, lookBean.getItems().size()+"", Toast.LENGTH_SHORT).show();
-                if (travelBean != null) {
-                    for (int i = 0; i < travelBean.getItems().size(); i++) {
-                        travelList.add(travelBean.getItems().get(i));
-                    }
-                    //   Toast.makeText(activity, lookList.size()+"", Toast.LENGTH_SHORT).show();
-                    travelAdapter.notifyDataSetChanged();
-                    pageCount += 1;
-                }
-            }
-        });
-    }
-    public void GetFoodNews(final String url, int page) {
-        OkhttpUntil.enqueueGetrequest(url + page, new TostringNetworkListining() {
-            @Override
-            public void BackResultFail(Exception errow) {
-
-            }
-
-            @Override
-            public void tostring(String responseString) {
-             /*   temp temp = OkhttpUntil.toObject(temp.class, responseString);
-                Toast.makeText(getActivity(), temp.getItems().size() + "", Toast.LENGTH_SHORT).show();*/
-                FoodBean foodBean = OkhttpUntil.toObject(FoodBean.class, responseString);
-                // Toast.makeText(activity, lookBean.getItems().size()+"", Toast.LENGTH_SHORT).show();
-                if (foodBean != null) {
-                    for (int i = 0; i < foodBean.getItems().size(); i++) {
-                        foodList.add(foodBean.getItems().get(i));
-                    }
-                    //   Toast.makeText(activity, lookList.size()+"", Toast.LENGTH_SHORT).show();
-                    foodAdapter.notifyDataSetChanged();
-                    pageCount += 1;
-                }
-            }
-        });
-    }
-    public void GetCarsNews(final String url, int page) {
-        OkhttpUntil.enqueueGetrequest(url + page, new TostringNetworkListining() {
-            @Override
-            public void BackResultFail(Exception errow) {
-
-            }
-
-            @Override
-            public void tostring(String responseString) {
-             /*   temp temp = OkhttpUntil.toObject(temp.class, responseString);
-                Toast.makeText(getActivity(), temp.getItems().size() + "", Toast.LENGTH_SHORT).show();*/
-                CarsBean carsBean = OkhttpUntil.toObject(CarsBean.class, responseString);
-                // Toast.makeText(activity, lookBean.getItems().size()+"", Toast.LENGTH_SHORT).show();
-                if (carsBean != null) {
-                    for (int i = 0; i < carsBean.getItems().size(); i++) {
-                        carsList.add(carsBean.getItems().get(i));
-                    }
-                    //   Toast.makeText(activity, lookList.size()+"", Toast.LENGTH_SHORT).show();
-                    carsAdapter.notifyDataSetChanged();
-                    pageCount += 1;
-                }
-            }
-        });
     }
 
     public void initLooknews() {
         pageCount = 1;
-        lookList.clear();
-        lookAdapter.notifyDataSetChanged();
-        if (lookList.size() < 0 ) {
+        dataList.clear();
+        dataAdapter.notifyDataSetChanged();
+        if (dataList.size() < 0 ) {
             Toast.makeText(getActivity(),"服务器未响应",Toast.LENGTH_SHORT).show();
         }
-        GetLookNews(look_url, pageCount);
+        GetNews(look_url, pageCount);
     }
     private void initHousenews() {
         pageCount = 1;
-        houseList.clear();
-        lookAdapter.notifyDataSetChanged();
-        if (houseList.size() < 0 ) {
+        dataList.clear();
+        dataAdapter.notifyDataSetChanged();
+        if (dataList.size() < 0 ) {
             Toast.makeText(getActivity(),"服务器未响应",Toast.LENGTH_SHORT).show();
         }
-        GetHouseNews(house_url, pageCount);
+        GetNews(house_url, pageCount);
     }
     private void initEducationnews() {
         pageCount = 1;
-        educationList.clear();
-        educationAdapter.notifyDataSetChanged();
-        if (educationList.size() < 0 ) {
+        dataList.clear();
+        dataAdapter.notifyDataSetChanged();
+        if (dataList.size() < 0 ) {
             Toast.makeText(getActivity(),"服务器未响应",Toast.LENGTH_SHORT).show();
         }
-        GetEducationNews(education_url, pageCount);
+        GetNews(education_url, pageCount);
     }
     private void initTravelnews() {
         pageCount = 1;
-        travelList.clear();
-        travelAdapter.notifyDataSetChanged();
-        if (travelList.size() < 0 ) {
+        dataList.clear();
+        dataAdapter.notifyDataSetChanged();
+        if (dataList.size() < 0 ) {
             Toast.makeText(getActivity(),"服务器未响应",Toast.LENGTH_SHORT).show();
         }
-        GetTravelNews(travel_url, pageCount);
+        GetNews(travel_url, pageCount);
     }
     private void initFoodnews() {
         pageCount = 1;
-        foodList.clear();
-        foodAdapter.notifyDataSetChanged();
-        if (foodList.size() < 0 ) {
+        dataList.clear();
+        dataAdapter.notifyDataSetChanged();
+        if (dataList.size() < 0 ) {
             Toast.makeText(getActivity(),"服务器未响应",Toast.LENGTH_SHORT).show();
         }
-        GetFoodNews(food_url, pageCount);
+        GetNews(food_url, pageCount);
     }
     private void initCarsnews() {
         pageCount = 1;
-        carsList.clear();
-        carsAdapter.notifyDataSetChanged();
-        if (carsList.size() < 0 ) {
+        dataList.clear();
+        dataAdapter.notifyDataSetChanged();
+        if (dataList.size() < 0 ) {
             Toast.makeText(getActivity(),"服务器未响应",Toast.LENGTH_SHORT).show();
         }
-        GetCarsNews(cars_url, pageCount);
+        GetNews(cars_url, pageCount);
     }
 }

@@ -16,6 +16,7 @@ import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.example.lovestou.activity.ChatActivity;
+import com.example.lovestou.activity.CollectionActivity;
 import com.example.lovestou.activity.LoginActivity;
 import com.example.lovestou.fragment.FindFragment;
 import com.example.lovestou.fragment.HomeFragment;
@@ -36,7 +37,7 @@ public class MainActivity extends AppCompatActivity {
     private SpaceTabLayout spaceTabLayout;
     private ViewPager viewPager;
     private List<Fragment> fragmentList;
-    private RelativeLayout rl_login,rl_robot;
+    private RelativeLayout rl_login,rl_robot,rl_collection;
     private TextView tv_login,tv_weather,tv_temp;
     private ImageView iv_weather;
     @Override
@@ -119,6 +120,15 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(getApplicationContext(), ChatActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        rl_collection = findViewById(R.id.rl_collection);
+        rl_collection.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MainActivity.this, CollectionActivity.class);
                 startActivity(intent);
             }
         });

@@ -2,7 +2,7 @@ package com.example.lovestou.bean;
 
 import java.util.List;
 
-public class TravelBean {
+public class DataBean {
 
 
     /**

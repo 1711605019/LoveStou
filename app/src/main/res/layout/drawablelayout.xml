@@ -81,7 +81,7 @@
                 android:background="#ffeeff" />
 
             <RelativeLayout
-                android:id="@+id/rl_yigou"
+                android:id="@+id/rl_collection"
                 android:layout_width="fill_parent"
                 android:layout_height="50dp"
                 android:layout_marginLeft="8dp"
