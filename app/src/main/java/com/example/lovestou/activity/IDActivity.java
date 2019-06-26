@@ -1,10 +1,9 @@
 package com.example.lovestou.activity;
 
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -21,6 +20,7 @@ public class IDActivity extends AppCompatActivity {
     private Button btn_send;
     private TextView tv_province,tv_city,tv_town,tv_sex,tv_birth;
     private ImageButton ib_return;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

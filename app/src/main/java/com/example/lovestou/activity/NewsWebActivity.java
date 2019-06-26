@@ -30,7 +30,6 @@ public class NewsWebActivity extends AppCompatActivity {
     private ImageButton ib_return;
     private CheckBox ck_collection;
 
-
     public static DataBean.ItemsBean itemsBean;
 
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
@@ -41,8 +40,6 @@ public class NewsWebActivity extends AppCompatActivity {
         overridePendingTransition(R.anim.push_left_in, R.anim.push_left_out);
 
         webView = findViewById(R.id.webView);
-        Intent intent = getIntent();
-        // String url = intent.getStringExtra("url");//
         String url = NewsInterface.WEB_SITE +itemsBean.getHref();
         webView.getSettings().setJavaScriptCanOpenWindowsAutomatically(true);//设置js可以直接打开窗口，如window.open()，默认为false
         webView.getSettings().setJavaScriptEnabled(true);//是否允许JavaScript脚本运行，默认为false。设置true时，会提醒可能造成XSS漏洞
@@ -92,8 +89,6 @@ public class NewsWebActivity extends AppCompatActivity {
                 view.loadUrl("javascript:function setTop(){document.getElementsByClassName('main')[1].style.display=\"none\";}setTop();");
                 view.loadUrl("javascript:function setTop(){document.getElementsByClassName('main')[2].style.display=\"none\";}setTop();");
                 view.loadUrl("javascript:function setTop(){document.querySelector('.adv').style.display=\"none\";}setTop();");
-
-
             }
         });
         webView.loadUrl(url);

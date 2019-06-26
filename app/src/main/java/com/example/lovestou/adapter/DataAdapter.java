@@ -22,7 +22,6 @@ public class DataAdapter extends RecyclerView.Adapter<DataAdapter.RecyclerHolder
     private Context mContext;
     private List<DataBean.ItemsBean> carsList = new ArrayList<>();
 
-
     public DataAdapter(Context mContext, List<DataBean.ItemsBean> carsList) {
         this.mContext = mContext;
         this.carsList = carsList;
@@ -63,14 +62,9 @@ public class DataAdapter extends RecyclerView.Adapter<DataAdapter.RecyclerHolder
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
                 Intent intent = new Intent(mContext, NewsWebActivity.class);
-                intent.putExtra("url", NewsInterface.WEB_SITE +CarsBean.getHref());
-               // intent.putExtra(itemsBean)
                 DataBean.ItemsBean itemsBean = carsList.get(position);
                 NewsWebActivity.itemsBean = itemsBean;
-
-
                 mContext.startActivity(intent);
             }
         });
