@@ -8,8 +8,8 @@ import android.view.View;
 import android.widget.ImageButton;
 
 import com.example.lovestou.R;
-import com.example.lovestou.adapter.stNewsAdapter;
-import com.example.lovestou.bean.stNewsBean;
+import com.example.lovestou.adapter.VideoNewsAdapter;
+import com.example.lovestou.bean.VideoBean;
 import com.jcodecraeer.xrecyclerview.ProgressStyle;
 import com.jcodecraeer.xrecyclerview.XRecyclerView;
 
@@ -23,8 +23,8 @@ import java.util.List;
 public class stNewsActivity extends AppCompatActivity {
     private XRecyclerView recyclerView;
     private ImageButton imageButton;
-    private stNewsAdapter adapter;
-    private List<stNewsBean> stNewsList = new ArrayList<>();
+    private VideoNewsAdapter adapter;
+    private List<VideoBean> stNewsList = new ArrayList<>();
     private int page = 1;
 
 
@@ -50,14 +50,14 @@ public class stNewsActivity extends AppCompatActivity {
                         String img = elements.get(j).select("img").attr("src");
                         String href = "http://st.cutv.com" + elements.get(j).select("a").attr("href");
 
-                        stNewsBean bean = new stNewsBean(title, img, href);
+                        VideoBean bean = new VideoBean(title, img, href);
                         stNewsList.add(bean);
                     }
                     runOnUiThread(new Runnable() {
                         @Override
                         public void run() {
                             page++;
-                            adapter = new stNewsAdapter(getApplicationContext(), stNewsList);
+                            adapter = new VideoNewsAdapter(getApplicationContext(), stNewsList);
                             recyclerView.setAdapter(adapter);
                         }
                     });
@@ -81,7 +81,7 @@ public class stNewsActivity extends AppCompatActivity {
         GridLayoutManager gridLayoutManager = new GridLayoutManager(getApplicationContext(), 2);
         recyclerView.setLayoutManager(gridLayoutManager);
 
-        adapter = new stNewsAdapter(this, stNewsList);
+        adapter = new VideoNewsAdapter(this, stNewsList);
         recyclerView.setAdapter(adapter);
         recyclerView.setRefreshProgressStyle(ProgressStyle.BallSpinFadeLoader);
         // 可以设置是否开启加载更多/下拉刷新
@@ -123,7 +123,7 @@ public class stNewsActivity extends AppCompatActivity {
                         String img = elements.get(j).select("img").attr("src");
                         String href = "http://st.cutv.com" + elements.get(j).select("a").attr("href");
 
-                        stNewsBean bean = new stNewsBean(title, img, href);
+                        VideoBean bean = new VideoBean(title, img, href);
                         stNewsList.add(bean);
                     }
                     runOnUiThread(new Runnable() {

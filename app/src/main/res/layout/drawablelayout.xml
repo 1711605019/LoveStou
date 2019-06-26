@@ -109,7 +109,7 @@
                 android:background="#ffeeff" />
 
             <RelativeLayout
-                android:id="@+id/rl_shopping"
+                android:id="@+id/rl_history"
                 android:layout_width="fill_parent"
                 android:layout_height="50dp"
                 android:layout_marginLeft="8dp"
@@ -148,7 +148,7 @@
                     android:layout_height="wrap_content"
                     android:layout_centerVertical="true"
                     android:layout_marginLeft="8dp"
-                    android:text="小智在线"
+                    android:text="智能客服"
                     android:textSize="14sp" />
 
                 <ImageView

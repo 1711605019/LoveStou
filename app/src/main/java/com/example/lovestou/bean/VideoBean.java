@@ -1,11 +1,11 @@
 package com.example.lovestou.bean;
 
-public class TodayBean {
+public class VideoBean {
     private String title;
     private String img;
     private String href;
 
-    public TodayBean(String title, String img, String href) {
+    public VideoBean(String title, String img, String href) {
         this.title = title;
         this.img = img;
         this.href = href;

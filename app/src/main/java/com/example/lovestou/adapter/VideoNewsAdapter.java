@@ -12,27 +12,26 @@ import android.widget.TextView;
 import com.bumptech.glide.Glide;
 import com.example.lovestou.R;
 import com.example.lovestou.activity.VideoActivity;
-import com.example.lovestou.bean.TodayBean;
-import com.example.lovestou.bean.stNewsBean;
+import com.example.lovestou.bean.VideoBean;
 
 import java.util.List;
 
-public class TodayAdapter extends RecyclerView.Adapter<TodayAdapter.ViewHolder> {
+public class VideoNewsAdapter extends RecyclerView.Adapter<VideoNewsAdapter.ViewHolder> {
     private Context context;
-    private List<TodayBean> todayList;
+    private List<VideoBean> todayList;
 
-    public TodayAdapter(Context context, List<TodayBean> todayList) {
+    public VideoNewsAdapter(Context context, List<VideoBean> todayList) {
         this.todayList = todayList;
         this.context = context;
     }
-    public void addData(List<TodayBean> todayList) {
+    public void addData(List<VideoBean> todayList) {
         if (null != todayList) {
             this.todayList.addAll(todayList);
             notifyDataSetChanged();
         }
     }
 
-    public void setData(List<TodayBean> todayList) {
+    public void setData(List<VideoBean> todayList) {
         if (null != todayList) {
             this.todayList.clear();
             this.todayList.addAll(todayList);
@@ -41,7 +40,7 @@ public class TodayAdapter extends RecyclerView.Adapter<TodayAdapter.ViewHolder> 
     }
 
     @Override
-    public TodayAdapter.ViewHolder onCreateViewHolder(ViewGroup viewGroup, int i) {
+    public VideoNewsAdapter.ViewHolder onCreateViewHolder(ViewGroup viewGroup, int i) {
         View view = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.video_item,viewGroup,false);
         ViewHolder holder = new ViewHolder(view);
         return holder;
@@ -49,14 +48,14 @@ public class TodayAdapter extends RecyclerView.Adapter<TodayAdapter.ViewHolder> 
 
     @Override
     public void onBindViewHolder( ViewHolder viewHolder, int i) {
-        TodayBean todayBean = todayList.get(i);
-        String t = todayBean.getTitle().substring(0,todayBean.getTitle().length()-10);
-        String time = todayBean.getTitle().substring(todayBean.getTitle().length()-10);
+        VideoBean videoBean = todayList.get(i);
+        String t = videoBean.getTitle().substring(0, videoBean.getTitle().length()-10);
+        String time = videoBean.getTitle().substring(videoBean.getTitle().length()-10);
         viewHolder.textView.setText(t);
 
         Glide
                 .with(context)
-                .load(todayBean.getImg())
+                .load(videoBean.getImg())
                 .placeholder(R.drawable.error)
                 .into(viewHolder.imageView);
 
@@ -64,7 +63,7 @@ public class TodayAdapter extends RecyclerView.Adapter<TodayAdapter.ViewHolder> 
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(context, VideoActivity.class);
-                intent.putExtra("url",todayBean.getHref());
+                intent.putExtra("url", videoBean.getHref());
                 intent.putExtra("title",t);
                 intent.putExtra("time",time);
                 intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK );

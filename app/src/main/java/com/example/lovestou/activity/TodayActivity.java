@@ -6,13 +6,10 @@ import android.os.Bundle;
 import android.support.v7.widget.GridLayoutManager;
 import android.view.View;
 import android.widget.ImageButton;
-import android.widget.Toast;
 
 import com.example.lovestou.R;
-import com.example.lovestou.adapter.TodayAdapter;
-import com.example.lovestou.adapter.stNewsAdapter;
-import com.example.lovestou.bean.TodayBean;
-import com.example.lovestou.bean.stNewsBean;
+import com.example.lovestou.adapter.VideoNewsAdapter;
+import com.example.lovestou.bean.VideoBean;
 import com.jcodecraeer.xrecyclerview.ProgressStyle;
 import com.jcodecraeer.xrecyclerview.XRecyclerView;
 
@@ -26,8 +23,8 @@ import java.util.List;
 public class TodayActivity extends AppCompatActivity {
     private XRecyclerView recyclerView;
     private ImageButton imageButton;
-    private TodayAdapter adapter;
-    private List<TodayBean> todayList = new ArrayList<>();
+    private VideoNewsAdapter adapter;
+    private List<VideoBean> todayList = new ArrayList<>();
     private int page = 1;
 
     @Override
@@ -52,14 +49,14 @@ public class TodayActivity extends AppCompatActivity {
                         String img = elements.get(j).select("img").attr("src");
                         String href = "http://st.cutv.com" + elements.get(j).select("a").attr("href");
 
-                        TodayBean bean = new TodayBean(title, img, href);
+                        VideoBean bean = new VideoBean(title, img, href);
                         todayList.add(bean);
                     }
                     runOnUiThread(new Runnable() {
                         @Override
                         public void run() {
                             page++;
-                            adapter = new TodayAdapter(getApplicationContext(), todayList);
+                            adapter = new VideoNewsAdapter(getApplicationContext(), todayList);
                             recyclerView.setAdapter(adapter);
                         }
                     });
@@ -84,7 +81,7 @@ public class TodayActivity extends AppCompatActivity {
         GridLayoutManager gridLayoutManager = new GridLayoutManager(getApplicationContext(), 2);
         recyclerView.setLayoutManager(gridLayoutManager);
 
-        adapter = new TodayAdapter(this, todayList);
+        adapter = new VideoNewsAdapter(this, todayList);
         recyclerView.setAdapter(adapter);
         recyclerView.setRefreshProgressStyle(ProgressStyle.BallSpinFadeLoader);
         // 可以设置是否开启加载更多/下拉刷新
@@ -126,7 +123,7 @@ public class TodayActivity extends AppCompatActivity {
                         String img = elements.get(j).select("img").attr("src");
                         String href = "http://st.cutv.com" + elements.get(j).select("a").attr("href");
 
-                        TodayBean bean = new TodayBean(title, img, href);
+                        VideoBean bean = new VideoBean(title, img, href);
                         todayList.add(bean);
                     }
                     runOnUiThread(new Runnable() {

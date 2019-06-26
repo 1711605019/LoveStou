@@ -2,11 +2,10 @@ package com.example.lovestou;
 
 
 import android.content.Intent;
+import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
-import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
 import android.widget.ImageView;
@@ -18,6 +17,7 @@ import com.bumptech.glide.Glide;
 import com.example.lovestou.activity.ChatActivity;
 import com.example.lovestou.activity.CollectionActivity;
 import com.example.lovestou.activity.LoginActivity;
+import com.example.lovestou.activity.VideoHistoryActivity;
 import com.example.lovestou.fragment.FindFragment;
 import com.example.lovestou.fragment.HomeFragment;
 import com.example.lovestou.fragment.NavFragment;
@@ -27,7 +27,6 @@ import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.select.Elements;
 
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -37,7 +36,7 @@ public class MainActivity extends AppCompatActivity {
     private SpaceTabLayout spaceTabLayout;
     private ViewPager viewPager;
     private List<Fragment> fragmentList;
-    private RelativeLayout rl_login,rl_robot,rl_collection;
+    private RelativeLayout rl_login,rl_robot,rl_collection,rl_history;
     private TextView tv_login,tv_weather,tv_temp;
     private ImageView iv_weather;
     @Override
@@ -129,6 +128,15 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(MainActivity.this, CollectionActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        rl_history = findViewById(R.id.rl_history);
+        rl_history.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MainActivity.this, VideoHistoryActivity.class);
                 startActivity(intent);
             }
         });
