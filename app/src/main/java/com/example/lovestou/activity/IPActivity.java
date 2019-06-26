@@ -28,9 +28,8 @@ import static android.view.View.VISIBLE;
 public class IPActivity extends AppCompatActivity {
     private BiuEditText ed_input;
     private Button btn_send;
-    private TextView tv_country,tv_province,tv_city,tv_type;
+    private TextView tv_country, tv_province, tv_city, tv_type;
     private ImageButton ib_return;
-
 
     private List<HistoryBean> historyList = new ArrayList<>();
     private ListView listView;
@@ -46,6 +45,7 @@ public class IPActivity extends AppCompatActivity {
 
         initView();
     }
+
     private void initView() {
         ed_input = findViewById(R.id.et_search);
         tv_country = findViewById(R.id.tv_country);
@@ -55,7 +55,7 @@ public class IPActivity extends AppCompatActivity {
 
         listView = findViewById(R.id.mRecyclerView);
         LayoutInflater inflater = (LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-        header_view = inflater.inflate(R.layout.history_header,null);
+        header_view = inflater.inflate(R.layout.history_header, null);
         listView.addHeaderView(header_view);
         tv_deleteAll = header_view.findViewById(R.id.tv_deleteAll);
         tv_deleteAll.setOnClickListener(new View.OnClickListener() {
@@ -92,24 +92,25 @@ public class IPActivity extends AppCompatActivity {
 
                 HistoryBean bean = new HistoryBean(input);
                 historyList.add(bean);
-                searchItemAdapter = new SearchItemAdapter(historyList,IPActivity.this);
+                searchItemAdapter = new SearchItemAdapter(historyList, IPActivity.this);
                 listView.setAdapter(searchItemAdapter);
                 listView.setVisibility(View.GONE);
             }
         });
     }
+
     public void GetIpInfo(final String url) {
         OkhttpUntil.enqueueGetrequest(url, IpBean.class, new NetworkListining<IpBean>() {
             @Override
             public void BackResultSuccess(IpBean bean, int code) {
-                try{
-                    if(code == 200){
+                try {
+                    if (code == 200) {
                         tv_country.setText(bean.getResult().getCountry());
                         tv_province.setText(bean.getResult().getProvince());
                         tv_city.setText(bean.getResult().getCity());
                         tv_type.setText(bean.getResult().getType());
                     }
-                }catch (Exception e){
+                } catch (Exception e) {
                     Toast.makeText(IPActivity.this, e.getMessage(), Toast.LENGTH_SHORT).show();
                 }
             }
@@ -125,6 +126,7 @@ public class IPActivity extends AppCompatActivity {
             }
         });
     }
+
     @Override
     public void finish() {
         super.finish();

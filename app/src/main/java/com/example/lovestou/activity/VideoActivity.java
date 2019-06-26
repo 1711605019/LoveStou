@@ -30,7 +30,6 @@ import java.util.List;
 public class VideoActivity extends AppCompatActivity implements UniversalVideoView.VideoViewCallback {
     private static final String TAG = "MainActivity";
     private static final String SEEK_POSITION_KEY = "SEEK_POSITION_KEY";
-//    private static final String VIDEO_URL = "http://videofile1.cutv.com/originfileg/010061_t/2019/06/20/G19/G19jkjjpkkopkjmljjjgct_cug.mp4";
 
     UniversalVideoView mVideoView;
     UniversalMediaController mMediaController;
@@ -44,6 +43,7 @@ public class VideoActivity extends AppCompatActivity implements UniversalVideoVi
     private boolean isFullscreen;
 
     public static VideoBean videoBean;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -52,8 +52,8 @@ public class VideoActivity extends AppCompatActivity implements UniversalVideoVi
 
         tv_title = findViewById(R.id.tv_title);
         tv_time = findViewById(R.id.tv_time);
-        tv_title.setText(videoBean.getTitle().substring(0, videoBean.getTitle().length()-10));
-        tv_time.setText(videoBean.getTitle().substring(videoBean.getTitle().length()-10));
+        tv_title.setText(videoBean.getTitle().substring(0, videoBean.getTitle().length() - 10));
+        tv_time.setText(videoBean.getTitle().substring(videoBean.getTitle().length() - 10));
         webView = findViewById(R.id.webview_video);
         webView.getSettings().setJavaScriptEnabled(true);
         webView.setLayerType(View.LAYER_TYPE_HARDWARE, null);
@@ -110,7 +110,6 @@ public class VideoActivity extends AppCompatActivity implements UniversalVideoVi
         });
 
 
-
         SharedPreferences hsp = getSharedPreferences("xxVideo", MODE_PRIVATE);
         String json = hsp.getString("ls", "");
         if (json.equals("")) {
@@ -121,9 +120,9 @@ public class VideoActivity extends AppCompatActivity implements UniversalVideoVi
             //从数据库取出来的
             List<VideoBean> list = new Gson().fromJson(json, new TypeToken<List<VideoBean>>() {
             }.getType());
-            if (!list.contains(videoBean)){
+            if (!list.contains(videoBean)) {
                 list.add(videoBean);
-            }else {
+            } else {
 
             }
             hsp.edit().putString("sc", new Gson().toJson(list)).apply();
@@ -211,16 +210,13 @@ public class VideoActivity extends AppCompatActivity implements UniversalVideoVi
         Log.d(TAG, "onPause UniversalVideoView callback");
     }
 
-
     public void onStart(MediaPlayer mediaPlayer) { // 视频开始播放或恢复播放
         Log.d(TAG, "onStart UniversalVideoView callback");
     }
 
-
     public void onBufferingStart(MediaPlayer mediaPlayer) {// 视频开始缓冲
         Log.d(TAG, "onBufferingStart UniversalVideoView callback");
     }
-
 
     public void onBufferingEnd(MediaPlayer mediaPlayer) {// 视频结束缓冲
         Log.d(TAG, "onBufferingEnd UniversalVideoView callback");
@@ -239,6 +235,7 @@ public class VideoActivity extends AppCompatActivity implements UniversalVideoVi
     public void onPointerCaptureChanged(boolean hasCapture) {
 
     }
+
     @Override
     public void finish() {
         super.finish();

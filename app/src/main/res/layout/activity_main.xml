@@ -9,7 +9,8 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
-        <include layout="@layout/drawablelayout"/>
+
+        <include layout="@layout/drawablelayout" />
 
     </LinearLayout>
 
@@ -28,10 +29,10 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             app:button_color="@color/orgTheme"
-            app:layout_behavior="eu.long1.spacetablayout.SpaceTabLayoutBehavior"
             app:icon_one="@mipmap/home"
-            app:icon_two="@mipmap/news"
             app:icon_three="@mipmap/nav"
+            app:icon_two="@mipmap/news"
+            app:layout_behavior="eu.long1.spacetablayout.SpaceTabLayoutBehavior"
             app:number_of_tabs="four"
             app:starting_position="one"
             app:tab_color="@color/blueTheme" />

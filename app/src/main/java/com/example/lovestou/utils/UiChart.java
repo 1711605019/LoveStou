@@ -36,7 +36,6 @@ public class UiChart {
             new Thread(new Runnable() {
                 @Override
                 public void run() {
-
                     try {
                         MsgItem msgItem = Okhttpnew.NothreadenqueueGetrequest(ChartRespong.url + msg, MsgItem.class);
                         activity.runOnUiThread(new Runnable() {
@@ -49,7 +48,6 @@ public class UiChart {
                                 }
                             }
                         });
-
                     } catch (IOException e) {
                         e.printStackTrace();
                     }

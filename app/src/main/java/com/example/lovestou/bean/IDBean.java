@@ -1,6 +1,7 @@
 package com.example.lovestou.bean;
 
 public class IDBean {
+
     /**
      * status : 0
      * msg : ok

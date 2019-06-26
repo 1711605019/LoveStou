@@ -1,6 +1,7 @@
 package com.example.lovestou.bean;
 
 public class OilBean {
+
     /**
      * status : 0
      * msg : ok

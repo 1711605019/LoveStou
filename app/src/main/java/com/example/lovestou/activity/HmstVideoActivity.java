@@ -25,6 +25,7 @@ public class HmstVideoActivity extends AppCompatActivity implements UniversalVid
     private int mSeekPosition;
     private int cachedHeight;
     private boolean isFullscreen;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -48,6 +49,7 @@ public class HmstVideoActivity extends AppCompatActivity implements UniversalVid
         });
 
     }
+
     //    暂停
     @Override
     protected void onPause() {
@@ -88,6 +90,7 @@ public class HmstVideoActivity extends AppCompatActivity implements UniversalVid
         Log.d(TAG, "onSaveInstanceState Position=" + mVideoView.getCurrentPosition());
         outState.putInt(SEEK_POSITION_KEY, mSeekPosition);
     }
+
     //当恢复情况状态
     @Override
     protected void onRestoreInstanceState(Bundle outState) {
@@ -163,6 +166,7 @@ public class HmstVideoActivity extends AppCompatActivity implements UniversalVid
     public void onPointerCaptureChanged(boolean hasCapture) {
 
     }
+
     @Override
     public void finish() {
         super.finish();

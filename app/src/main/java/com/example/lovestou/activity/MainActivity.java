@@ -48,8 +48,8 @@ public class MainActivity extends AppCompatActivity {
     private SpaceTabLayout spaceTabLayout;
     private ViewPager viewPager;
     private List<Fragment> fragmentList;
-    private RelativeLayout rl_robot,rl_collection,rl_history,rl_me,rl_Setting;
-    private TextView tv_login,tv_weather,tv_temp;
+    private RelativeLayout rl_robot, rl_collection, rl_history, rl_me, rl_Setting;
+    private TextView tv_login, tv_weather, tv_temp;
     private ImageView iv_weather;
 
     private boolean isLogin = false;
@@ -71,7 +71,7 @@ public class MainActivity extends AppCompatActivity {
         fragmentList.add(new NavFragment());
         fragmentList.add(new FindFragment());
 
-        spaceTabLayout.initialize(viewPager,getSupportFragmentManager(),fragmentList,savedInstanceState);
+        spaceTabLayout.initialize(viewPager, getSupportFragmentManager(), fragmentList, savedInstanceState);
         spaceTabLayout.setTabFourIcon(R.mipmap.find);
 
         initWeather();
@@ -105,6 +105,7 @@ public class MainActivity extends AppCompatActivity {
             this.isLogin = isLogin;
         }
     }
+
     private void initView() {
         rl_robot = findViewById(R.id.rl_robot);
         rl_robot.setOnClickListener(new View.OnClickListener() {
@@ -215,6 +216,7 @@ public class MainActivity extends AppCompatActivity {
         filter = new IntentFilter(UpdateUserInfoReceiver.ACTION.UPDATE_USERINFO);
         registerReceiver(updateUserInfoReceiver, filter);
     }
+
     @Override
     public void onDestroy() {
         super.onDestroy();
@@ -222,19 +224,6 @@ public class MainActivity extends AppCompatActivity {
             unregisterReceiver(updateUserInfoReceiver);
         }
     }
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
     private void initWeather() {
@@ -275,12 +264,13 @@ public class MainActivity extends AppCompatActivity {
     }
 
     protected long exitTime; //记录第一次点击时的时间
+
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event) {
         if (keyCode == KeyEvent.KEYCODE_BACK
                 && event.getAction() == KeyEvent.ACTION_DOWN) {
             if ((System.currentTimeMillis() - exitTime) > 2000) {
-                Toast.makeText(MainActivity.this, "再按一次退出",Toast.LENGTH_SHORT).show();
+                Toast.makeText(MainActivity.this, "再按一次退出", Toast.LENGTH_SHORT).show();
                 exitTime = System.currentTimeMillis();
             } else {
                 MainActivity.this.finish();

@@ -73,7 +73,7 @@
                 app:biu_text_color="@android:color/white"
                 app:biu_text_scale="1.5"
                 app:biu_text_start_size="12sp"
-                app:biu_type="flyup"/>
+                app:biu_type="flyup" />
         </android.support.v7.widget.CardView>
 
         <android.support.v7.widget.CardView

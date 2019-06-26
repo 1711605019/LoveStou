@@ -25,7 +25,8 @@ public class NoticeActivity extends AppCompatActivity {
     private ImageButton imageButton;
     private NoticeAdapter noticeAdapter;
     private List<NoticeBean> noticeList;
-    private int page=1;
+    private int page = 1;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -42,31 +43,31 @@ public class NoticeActivity extends AppCompatActivity {
             public void run() {
                 try {
 
-                        Document document = Jsoup.connect("http://www.shantou.gov.cn/cnst/bmzx/wzllist" + (page > 1 ? "_" + page : "") + ".shtml").get();
-                        Elements elements = document.select("div.wzlm_right").select("ul").select("li");
-                        for (int j = 0; j < elements.size(); j++) {
-                            String title = elements.get(j).select("a").text();
-                            String time = elements.get(j).select("span").text();
-                            String href = "http://www.shantou.gov.cn" + elements.get(j).select("a").attr("href");
+                    Document document = Jsoup.connect("http://www.shantou.gov.cn/cnst/bmzx/wzllist" + (page > 1 ? "_" + page : "") + ".shtml").get();
+                    Elements elements = document.select("div.wzlm_right").select("ul").select("li");
+                    for (int j = 0; j < elements.size(); j++) {
+                        String title = elements.get(j).select("a").text();
+                        String time = elements.get(j).select("span").text();
+                        String href = "http://www.shantou.gov.cn" + elements.get(j).select("a").attr("href");
 
-                            NoticeBean noticeBean = new NoticeBean(title, time, href);
-                            noticeList.add(noticeBean);
-                        }
+                        NoticeBean noticeBean = new NoticeBean(title, time, href);
+                        noticeList.add(noticeBean);
+                    }
 
 
                 } catch (Exception e) {
                     e.printStackTrace();
-                }finally {
-                   if(recyclerView!=null){
-                       runOnUiThread(new Runnable() {
-                           @Override
-                           public void run() {
-                               recyclerView.refreshComplete();
-                               page+=1;
-                               noticeAdapter.notifyDataSetChanged();
-                           }
-                       });
-                   }
+                } finally {
+                    if (recyclerView != null) {
+                        runOnUiThread(new Runnable() {
+                            @Override
+                            public void run() {
+                                recyclerView.refreshComplete();
+                                page += 1;
+                                noticeAdapter.notifyDataSetChanged();
+                            }
+                        });
+                    }
                 }
 
             }

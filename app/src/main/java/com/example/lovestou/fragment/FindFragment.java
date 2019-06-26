@@ -20,14 +20,13 @@ import com.example.lovestou.activity.PostActivity;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class FindFragment extends Fragment implements View.OnClickListener{
+public class FindFragment extends Fragment implements View.OnClickListener {
     private View findView;
-    private LinearLayout ll_phone,ll_ID,ll_IP,ll_Post,ll_calendar,ll_oil;
+    private LinearLayout ll_phone, ll_ID, ll_IP, ll_Post, ll_calendar, ll_oil;
 
     public FindFragment() {
         // Required empty public constructor
     }
-
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,

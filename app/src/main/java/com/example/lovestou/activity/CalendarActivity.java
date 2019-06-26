@@ -1,15 +1,13 @@
 package com.example.lovestou.activity;
 
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
+import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.lovestou.R;
 import com.example.lovestou.bean.CalendarBean;
-import com.example.lovestou.bean.IpBean;
 import com.example.lovestou.utils.NetworkListining;
 import com.example.lovestou.utils.OkhttpUntil;
 import com.example.lovestou.view.MeiZuMonthView;
@@ -19,7 +17,8 @@ import com.haibin.calendarview.CalendarView;
 public class CalendarActivity extends AppCompatActivity implements CalendarView.OnCalendarSelectListener, CalendarView.OnYearChangeListener, CalendarView.OnMonthChangeListener {
     private TextView tv_date;
     private CalendarView mCalendarView;
-    private TextView tv_yi,tv_ji,tv_caishen,tv_xishen,tv_fusehn,tv_taishen,tv_xiongshen;
+    private TextView tv_yi, tv_ji, tv_caishen, tv_xishen, tv_fusehn, tv_taishen, tv_xiongshen;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -31,7 +30,6 @@ public class CalendarActivity extends AppCompatActivity implements CalendarView.
     }
 
     private void initData() {
-
 
 
     }
@@ -68,12 +66,13 @@ public class CalendarActivity extends AppCompatActivity implements CalendarView.
         });
 
     }
+
     public void GetCalendarInfo(final String url) {
         OkhttpUntil.enqueueGetrequest(url, CalendarBean.class, new NetworkListining<CalendarBean>() {
             @Override
             public void BackResultSuccess(CalendarBean bean, int code) {
-                try{
-                    if(code == 200){
+                try {
+                    if (code == 200) {
                         tv_yi.setText(bean.getResult().getYi().toString());
                         tv_ji.setText(bean.getResult().getJi().toString());
                         tv_caishen.setText(bean.getResult().getCaishen());
@@ -82,7 +81,7 @@ public class CalendarActivity extends AppCompatActivity implements CalendarView.
                         tv_taishen.setText(bean.getResult().getTaishen());
                         tv_xiongshen.setText(bean.getResult().getXiongshen());
                     }
-                }catch (Exception e){
+                } catch (Exception e) {
                     Toast.makeText(CalendarActivity.this, e.getMessage(), Toast.LENGTH_SHORT).show();
                 }
             }
@@ -108,7 +107,7 @@ public class CalendarActivity extends AppCompatActivity implements CalendarView.
     @Override
     public void onCalendarSelect(Calendar calendar, boolean isClick) {
         tv_date.setText(calendar.getYear() + "年" + calendar.getMonth() + "月");
-        String url = "https://api.jisuapi.com/huangli/date?appkey=c3a90638dc954cb9&year="+calendar.getYear()+"&month="+calendar.getMonth()+"&day="+calendar.getDay();
+        String url = "https://api.jisuapi.com/huangli/date?appkey=c3a90638dc954cb9&year=" + calendar.getYear() + "&month=" + calendar.getMonth() + "&day=" + calendar.getDay();
         GetCalendarInfo(url);
 
     }
@@ -122,6 +121,7 @@ public class CalendarActivity extends AppCompatActivity implements CalendarView.
     public void onMonthChange(int year, int month) {
         tv_date.setText(year + "年" + month + "月");
     }
+
     @Override
     public void finish() {
         super.finish();

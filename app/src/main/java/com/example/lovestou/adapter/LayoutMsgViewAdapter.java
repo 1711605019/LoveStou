@@ -17,10 +17,8 @@ import java.util.List;
 public class LayoutMsgViewAdapter extends BaseAdapter {
 
     private List<MsgItem> objects = new ArrayList<MsgItem>();
-
     private Context context;
     private LayoutInflater layoutInflater;
-
 
     public LayoutMsgViewAdapter(List<MsgItem> objects, Context context) {
         this.objects = objects;

@@ -14,7 +14,7 @@ import com.example.lovestou.R;
 import java.util.Timer;
 import java.util.TimerTask;
 
-public class WelcomeActivity extends AppCompatActivity implements View.OnClickListener{
+public class WelcomeActivity extends AppCompatActivity implements View.OnClickListener {
     private int recLen = 5;//跳过倒计时提示5秒
     private TextView tv;
     Timer timer = new Timer();
@@ -26,7 +26,7 @@ public class WelcomeActivity extends AppCompatActivity implements View.OnClickLi
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_welcome);
 //定义全屏参数
-        int flag= WindowManager.LayoutParams.FLAG_FULLSCREEN;
+        int flag = WindowManager.LayoutParams.FLAG_FULLSCREEN;
         //设置当前窗体为全屏显示
         getWindow().setFlags(flag, flag);
         initView();

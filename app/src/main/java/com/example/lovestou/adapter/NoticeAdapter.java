@@ -19,7 +19,6 @@ public class NoticeAdapter extends RecyclerView.Adapter<NoticeAdapter.RecyclerHo
     private Context mContext;
     private List<NoticeBean> noticeList = new ArrayList<>();
 
-
     public NoticeAdapter(Context mContext, List<NoticeBean> noticeList) {
         this.mContext = mContext;
         this.noticeList = noticeList;
@@ -67,7 +66,8 @@ public class NoticeAdapter extends RecyclerView.Adapter<NoticeAdapter.RecyclerHo
     }
 
     class RecyclerHolder extends RecyclerView.ViewHolder {
-        public TextView tv_title,tv_time;
+        public TextView tv_title, tv_time;
+
         private RecyclerHolder(View itemView) {
             super(itemView);
             tv_title = itemView.findViewById(R.id.tv_title);

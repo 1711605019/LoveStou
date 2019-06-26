@@ -19,6 +19,7 @@ public class HomeWebActivity extends AppCompatActivity {
     private WebView webView;
     private ImageButton ib_return;
     private TextView tv_title;
+
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,8 +40,8 @@ public class HomeWebActivity extends AppCompatActivity {
         webView.getSettings().setAppCacheEnabled(true);//是否使用缓存
         webView.getSettings().setDomStorageEnabled(true);//开启本地DOM存储
         webView.getSettings().setLoadsImagesAutomatically(true); // 加载图片
-        webView.setLayerType(View.LAYER_TYPE_HARDWARE,null);
-        webView.getSettings().setBlockNetworkImage(false) ;
+        webView.setLayerType(View.LAYER_TYPE_HARDWARE, null);
+        webView.getSettings().setBlockNetworkImage(false);
         webView.getSettings().setBlockNetworkLoads(false);
         webView.getSettings().setMixedContentMode(WebSettings.MIXED_CONTENT_COMPATIBILITY_MODE);
         webView.getSettings().setMediaPlaybackRequiresUserGesture(false);//播放音频，多媒体需要用户手动？设置为false为可自动播放
@@ -48,7 +49,7 @@ public class HomeWebActivity extends AppCompatActivity {
         webView.getSettings().setDomStorageEnabled(true);//DOM Storage
         webView.getSettings().setAllowContentAccess(true);
         webView.getSettings().setDatabaseEnabled(true);
-        webView.setWebViewClient(new WebViewClient(){
+        webView.setWebViewClient(new WebViewClient() {
             @Override
             public boolean shouldOverrideUrlLoading(WebView view, String url) {
                 // TODO Auto-generated method stub
@@ -56,6 +57,7 @@ public class HomeWebActivity extends AppCompatActivity {
                 view.loadUrl(url);
                 return true;
             }
+
             @Override
             public void onPageStarted(WebView view, String url, Bitmap favicon) {
                 super.onPageStarted(view, url, favicon);
@@ -80,6 +82,7 @@ public class HomeWebActivity extends AppCompatActivity {
             }
         });
     }
+
     @Override
     public void finish() {
         super.finish();

@@ -28,7 +28,7 @@ import static android.view.View.VISIBLE;
 public class OilActivity extends AppCompatActivity {
     private BiuEditText ed_input;
     private Button btn_send;
-    private TextView tv_time,tv_89,tv_90,tv_92,tv_93,tv_95,tv_97,tv_00;
+    private TextView tv_time, tv_89, tv_90, tv_92, tv_93, tv_95, tv_97, tv_00;
     private ImageButton ib_return;
 
     private List<HistoryBean> historyList = new ArrayList<>();
@@ -36,6 +36,7 @@ public class OilActivity extends AppCompatActivity {
     private View header_view;
     private SearchItemAdapter searchItemAdapter;
     private TextView tv_deleteAll;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -58,7 +59,7 @@ public class OilActivity extends AppCompatActivity {
 
         listView = findViewById(R.id.mRecyclerView);
         LayoutInflater inflater = (LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-        header_view = inflater.inflate(R.layout.history_header,null);
+        header_view = inflater.inflate(R.layout.history_header, null);
         listView.addHeaderView(header_view);
         tv_deleteAll = header_view.findViewById(R.id.tv_deleteAll);
         tv_deleteAll.setOnClickListener(new View.OnClickListener() {
@@ -94,28 +95,29 @@ public class OilActivity extends AppCompatActivity {
 
                 HistoryBean bean = new HistoryBean(input);
                 historyList.add(bean);
-                searchItemAdapter = new SearchItemAdapter(historyList,OilActivity.this);
+                searchItemAdapter = new SearchItemAdapter(historyList, OilActivity.this);
                 listView.setAdapter(searchItemAdapter);
                 listView.setVisibility(View.GONE);
             }
         });
     }
+
     public void GetOilInfo(final String url) {
         OkhttpUntil.enqueueGetrequest(url, OilBean.class, new NetworkListining<OilBean>() {
             @Override
             public void BackResultSuccess(OilBean bean, int code) {
-                try{
-                    if(code==200){
+                try {
+                    if (code == 200) {
                         tv_time.setText(bean.getResult().getUpdatetime());
-                        tv_00.setText(bean.getResult().getOil0()+"元/升");
-                        tv_89.setText(bean.getResult().getOil89()+"元/升");
-                        tv_90.setText(bean.getResult().getOil90()+"元/升");
-                        tv_92.setText(bean.getResult().getOil92()+"元/升");
-                        tv_93.setText(bean.getResult().getOil93()+"元/升");
-                        tv_95.setText(bean.getResult().getOil95()+"元/升");
-                        tv_97.setText(bean.getResult().getOil97()+"元/升");
+                        tv_00.setText(bean.getResult().getOil0() + "元/升");
+                        tv_89.setText(bean.getResult().getOil89() + "元/升");
+                        tv_90.setText(bean.getResult().getOil90() + "元/升");
+                        tv_92.setText(bean.getResult().getOil92() + "元/升");
+                        tv_93.setText(bean.getResult().getOil93() + "元/升");
+                        tv_95.setText(bean.getResult().getOil95() + "元/升");
+                        tv_97.setText(bean.getResult().getOil97() + "元/升");
                     }
-                }catch (Exception e){
+                } catch (Exception e) {
                     Toast.makeText(OilActivity.this, e.getMessage(), Toast.LENGTH_SHORT).show();
                 }
             }

@@ -20,6 +20,7 @@ public class BannerWebActivity extends AppCompatActivity {
     private WebView webView;
     private ImageButton ib_return;
     private TextView tv_title;
+
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,7 +31,7 @@ public class BannerWebActivity extends AppCompatActivity {
         webView = findViewById(R.id.bannerWeb);
         Intent intent = getIntent();
         String url = intent.getStringExtra("url");
-        Log.e("ssss",url);
+        Log.e("ssss", url);
         String name = intent.getStringExtra("name");
         webView.getSettings().setJavaScriptCanOpenWindowsAutomatically(true);//设置js可以直接打开窗口，如window.open()，默认为false
         webView.getSettings().setJavaScriptEnabled(true);//是否允许JavaScript脚本运行，默认为false。设置true时，会提醒可能造成XSS漏洞
@@ -41,8 +42,8 @@ public class BannerWebActivity extends AppCompatActivity {
         webView.getSettings().setAppCacheEnabled(true);//是否使用缓存
         webView.getSettings().setDomStorageEnabled(true);//开启本地DOM存储
         webView.getSettings().setLoadsImagesAutomatically(true); // 加载图片
-        webView.setLayerType(View.LAYER_TYPE_HARDWARE,null);
-        webView.getSettings().setBlockNetworkImage(false) ;
+        webView.setLayerType(View.LAYER_TYPE_HARDWARE, null);
+        webView.getSettings().setBlockNetworkImage(false);
         webView.getSettings().setBlockNetworkLoads(false);
         webView.getSettings().setMixedContentMode(WebSettings.MIXED_CONTENT_COMPATIBILITY_MODE);
         webView.getSettings().setMediaPlaybackRequiresUserGesture(false);//播放音频，多媒体需要用户手动？设置为false为可自动播放
@@ -50,7 +51,7 @@ public class BannerWebActivity extends AppCompatActivity {
         webView.getSettings().setDomStorageEnabled(true);//DOM Storage
         webView.getSettings().setAllowContentAccess(true);
         webView.getSettings().setDatabaseEnabled(true);
-        webView.setWebViewClient(new WebViewClient(){
+        webView.setWebViewClient(new WebViewClient() {
             @Override
             public boolean shouldOverrideUrlLoading(WebView view, String url) {
                 // TODO Auto-generated method stub
@@ -58,6 +59,7 @@ public class BannerWebActivity extends AppCompatActivity {
                 view.loadUrl(url);
                 return true;
             }
+
             @Override
             public void onPageStarted(WebView view, String url, Bitmap favicon) {
                 super.onPageStarted(view, url, favicon);
@@ -92,6 +94,7 @@ public class BannerWebActivity extends AppCompatActivity {
         }
 
     }
+
     @Override
     public void finish() {
         super.finish();

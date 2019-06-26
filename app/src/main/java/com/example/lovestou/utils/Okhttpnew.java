@@ -11,9 +11,9 @@ import okhttp3.Response;
 
 public class Okhttpnew {
     public static <T> T NothreadenqueueGetrequest(String url, Class<T> myclass) throws IOException {
-        OkHttpClient okHttpClient=new OkHttpClient();
+        OkHttpClient okHttpClient = new OkHttpClient();
         Call call = okHttpClient.newCall(new Request.Builder().get().url(url).build());
         Response execute = call.execute();
-        return new Gson().fromJson(execute.body().string(),myclass);
+        return new Gson().fromJson(execute.body().string(), myclass);
     }
 }

@@ -20,8 +20,7 @@ import com.example.lovestou.R;
 import com.example.lovestou.utils.MD5Utils;
 import com.example.lovestou.view.SwipeBackLayout;
 
-public class RegisterActivity extends AppCompatActivity implements View.OnClickListener
-{
+public class RegisterActivity extends AppCompatActivity implements View.OnClickListener {
     private TextView tv_main_title, tv_back;
     private RelativeLayout rl_title_bar;
     private SwipeBackLayout layout;
@@ -30,6 +29,7 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
     private Button btn_register;
     private String userName, psw;
     private boolean isShowPsw = false;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -38,6 +38,7 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
         setContentView(R.layout.activity_register);
         init();
     }
+
     private void init() {
         tv_main_title = (TextView) findViewById(R.id.tv_main_title);
         tv_main_title.setText("注册");
@@ -54,6 +55,7 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
         iv_show_psw.setOnClickListener(this);
         btn_register.setOnClickListener(this);
     }
+
     @Override
     public void onClick(View view) {
         switch (view.getId()) {
@@ -110,6 +112,7 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
                 break;
         }
     }
+
     /**
      * 从SharedPreferences中读取输入的用户名，判断SharedPreferences中是否有此用户名
      */
@@ -122,6 +125,7 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
         }
         return has_userName;
     }
+
     /**
      * 保存用户名和密码到SharedPreferences中
      */

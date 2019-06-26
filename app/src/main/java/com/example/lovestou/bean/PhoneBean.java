@@ -1,6 +1,7 @@
 package com.example.lovestou.bean;
 
 public class PhoneBean {
+
     @Override
     public String toString() {
         return "PhoneBean{" +

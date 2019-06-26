@@ -13,7 +13,6 @@ import com.bumptech.glide.Glide;
 import com.example.lovestou.R;
 import com.example.lovestou.activity.NewsWebActivity;
 import com.example.lovestou.bean.DataBean;
-import com.example.lovestou.utils.NewsInterface;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -52,7 +51,7 @@ public class DataAdapter extends RecyclerView.Adapter<DataAdapter.RecyclerHolder
     public void onBindViewHolder(RecyclerHolder holder, int position) {
         DataBean.ItemsBean CarsBean = carsList.get(position);
         holder.item_title.setText(CarsBean.getTitle());
-        holder.item_clicks.setText(CarsBean.getClicks()+" 阅读");
+        holder.item_clicks.setText(CarsBean.getClicks() + " 阅读");
         holder.item_time.setText(CarsBean.getAddTime());
         Glide
                 .with(mContext)
@@ -76,8 +75,9 @@ public class DataAdapter extends RecyclerView.Adapter<DataAdapter.RecyclerHolder
     }
 
     class RecyclerHolder extends RecyclerView.ViewHolder {
-        public TextView item_title,item_clicks,item_time;
+        public TextView item_title, item_clicks, item_time;
         public ImageView iv_img;
+
         private RecyclerHolder(View itemView) {
             super(itemView);
             item_title = itemView.findViewById(R.id.item_title);

@@ -1,6 +1,7 @@
 package com.example.lovestou.bean;
 
 public class VideoBean {
+
     private String title;
     private String img;
     private String href;

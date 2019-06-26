@@ -30,6 +30,7 @@
     <android.support.v4.widget.NestedScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent">
+
         <LinearLayout
             android:id="@+id/bottom_layout"
             android:layout_width="fill_parent"
@@ -40,243 +41,277 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginLeft="5dp"
                 android:layout_marginTop="20dp"
-                android:layout_marginLeft="5dp"
                 android:layout_marginRight="5dp"
                 android:layout_marginBottom="5dp"
                 android:lineSpacingExtra="5dp"
-                android:text="      两百多年前，潮人开始从这里乘红头船漂洋过海。如今，一千多万的海外潮汕儿女遍布五洲。这，就是汕头。"/>
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_margin="5dp"
-                android:lineSpacingExtra="5dp"
-                android:text="      40年改革开放，她从昔日省尾国角，成长为粤东明珠。"/>
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_margin="5dp"
-                android:lineSpacingExtra="5dp"
-                android:text="      她是国家经济特区、著名侨乡、21世纪海上丝绸之路重要门户，正打造现代化沿海经济带重要发展极、广东省域副中心城市。"/>
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_margin="5dp"
-                android:lineSpacingExtra="5dp"
-                android:text="      最重要的，她是我的故乡——汕头！"/>
-            <ImageView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_margin="5dp"
-                android:background="@drawable/video1"/>
+                android:text="      两百多年前，潮人开始从这里乘红头船漂洋过海。如今，一千多万的海外潮汕儿女遍布五洲。这，就是汕头。" />
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="5dp"
                 android:lineSpacingExtra="5dp"
-                android:text="      汕头，是中国内地唯一拥有内海湾的城市，"/>
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_margin="5dp"
-                android:lineSpacingExtra="5dp"
-                android:text="      这里，北回归线穿城而过，"/>
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_margin="5dp"
-                android:lineSpacingExtra="5dp"
-                android:text="      城在海上，海在城中。"/>
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_margin="5dp"
-                android:lineSpacingExtra="5dp"
-                android:text="      得天独厚的地理位置造就了汕头移步易景的城市风光"/>
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_margin="5dp"
-                android:lineSpacingExtra="5dp"
-                android:text="      将山、海、林、园紧密相接，"/>
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_margin="5dp"
-                android:lineSpacingExtra="5dp"
-                android:text="      打造出海在城中央的湾区天堂。"/>
-            <ImageView
-                android:layout_width="match_parent"
-                android:layout_height="250dp"
-                android:layout_margin="5dp"
-                android:background="@drawable/video2"/>
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_margin="5dp"
-                android:lineSpacingExtra="5dp"
-                android:text="      交通基础设施日臻完善。"/>
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_margin="5dp"
-                android:lineSpacingExtra="5dp"
-                android:text="      深水港、高铁、机场、高速公路，"/>
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_margin="5dp"
-                android:lineSpacingExtra="5dp"
-                android:text="      使汕头成为中国东南沿海的重要交通枢纽，"/>
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_margin="5dp"
-                android:lineSpacingExtra="5dp"
-                android:text="      已构建起粤东1小时、珠三角和厦漳泉3小时生活圈。"/>
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_margin="5dp"
-                android:lineSpacingExtra="5dp"
-                android:text="      现代综合交通体系逐步形成，"/>
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_margin="5dp"
-                android:lineSpacingExtra="5dp"
-                android:text="      让汕头这座百载商埠绽放活力。"/>
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="30dp"
-                android:lineSpacingExtra="5dp"
-                android:text="【创新创业之城】"/>
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_margin="5dp"
-                android:lineSpacingExtra="5dp"
-                android:text="      从中国首批经济特区之一，到华侨经济文化合作试验区的改革试验。"/>
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_margin="5dp"
-                android:lineSpacingExtra="5dp"
-                android:text="      一次次重要创新探索，汕头都是率先试水者。"/>
+                android:text="      40年改革开放，她从昔日省尾国角，成长为粤东明珠。" />
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="5dp"
                 android:lineSpacingExtra="5dp"
-                android:text="      当前，汕头正迎来跨越发展、全面振兴的黄金机遇。"/>
+                android:text="      她是国家经济特区、著名侨乡、21世纪海上丝绸之路重要门户，正打造现代化沿海经济带重要发展极、广东省域副中心城市。" />
+
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="5dp"
                 android:lineSpacingExtra="5dp"
-                android:text="      “国字号”的华侨试验区、高新区、保税区以及中以合作区，将为汕头构建先进制造业和现代服务业注入核心竞争力。"/>
+                android:text="      最重要的，她是我的故乡——汕头！" />
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:background="@drawable/video1" />
+
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="5dp"
                 android:lineSpacingExtra="5dp"
-                android:text="      汕头实体经济独具特色，既有国家级的产业“龙头集聚”，也有细分行业的“隐形冠军”，是中国最大的内衣产业基地、全国三大工艺玩具生产基地之一、三大文具用品生产基地之一、四大印刷和包装机械设备生产基地之一。"/>
+                android:text="      汕头，是中国内地唯一拥有内海湾的城市，" />
+
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="5dp"
                 android:lineSpacingExtra="5dp"
-                android:text="      汕头是全国最先发展民营经济的地区之一，民营经济占GDP 70%以上。汕头拥有主板上市企业32家、新三板挂牌企业近60家，在全国地级市中名列前茅，资本市场形成“汕头板块”。"/>
+                android:text="      这里，北回归线穿城而过，" />
+
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="30dp"
+                android:layout_margin="5dp"
                 android:lineSpacingExtra="5dp"
-                android:text="         【人文荟萃的开放之城】"/>
+                android:text="      城在海上，海在城中。" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:lineSpacingExtra="5dp"
+                android:text="      得天独厚的地理位置造就了汕头移步易景的城市风光" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:lineSpacingExtra="5dp"
+                android:text="      将山、海、林、园紧密相接，" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:lineSpacingExtra="5dp"
+                android:text="      打造出海在城中央的湾区天堂。" />
+
             <ImageView
                 android:layout_width="match_parent"
                 android:layout_height="250dp"
                 android:layout_margin="5dp"
-                android:background="@drawable/video3"/>
+                android:background="@drawable/video2" />
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="5dp"
                 android:lineSpacingExtra="5dp"
-                android:text="      照耀东海岸新城的阳光，同样挥洒在程洋冈古村之上。"/>
+                android:text="      交通基础设施日臻完善。" />
+
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="5dp"
                 android:lineSpacingExtra="5dp"
-                android:text="      潮汕文化千年传承，人文荟萃、崇文重教。"/>
+                android:text="      深水港、高铁、机场、高速公路，" />
+
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="5dp"
                 android:lineSpacingExtra="5dp"
-                android:text="      中华古村落、南粤古驿道，无不闪耀着“海滨邹鲁”的文化光辉，印证了海上丝绸之路重要门户的历史存在。"/>
+                android:text="      使汕头成为中国东南沿海的重要交通枢纽，" />
+
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="5dp"
                 android:lineSpacingExtra="5dp"
-                android:text="      汕头是世界潮人之都，一直是一座开放的城市。"/>
+                android:text="      已构建起粤东1小时、珠三角和厦漳泉3小时生活圈。" />
+
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="5dp"
                 android:lineSpacingExtra="5dp"
-                android:text="      千万潮汕华侨、港澳台同胞，以及在国内各地的潮商从这里走向全世界，他们情系桑梓、热心公益。"/>
+                android:text="      现代综合交通体系逐步形成，" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:lineSpacingExtra="5dp"
+                android:text="      让汕头这座百载商埠绽放活力。" />
+
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="30dp"
-                android:layout_marginLeft="5dp"
-                android:layout_marginRight="5dp"
-                android:layout_marginBottom="5dp"
                 android:lineSpacingExtra="5dp"
-                android:text="      如今的汕头，经济提质增速，社会向文明迈进。"/>
+                android:text="【创新创业之城】" />
+
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="5dp"
                 android:lineSpacingExtra="5dp"
-                android:text="      信心回归、潮商回归、形象回归、特区精神和特区效率回归。"/>
+                android:text="      从中国首批经济特区之一，到华侨经济文化合作试验区的改革试验。" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:lineSpacingExtra="5dp"
+                android:text="      一次次重要创新探索，汕头都是率先试水者。" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:lineSpacingExtra="5dp"
+                android:text="      当前，汕头正迎来跨越发展、全面振兴的黄金机遇。" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:lineSpacingExtra="5dp"
+                android:text="      “国字号”的华侨试验区、高新区、保税区以及中以合作区，将为汕头构建先进制造业和现代服务业注入核心竞争力。" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:lineSpacingExtra="5dp"
+                android:text="      汕头实体经济独具特色，既有国家级的产业“龙头集聚”，也有细分行业的“隐形冠军”，是中国最大的内衣产业基地、全国三大工艺玩具生产基地之一、三大文具用品生产基地之一、四大印刷和包装机械设备生产基地之一。" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:lineSpacingExtra="5dp"
+                android:text="      汕头是全国最先发展民营经济的地区之一，民营经济占GDP 70%以上。汕头拥有主板上市企业32家、新三板挂牌企业近60家，在全国地级市中名列前茅，资本市场形成“汕头板块”。" />
+
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="30dp"
+                android:lineSpacingExtra="5dp"
+                android:text="         【人文荟萃的开放之城】" />
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="250dp"
+                android:layout_margin="5dp"
+                android:background="@drawable/video3" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:lineSpacingExtra="5dp"
+                android:text="      照耀东海岸新城的阳光，同样挥洒在程洋冈古村之上。" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:lineSpacingExtra="5dp"
+                android:text="      潮汕文化千年传承，人文荟萃、崇文重教。" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:lineSpacingExtra="5dp"
+                android:text="      中华古村落、南粤古驿道，无不闪耀着“海滨邹鲁”的文化光辉，印证了海上丝绸之路重要门户的历史存在。" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:lineSpacingExtra="5dp"
+                android:text="      汕头是世界潮人之都，一直是一座开放的城市。" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:lineSpacingExtra="5dp"
+                android:text="      千万潮汕华侨、港澳台同胞，以及在国内各地的潮商从这里走向全世界，他们情系桑梓、热心公益。" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
                 android:layout_marginLeft="5dp"
+                android:layout_marginTop="30dp"
                 android:layout_marginRight="5dp"
                 android:layout_marginBottom="5dp"
                 android:lineSpacingExtra="5dp"
-                android:text="      这就是我的家乡，汕头。"/>
+                android:text="      如今的汕头，经济提质增速，社会向文明迈进。" />
+
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="5dp"
                 android:lineSpacingExtra="5dp"
-                android:text="      一座古今文化传承发展的城市；"/>
+                android:text="      信心回归、潮商回归、形象回归、特区精神和特区效率回归。" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="5dp"
+                android:layout_marginTop="30dp"
+                android:layout_marginRight="5dp"
+                android:layout_marginBottom="5dp"
+                android:lineSpacingExtra="5dp"
+                android:text="      这就是我的家乡，汕头。" />
+
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="5dp"
                 android:lineSpacingExtra="5dp"
-                android:text="      一座兼容开放中外交融的城市；"/>
+                android:text="      一座古今文化传承发展的城市；" />
+
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:lineSpacingExtra="5dp"
+                android:text="      一座兼容开放中外交融的城市；" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="5dp"
                 android:layout_marginTop="5dp"
-                android:layout_marginLeft="5dp"
                 android:layout_marginRight="5dp"
                 android:layout_marginBottom="40dp"
                 android:lineSpacingExtra="5dp"
-                android:text="      一座值得你期待的城市！"/>
+                android:text="      一座值得你期待的城市！" />
         </LinearLayout>
 
     </android.support.v4.widget.NestedScrollView>

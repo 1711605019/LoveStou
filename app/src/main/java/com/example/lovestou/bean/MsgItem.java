@@ -10,6 +10,7 @@ public class MsgItem {
      * msg : ok
      * result : {"type":"无回复","content":"好吧，跟骨灰级大师聊天真心感觉压力好大呀，您老人家就不能来点简单点的么~","relquestion":null}
      */
+
     private String myself;
 
     public String getMyself() {

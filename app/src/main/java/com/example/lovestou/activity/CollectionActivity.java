@@ -23,6 +23,7 @@ public class CollectionActivity extends AppCompatActivity {
     private RecyclerView recyclerView;
     private CollectionAdapter collectionAdapter;
     private ImageView iv_delete;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -31,6 +32,7 @@ public class CollectionActivity extends AppCompatActivity {
 
         initView();
     }
+
     private List<DataBean.ItemsBean> getShoucang() {
         SharedPreferences sp = getSharedPreferences("xxx", MODE_PRIVATE);
         String json = sp.getString("sc", "");
@@ -38,6 +40,7 @@ public class CollectionActivity extends AppCompatActivity {
         }.getType());
         return list;
     }
+
     private void initView() {
         ib_return = findViewById(R.id.ib_return);
         ib_return.setOnClickListener(new View.OnClickListener() {
@@ -52,13 +55,13 @@ public class CollectionActivity extends AppCompatActivity {
         LinearLayoutManager layoutManager = new LinearLayoutManager(this);
         layoutManager.setOrientation(LinearLayoutManager.VERTICAL);
         recyclerView.setLayoutManager(layoutManager);
-        collectionAdapter = new CollectionAdapter(this,collectionList);
+        collectionAdapter = new CollectionAdapter(this, collectionList);
         if (collectionList != null) {
             recyclerView.setAdapter(collectionAdapter);
-        }else {
+        } else {
             Toast.makeText(this, "没有收藏内容！", Toast.LENGTH_SHORT).show();
         }
-        
+
         iv_delete = findViewById(R.id.iv_delete);
         iv_delete.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -69,6 +72,7 @@ public class CollectionActivity extends AppCompatActivity {
             }
         });
     }
+
     @Override
     public void finish() {
         super.finish();

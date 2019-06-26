@@ -17,7 +17,6 @@ import java.util.List;
 public class SearchItemAdapter extends BaseAdapter {
 
     private List<HistoryBean> historyList = new ArrayList<>();
-
     private Context context;
     private LayoutInflater layoutInflater;
 
@@ -48,7 +47,7 @@ public class SearchItemAdapter extends BaseAdapter {
             convertView = layoutInflater.inflate(R.layout.search_item, null);
             convertView.setTag(new ViewHolder(convertView));
         }
-        initializeViews((HistoryBean) getItem(position), (ViewHolder) convertView.getTag(),position);
+        initializeViews((HistoryBean) getItem(position), (ViewHolder) convertView.getTag(), position);
         return convertView;
     }
 
@@ -66,7 +65,7 @@ public class SearchItemAdapter extends BaseAdapter {
 
     protected class ViewHolder {
         private TextView tvRecord;
-    private ImageView ivDelete;
+        private ImageView ivDelete;
 
         public ViewHolder(View view) {
             tvRecord = (TextView) view.findViewById(R.id.tv_record);

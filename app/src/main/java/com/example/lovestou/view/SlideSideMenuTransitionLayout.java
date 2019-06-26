@@ -14,11 +14,11 @@ import android.widget.FrameLayout;
 
 /**
  * A view group layout to use in the xml. There should be 2 children:
- *   1) The Activity Menu container element.
- *   2) The Activity Content container element.
+ * 1) The Activity Menu container element.
+ * 2) The Activity Content container element.
  * Wire up as needed:
- *   - Close the menu when back is pressed (if is currently open)
- *   - Toggle when user clicks on the menu button in the action bar
+ * - Close the menu when back is pressed (if is currently open)
+ * - Toggle when user clicks on the menu button in the action bar
  * Please see sample activity for examples.
  * Created by eyalbiran on 2/23/16.
  */
@@ -29,14 +29,14 @@ public class SlideSideMenuTransitionLayout extends FrameLayout {
     private static final float DEFAULT_CONTENT_PEEK_DISTANCE_PERCENT = 0.4f;
     private static final float DEFAULT_CONTENT_PEEK_SIZE_PERCENT = 0.85f;
     private static final float DEFAULT_MENU_START_SIZE_PERCENT = 1.1f;
-    private static final long  DEFAULT_ANIMATION_DURATION = 300;
+    private static final long DEFAULT_ANIMATION_DURATION = 300;
 
-    private static final long  TOUCH_TAP_DURATION_MAX = 150;
-    private static final int   TOUCH_TAP_DISTANCE_MAX_DP = 13;
-    private static final int   TOUCH_SWIPE_DISTANCE_MIN = 10;
-    private static final int   TOUCH_SWIPE_DISTANCE_INVALID_MAX_DP = 17;
-    private static final int   TOUCH_AREA_SIZE = 33;
-    private static final long  TOUCH_FLING_MAX_DURATION = 200;
+    private static final long TOUCH_TAP_DURATION_MAX = 150;
+    private static final int TOUCH_TAP_DISTANCE_MAX_DP = 13;
+    private static final int TOUCH_SWIPE_DISTANCE_MIN = 10;
+    private static final int TOUCH_SWIPE_DISTANCE_INVALID_MAX_DP = 17;
+    private static final int TOUCH_AREA_SIZE = 33;
+    private static final long TOUCH_FLING_MAX_DURATION = 200;
     private static final int TOUCH_FLING_MIN_DISTANCE = 33;
 
     private static final TimeInterpolator DECELERATE = new DecelerateInterpolator();
@@ -55,13 +55,13 @@ public class SlideSideMenuTransitionLayout extends FrameLayout {
     private float mMenuContainerStartSizePercent = DEFAULT_MENU_START_SIZE_PERCENT;
 
     // Touch Settings
-    private long  mTouchTapDurationMax = TOUCH_TAP_DURATION_MAX;
-    private int   mTouchTapDistanceMax;
-    private int   mTouchSwipeDistanceMin;
-    private int   mTouchSwipeDistanceInvalidMax;
-    private int   mTouchAreaSize;
-    private long  mTouchFlingMaxDuration = TOUCH_FLING_MAX_DURATION;
-    private int   mTouchFlingMinDistance;
+    private long mTouchTapDurationMax = TOUCH_TAP_DURATION_MAX;
+    private int mTouchTapDistanceMax;
+    private int mTouchSwipeDistanceMin;
+    private int mTouchSwipeDistanceInvalidMax;
+    private int mTouchAreaSize;
+    private long mTouchFlingMaxDuration = TOUCH_FLING_MAX_DURATION;
+    private int mTouchFlingMinDistance;
 
     // Cached values for animation
     private int mContentContainerTranslationX;
@@ -95,6 +95,7 @@ public class SlideSideMenuTransitionLayout extends FrameLayout {
     public interface SlideSideMenuUpdateListener {
         /**
          * This will be called whenever the slide factor changes
+         *
          * @param factor the current menu factor, where the menu is fully close at 0 and fully opened at 1
          */
         void onSlideSideMenuFactorUpdate(float factor);
@@ -163,6 +164,7 @@ public class SlideSideMenuTransitionLayout extends FrameLayout {
 
     /**
      * Locks the side menu
+     *
      * @param isLocked true if the user may not open/close the side menu. false otherwise
      */
     public void setLocked(boolean isLocked) {
@@ -325,6 +327,7 @@ public class SlideSideMenuTransitionLayout extends FrameLayout {
 
     /**
      * Help function for animation. Used to place current state between (includes) open and closed states.
+     *
      * @param factor a value between 0 and 1, where the menu is fully closed at 0 and fully opened at 1.
      */
     public void setSideMenuAnimation(float factor) {
@@ -354,7 +357,7 @@ public class SlideSideMenuTransitionLayout extends FrameLayout {
         mContentContainer.setScaleX(contentScale);
 
         // Animate Side Menu
-        float menuScale = 1 + (mMenuContainerScaleDiff * (1-factor));
+        float menuScale = 1 + (mMenuContainerScaleDiff * (1 - factor));
         mMenuContainer.setScaleY(menuScale);
         mMenuContainer.setScaleX(menuScale);
 
@@ -382,8 +385,8 @@ public class SlideSideMenuTransitionLayout extends FrameLayout {
                 mTouchDownTimestamp = System.currentTimeMillis();
                 mTouchDownX = x;
                 mTouchDownY = y;
-                mTouchSwipeValid = (mSideMenuOpen && isViewContains(mContentContainer, (int)x, (int)y, mHelpArrayInt2))
-                                        || mTouchDownX <= mTouchAreaSize;
+                mTouchSwipeValid = (mSideMenuOpen && isViewContains(mContentContainer, (int) x, (int) y, mHelpArrayInt2))
+                        || mTouchDownX <= mTouchAreaSize;
                 mTouchSwipeActive = false;
                 mTouchFlingActive = false;
                 shouldIntercept = mSideMenuOpen && inContentContainer(x, y);
@@ -488,11 +491,11 @@ public class SlideSideMenuTransitionLayout extends FrameLayout {
                     break;
                 }
 
-                if ( (currentTimestamp - mTouchDownTimestamp) < mTouchTapDurationMax &&
-                     Math.abs(mTouchDownX - x) < mTouchTapDistanceMax                &&
-                     Math.abs(mTouchDownY - y) < mTouchTapDistanceMax) {
+                if ((currentTimestamp - mTouchDownTimestamp) < mTouchTapDurationMax &&
+                        Math.abs(mTouchDownX - x) < mTouchTapDistanceMax &&
+                        Math.abs(mTouchDownY - y) < mTouchTapDistanceMax) {
                     // Touch event is a TAP!
-                    if (mSideMenuOpen && inContentContainer(x,y)) {
+                    if (mSideMenuOpen && inContentContainer(x, y)) {
                         // Tap in the content area while we are open, close!
                         closeSideMenu();
                         break;
@@ -513,7 +516,7 @@ public class SlideSideMenuTransitionLayout extends FrameLayout {
     }
 
     private boolean inContentContainer(float x, float y) {
-        return isViewContains(mContentContainer, (int)x, (int)y, mHelpArrayInt2);
+        return isViewContains(mContentContainer, (int) x, (int) y, mHelpArrayInt2);
     }
 
     private static boolean isViewContains(View view, int rx, int ry, int[] helpArray) {

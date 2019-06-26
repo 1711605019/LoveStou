@@ -16,20 +16,6 @@ public class OkhttpUntil {
     public static OkHttpClient okHttpClient = new OkHttpClient();
     public static Handler handler = new Handler();
 
-    /*  public static void synGetrequest(String url,Class myclass,NetworkListining listining) throws Exception {
-          new Thread(new Runnable() {
-              @Override
-              public void run() {
-                  try {
-                      listining.BackResultSuccess(toObject(myclass, responseTostring(Toresponse(Tocall(Torequest(url))))));
-                  } catch (IOException e) {
-                      e.printStackTrace();
-                  }
-              }
-          }).start();
-
-
-      }*/
     public static <T> void enqueueGetrequest(String url, Class<T> myclass, NetworkListining<T> listining) {
         new Thread(new Runnable() {
             @Override
@@ -55,34 +41,30 @@ public class OkhttpUntil {
                                 @Override
                                 public void run() {
 
-                                  try{
-                                      listining.BackResultSuccess(toObject(myclass, string), response.code());
-                                  }catch (Exception e){
-                                      listining.BackResultFail(e);
-                                  }finally {
-                                      if(string!=null){
-                                          listining.tostring(string);
-                                      }else{
-                                          listining.tostring("404！！！！");
-                                      }
+                                    try {
+                                        listining.BackResultSuccess(toObject(myclass, string), response.code());
+                                    } catch (Exception e) {
+                                        listining.BackResultFail(e);
+                                    } finally {
+                                        if (string != null) {
+                                            listining.tostring(string);
+                                        } else {
+                                            listining.tostring("404！！！！");
+                                        }
 
-                                  }
+                                    }
 
                                 }
                             });
 
                         }
                     });
-
-
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
             }
         }).start();
     }
-
-
 
     public static <T> void enqueueGetrequest(String url, TostringNetworkListining listining) {
         new Thread(new Runnable() {
@@ -103,26 +85,25 @@ public class OkhttpUntil {
 
                         @Override
                         public void onResponse(Call call, Response response) throws IOException {
-                           if(response.code()==200){
-                               String string = response.body().string();
-                               handler.post(new Runnable() {
-                                   @Override
-                                   public void run() {
-                                       listining.tostring(string);
-                                   }
-                               });
-                           }
+                            if (response.code() == 200) {
+                                String string = response.body().string();
+                                handler.post(new Runnable() {
+                                    @Override
+                                    public void run() {
+                                        listining.tostring(string);
+                                    }
+                                });
+                            }
 
                         }
                     });
-
-
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
             }
         }).start();
     }
+
     public static <T> T toObject(Class<T> myclass, String string) {
         return new Gson().fromJson(string, myclass);
     }

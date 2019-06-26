@@ -3,11 +3,12 @@
     android:layout_width="400dp"
     android:layout_height="300dp"
     android:clickable="true">
+
     <ImageView
         android:id="@+id/img_item_album_title"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_gravity="center"
-        android:scaleType="centerCrop"/>
+        android:scaleType="centerCrop" />
 
 </FrameLayout>

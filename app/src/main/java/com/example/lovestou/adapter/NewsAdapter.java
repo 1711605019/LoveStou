@@ -21,7 +21,7 @@ public class NewsAdapter extends PagerAdapter {
     }
 
     @Override
-    public boolean isViewFromObject( View view, Object object) {
+    public boolean isViewFromObject(View view, Object object) {
         return view == object;
     }
 
@@ -32,9 +32,10 @@ public class NewsAdapter extends PagerAdapter {
     }
 
     @Override
-    public void destroyItem( ViewGroup container, int position, Object object) {
+    public void destroyItem(ViewGroup container, int position, Object object) {
         container.removeView(mViewList.get(position));
     }
+
     @Override
     public CharSequence getPageTitle(int position) {
         return mTitleList.get(position);

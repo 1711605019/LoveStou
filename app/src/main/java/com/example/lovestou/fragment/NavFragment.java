@@ -19,11 +19,9 @@ public class NavFragment extends Fragment {
     private View navView;
     private ImageView iv_hmst;
 
-
     public NavFragment() {
         // Required empty public constructor
     }
-
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -36,8 +34,6 @@ public class NavFragment extends Fragment {
         initAnimation();
         return navView;
     }
-
-
 
     private void initData() {
 
@@ -54,7 +50,8 @@ public class NavFragment extends Fragment {
         });
 
     }
-    private void initAnimation(){
+
+    private void initAnimation() {
 
     }
 }

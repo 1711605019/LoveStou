@@ -11,9 +11,11 @@ public class SQLiteHelper extends SQLiteOpenHelper {
     public static final String CONSTELLATION = "constellation";//十二星座信息
     //收藏新闻信息
     public static final String COLLECTION_NEWS_INFO = "collection_news_info";
+
     public SQLiteHelper(Context context) {
         super(context, DB_NAME, null, DB_VERSION);
     }
+
     @Override
     public void onCreate(SQLiteDatabase db) {
         /**
@@ -26,28 +28,6 @@ public class SQLiteHelper extends SQLiteOpenHelper {
                 + "sex VARCHAR, "        //性别
                 + "signature VARCHAR,"  //签名
                 + "head VARCHAR "        //头像
-                + ")");
-        /**
-         * 创建十二星座信息表
-         */
-        db.execSQL("CREATE TABLE  IF NOT EXISTS " + CONSTELLATION + "( "
-                + "_id INTEGER PRIMARY KEY AUTOINCREMENT, "
-                + "c_id INT, "               //星座id
-                + "name VARCHAR, "          //星座名称
-                + "head VARCHAR, "          //头像
-                + "img VARCHAR,"            //图标
-                + "icon VARCHAR,"           //白色图标
-                +"date VARCHAR,"            //日期
-                +"info VARCHAR,"            //星座信息
-                +"whole INT,"               //整体运势
-                +"love INT,"                //爱情运势
-                +"career INT,"             //事业学业
-                +"money INT,"              //财富运势
-                +"whole_info VARCHAR,"   //整体运势信息
-                +"love_info VARCHAR,"    //爱情运势信息
-                +"career_info VARCHAR," //事业学业信息
-                +"money_info VARCHAR,"  //财富运势信息
-                +"health_info VARCHAR"  //健康运势信息
                 + ")");
         /**
          * 创建收藏表
@@ -65,6 +45,7 @@ public class SQLiteHelper extends SQLiteOpenHelper {
                 + "newsUrl VARCHAR "  //新闻链接地址
                 + ")");
     }
+
     /**
      * 当数据库版本号增加时才会调用此方法
      */

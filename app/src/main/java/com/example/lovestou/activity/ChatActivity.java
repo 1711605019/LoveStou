@@ -1,13 +1,11 @@
 package com.example.lovestou.activity;
 
 import android.content.Context;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ListView;
 import android.widget.Toast;
@@ -32,26 +30,28 @@ public class ChatActivity extends AppCompatActivity implements ChartRespong {
     private UiChart uiChart;
     private View header_view;
     private ImageButton ib_return;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_chat);
         overridePendingTransition(R.anim.push_left_in, R.anim.push_left_out);
 
-        uiChart=new UiChart(this);
+        uiChart = new UiChart(this);
         uiChart.setChartRespong(this);
 
         initView();
     }
+
     private void initView() {
         listView = findViewById(R.id.msg_list_view);
         LayoutInflater inflater = (LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-        header_view = inflater.inflate(R.layout.chat_header,null);
+        header_view = inflater.inflate(R.layout.chat_header, null);
         listView.addHeaderView(header_view);
         input_box = findViewById(R.id.input_box);
         send_btn = findViewById(R.id.send_btn);
         msg_list = new ArrayList<MsgItem>();
-        msgAdapter = new LayoutMsgViewAdapter(msg_list,this);
+        msgAdapter = new LayoutMsgViewAdapter(msg_list, this);
         listView.setAdapter(msgAdapter);
         send_btn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -93,6 +93,7 @@ public class ChatActivity extends AppCompatActivity implements ChartRespong {
     public void RequesrNull() {
 
     }
+
     @Override
     public void finish() {
         super.finish();

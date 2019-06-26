@@ -4,11 +4,12 @@
     android:layout_height="match_parent"
     android:background="@android:color/white"
     android:orientation="vertical">
+
     <WebView
         android:id="@+id/webview_video"
-        android:visibility="gone"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"/>
+        android:layout_height="match_parent"
+        android:visibility="gone" />
 
     <FrameLayout
         android:id="@+id/video_layout"
@@ -35,13 +36,14 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
+
         <TextView
             android:id="@+id/tv_title"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="10dp"
-            android:textSize="16sp"
-            android:text="我市启动“听涛观海·品鉴汕头”旅游宣传推广系列活动"/>
+            android:text="我市启动“听涛观海·品鉴汕头”旅游宣传推广系列活动"
+            android:textSize="16sp" />
 
         <TextView
             android:id="@+id/tv_time"
@@ -49,8 +51,8 @@
             android:layout_height="wrap_content"
             android:layout_below="@+id/tv_title"
             android:layout_marginTop="0dp"
-            android:gravity="right"
             android:layout_marginRight="20dp"
+            android:gravity="right"
             android:text="2019-06-20" />
 
         <ImageView
@@ -65,11 +67,12 @@
             android:layout_marginRight="0dp"
             android:layout_marginBottom="0dp"
             android:src="@drawable/cutv_logo" />
+
         <ImageView
             android:id="@+id/iv_hmst"
             android:layout_width="match_parent"
             android:layout_height="60dp"
             android:layout_alignParentBottom="true"
-            android:background="@drawable/hmst"/>
+            android:background="@drawable/hmst" />
     </RelativeLayout>
 </LinearLayout>

@@ -31,6 +31,7 @@ public class ModifyPswActivity extends AppCompatActivity {
     private SwipeBackLayout layout;
     private ImageView iv_show_psw;
     private boolean isShowPsw = false;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -40,6 +41,7 @@ public class ModifyPswActivity extends AppCompatActivity {
         init();
         userName = UtilsHelper.readLoginUserName(this);
     }
+
     /**
      * 获取界面控件并处理相关控件的点击事件
      */
@@ -121,6 +123,7 @@ public class ModifyPswActivity extends AppCompatActivity {
             }
         });
     }
+
     /**
      * 获取控件上的字符串
      */
@@ -128,6 +131,7 @@ public class ModifyPswActivity extends AppCompatActivity {
         originalPsw = et_original_psw.getText().toString().trim();
         newPsw = et_new_psw.getText().toString().trim();
     }
+
     /**
      * 修改登录成功时保存在SharedPreferences中的密码
      */
@@ -138,6 +142,7 @@ public class ModifyPswActivity extends AppCompatActivity {
         editor.putString(userName, md5Psw);             //保存新密码
         editor.commit();                                    //提交修改
     }
+
     /**
      * 从SharedPreferences中读取原始密码
      */

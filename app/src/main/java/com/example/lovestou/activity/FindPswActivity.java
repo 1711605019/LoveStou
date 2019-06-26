@@ -28,6 +28,7 @@ public class FindPswActivity extends AppCompatActivity {
     private TextView tv_reset_psw, tv_user_name;
     private SwipeBackLayout layout;
     private RelativeLayout rl_title_bar;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -38,6 +39,7 @@ public class FindPswActivity extends AppCompatActivity {
         from = getIntent().getStringExtra("from");
         init();
     }
+
     /**
      * 获取界面控件及处理相应控件的点击事件
      */
@@ -112,6 +114,7 @@ public class FindPswActivity extends AppCompatActivity {
             }
         });
     }
+
     /**
      * 保存初始化的密码
      */
@@ -122,15 +125,17 @@ public class FindPswActivity extends AppCompatActivity {
         editor.putString(userName, md5Psw);
         editor.commit();                                  //提交修改
     }
+
     /**
      * 保存密保到SharedPreferences中
      */
     private void saveSecurity(String validateName) {
         SharedPreferences sp = getSharedPreferences("loginInfo", MODE_PRIVATE);
         SharedPreferences.Editor editor = sp.edit();//获取编辑器
-        editor.putString(UtilsHelper.readLoginUserName(this) + "_security",validateName);             //存入用户对应的密保
+        editor.putString(UtilsHelper.readLoginUserName(this) + "_security", validateName);             //存入用户对应的密保
         editor.commit();          //提交修改
     }
+
     /**
      * 从SharedPreferences中读取密保
      */
@@ -139,6 +144,7 @@ public class FindPswActivity extends AppCompatActivity {
         String security = sp.getString(userName + "_security", "");
         return security;
     }
+
     /**
      * 从SharedPreferences中根据用户输入的用户名来判断是否有此用户
      */

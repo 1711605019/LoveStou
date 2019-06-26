@@ -44,18 +44,14 @@ public class NewsFragment extends Fragment {
     private List<String> mTitleList = new ArrayList<>();
     private List<View> mViewList = new ArrayList<>();
     private View view_look, view_house, view_education, view_travel, view_food, view_cars;
-    private XRecyclerView list_look,list_house,list_education,list_travel,list_food,list_cars;
-
+    private XRecyclerView list_look, list_house, list_education, list_travel, list_food, list_cars;
     private List<DataBean.ItemsBean> dataList = new ArrayList<>();
-
     public int pageCount = 1;
-
     private DataAdapter dataAdapter;
 
     public NewsFragment() {
         // Required empty public constructor
     }
-
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -92,7 +88,7 @@ public class NewsFragment extends Fragment {
         mViewList.add(view_food);
         mViewList.add(view_cars);
 
-        NewsAdapter newsAdapter = new NewsAdapter(mViewList,mTitleList);
+        NewsAdapter newsAdapter = new NewsAdapter(mViewList, mTitleList);
         viewPager.setAdapter(newsAdapter);
 
         tabLayout.addTab(tabLayout.newTab().setText(mTitleList.get(0)));
@@ -122,15 +118,11 @@ public class NewsFragment extends Fragment {
         list_look.getDefaultRefreshHeaderView() // get default refresh header view
                 .setRefreshTimeVisible(true);  // make refresh time visible,false means hiding
         dataAdapter.addData(dataList);
-        // 添加数据
-//        lookAdapter.addData(lookList());
 
         // 添加刷新和加载更多的监听
         list_look.setLoadingListener(new XRecyclerView.LoadingListener() {
             @Override
             public void onRefresh() {
-//                lookAdapter.setData(lookList());
-                // 为了看效果，加了一个等待效果，正式的时候直接写mRecyclerView.refreshComplete();
                 initLooknews();
                 new Handler().postDelayed(new Runnable() {
                     @Override
@@ -142,8 +134,6 @@ public class NewsFragment extends Fragment {
 
             @Override
             public void onLoadMore() {
-//                lookAdapter.addData(lookList());
-                // 为了看效果，加了一个等待效果，正式的时候直接写mRecyclerView.loadMoreComplete();
                 GetNews(look_url, pageCount);
                 new Handler().postDelayed(new Runnable() {
                     @Override
@@ -154,6 +144,7 @@ public class NewsFragment extends Fragment {
             }
         });
     }
+
     private void initHouseView() {
         GetNews(house_url, pageCount);
         view_house = mInflater.inflate(R.layout.vp_house, null);
@@ -161,7 +152,7 @@ public class NewsFragment extends Fragment {
         LinearLayoutManager layoutManager = new LinearLayoutManager(getActivity());
         layoutManager.setOrientation(LinearLayoutManager.VERTICAL);
         list_house.setLayoutManager(layoutManager);
-        dataAdapter = new DataAdapter(getActivity(),dataList);
+        dataAdapter = new DataAdapter(getActivity(), dataList);
         list_house.setAdapter(dataAdapter);
         list_house.setRefreshProgressStyle(ProgressStyle.BallSpinFadeLoader);
         // 可以设置是否开启加载更多/下拉刷新
@@ -172,15 +163,11 @@ public class NewsFragment extends Fragment {
         list_house.getDefaultRefreshHeaderView() // get default refresh header view
                 .setRefreshTimeVisible(true);  // make refresh time visible,false means hiding
         dataAdapter.addData(dataList);
-        // 添加数据
-//        lookAdapter.addData(lookList());
 
         // 添加刷新和加载更多的监听
         list_house.setLoadingListener(new XRecyclerView.LoadingListener() {
             @Override
             public void onRefresh() {
-//                lookAdapter.setData(lookList());
-                // 为了看效果，加了一个等待效果，正式的时候直接写mRecyclerView.refreshComplete();
                 initHousenews();
                 new Handler().postDelayed(new Runnable() {
                     @Override
@@ -192,8 +179,6 @@ public class NewsFragment extends Fragment {
 
             @Override
             public void onLoadMore() {
-//                lookAdapter.addData(lookList());
-                // 为了看效果，加了一个等待效果，正式的时候直接写mRecyclerView.loadMoreComplete();
                 GetNews(house_url, pageCount);
                 new Handler().postDelayed(new Runnable() {
                     @Override
@@ -204,6 +189,7 @@ public class NewsFragment extends Fragment {
             }
         });
     }
+
     private void initEducationView() {
         GetNews(education_url, pageCount);
         view_education = mInflater.inflate(R.layout.vp_education, null);
@@ -211,7 +197,7 @@ public class NewsFragment extends Fragment {
         LinearLayoutManager layoutManager = new LinearLayoutManager(getActivity());
         layoutManager.setOrientation(LinearLayoutManager.VERTICAL);
         list_education.setLayoutManager(layoutManager);
-        dataAdapter = new DataAdapter(getActivity(),dataList);
+        dataAdapter = new DataAdapter(getActivity(), dataList);
         list_education.setAdapter(dataAdapter);
         list_education.setRefreshProgressStyle(ProgressStyle.BallSpinFadeLoader);
         // 可以设置是否开启加载更多/下拉刷新
@@ -222,15 +208,11 @@ public class NewsFragment extends Fragment {
         list_education.getDefaultRefreshHeaderView() // get default refresh header view
                 .setRefreshTimeVisible(true);  // make refresh time visible,false means hiding
         dataAdapter.addData(dataList);
-        // 添加数据
-//        lookAdapter.addData(lookList());
 
         // 添加刷新和加载更多的监听
         list_education.setLoadingListener(new XRecyclerView.LoadingListener() {
             @Override
             public void onRefresh() {
-//                lookAdapter.setData(lookList());
-                // 为了看效果，加了一个等待效果，正式的时候直接写mRecyclerView.refreshComplete();
                 initEducationnews();
                 new Handler().postDelayed(new Runnable() {
                     @Override
@@ -242,8 +224,6 @@ public class NewsFragment extends Fragment {
 
             @Override
             public void onLoadMore() {
-//                lookAdapter.addData(lookList());
-                // 为了看效果，加了一个等待效果，正式的时候直接写mRecyclerView.loadMoreComplete();
                 GetNews(education_url, pageCount);
                 new Handler().postDelayed(new Runnable() {
                     @Override
@@ -254,6 +234,7 @@ public class NewsFragment extends Fragment {
             }
         });
     }
+
     private void initTravelView() {
         GetNews(travel_url, pageCount);
         view_travel = mInflater.inflate(R.layout.vp_travel, null);
@@ -261,7 +242,7 @@ public class NewsFragment extends Fragment {
         LinearLayoutManager layoutManager = new LinearLayoutManager(getActivity());
         layoutManager.setOrientation(LinearLayoutManager.VERTICAL);
         list_travel.setLayoutManager(layoutManager);
-        dataAdapter = new DataAdapter(getActivity(),dataList);
+        dataAdapter = new DataAdapter(getActivity(), dataList);
         list_travel.setAdapter(dataAdapter);
         list_travel.setRefreshProgressStyle(ProgressStyle.BallSpinFadeLoader);
         // 可以设置是否开启加载更多/下拉刷新
@@ -272,15 +253,11 @@ public class NewsFragment extends Fragment {
         list_travel.getDefaultRefreshHeaderView() // get default refresh header view
                 .setRefreshTimeVisible(true);  // make refresh time visible,false means hiding
         dataAdapter.addData(dataList);
-        // 添加数据
-//        lookAdapter.addData(lookList());
 
         // 添加刷新和加载更多的监听
         list_travel.setLoadingListener(new XRecyclerView.LoadingListener() {
             @Override
             public void onRefresh() {
-//                lookAdapter.setData(lookList());
-                // 为了看效果，加了一个等待效果，正式的时候直接写mRecyclerView.refreshComplete();
                 initTravelnews();
                 new Handler().postDelayed(new Runnable() {
                     @Override
@@ -292,8 +269,6 @@ public class NewsFragment extends Fragment {
 
             @Override
             public void onLoadMore() {
-//                lookAdapter.addData(lookList());
-                // 为了看效果，加了一个等待效果，正式的时候直接写mRecyclerView.loadMoreComplete();
                 GetNews(travel_url, pageCount);
                 new Handler().postDelayed(new Runnable() {
                     @Override
@@ -304,6 +279,7 @@ public class NewsFragment extends Fragment {
             }
         });
     }
+
     private void initFoodView() {
         GetNews(food_url, pageCount);
         view_food = mInflater.inflate(R.layout.vp_food, null);
@@ -311,7 +287,7 @@ public class NewsFragment extends Fragment {
         LinearLayoutManager layoutManager = new LinearLayoutManager(getActivity());
         layoutManager.setOrientation(LinearLayoutManager.VERTICAL);
         list_food.setLayoutManager(layoutManager);
-        dataAdapter = new DataAdapter(getActivity(),dataList);
+        dataAdapter = new DataAdapter(getActivity(), dataList);
         list_food.setAdapter(dataAdapter);
         list_food.setRefreshProgressStyle(ProgressStyle.BallSpinFadeLoader);
         // 可以设置是否开启加载更多/下拉刷新
@@ -322,15 +298,11 @@ public class NewsFragment extends Fragment {
         list_food.getDefaultRefreshHeaderView() // get default refresh header view
                 .setRefreshTimeVisible(true);  // make refresh time visible,false means hiding
         dataAdapter.addData(dataList);
-        // 添加数据
-//        lookAdapter.addData(lookList());
 
         // 添加刷新和加载更多的监听
         list_food.setLoadingListener(new XRecyclerView.LoadingListener() {
             @Override
             public void onRefresh() {
-//                lookAdapter.setData(lookList());
-                // 为了看效果，加了一个等待效果，正式的时候直接写mRecyclerView.refreshComplete();
                 initFoodnews();
                 new Handler().postDelayed(new Runnable() {
                     @Override
@@ -342,8 +314,6 @@ public class NewsFragment extends Fragment {
 
             @Override
             public void onLoadMore() {
-//                lookAdapter.addData(lookList());
-                // 为了看效果，加了一个等待效果，正式的时候直接写mRecyclerView.loadMoreComplete();
                 GetNews(food_url, pageCount);
                 new Handler().postDelayed(new Runnable() {
                     @Override
@@ -354,14 +324,15 @@ public class NewsFragment extends Fragment {
             }
         });
     }
+
     private void initCarsView() {
         GetNews(cars_url, pageCount);
-        view_cars = mInflater.inflate(R.layout.vp_cars,null);
+        view_cars = mInflater.inflate(R.layout.vp_cars, null);
         list_cars = view_cars.findViewById(R.id.list_cars);
         LinearLayoutManager layoutManager = new LinearLayoutManager(getActivity());
         layoutManager.setOrientation(LinearLayoutManager.VERTICAL);
         list_cars.setLayoutManager(layoutManager);
-        dataAdapter = new DataAdapter(getActivity(),dataList);
+        dataAdapter = new DataAdapter(getActivity(), dataList);
         list_cars.setAdapter(dataAdapter);
         list_cars.setRefreshProgressStyle(ProgressStyle.BallSpinFadeLoader);
         // 可以设置是否开启加载更多/下拉刷新
@@ -372,15 +343,11 @@ public class NewsFragment extends Fragment {
         list_cars.getDefaultRefreshHeaderView() // get default refresh header view
                 .setRefreshTimeVisible(true);  // make refresh time visible,false means hiding
         dataAdapter.addData(dataList);
-        // 添加数据
-//        lookAdapter.addData(lookList());
 
         // 添加刷新和加载更多的监听
         list_cars.setLoadingListener(new XRecyclerView.LoadingListener() {
             @Override
             public void onRefresh() {
-//                lookAdapter.setData(lookList());
-                // 为了看效果，加了一个等待效果，正式的时候直接写mRecyclerView.refreshComplete();
                 initCarsnews();
                 new Handler().postDelayed(new Runnable() {
                     @Override
@@ -392,8 +359,6 @@ public class NewsFragment extends Fragment {
 
             @Override
             public void onLoadMore() {
-//                lookAdapter.addData(lookList());
-                // 为了看效果，加了一个等待效果，正式的时候直接写mRecyclerView.loadMoreComplete();
                 GetNews(cars_url, pageCount);
                 new Handler().postDelayed(new Runnable() {
                     @Override
@@ -414,10 +379,7 @@ public class NewsFragment extends Fragment {
 
             @Override
             public void tostring(String responseString) {
-             /*   temp temp = OkhttpUntil.toObject(temp.class, responseString);
-                Toast.makeText(getActivity(), temp.getItems().size() + "", Toast.LENGTH_SHORT).show();*/
                 DataBean dataBean = OkhttpUntil.toObject(DataBean.class, responseString);
-                // Toast.makeText(activity, lookBean.getItems().size()+"", Toast.LENGTH_SHORT).show();
                 if (dataBean != null) {
                     for (int i = 0; i < dataBean.getItems().size(); i++) {
                         if (pageCount == 1) {
@@ -440,53 +402,58 @@ public class NewsFragment extends Fragment {
         pageCount = 1;
         dataList.clear();
         dataAdapter.notifyDataSetChanged();
-        if (dataList.size() < 0 ) {
-            Toast.makeText(getActivity(),"服务器未响应",Toast.LENGTH_SHORT).show();
+        if (dataList.size() < 0) {
+            Toast.makeText(getActivity(), "服务器未响应", Toast.LENGTH_SHORT).show();
         }
         GetNews(look_url, pageCount);
     }
+
     private void initHousenews() {
         pageCount = 1;
         dataList.clear();
         dataAdapter.notifyDataSetChanged();
-        if (dataList.size() < 0 ) {
-            Toast.makeText(getActivity(),"服务器未响应",Toast.LENGTH_SHORT).show();
+        if (dataList.size() < 0) {
+            Toast.makeText(getActivity(), "服务器未响应", Toast.LENGTH_SHORT).show();
         }
         GetNews(house_url, pageCount);
     }
+
     private void initEducationnews() {
         pageCount = 1;
         dataList.clear();
         dataAdapter.notifyDataSetChanged();
-        if (dataList.size() < 0 ) {
-            Toast.makeText(getActivity(),"服务器未响应",Toast.LENGTH_SHORT).show();
+        if (dataList.size() < 0) {
+            Toast.makeText(getActivity(), "服务器未响应", Toast.LENGTH_SHORT).show();
         }
         GetNews(education_url, pageCount);
     }
+
     private void initTravelnews() {
         pageCount = 1;
         dataList.clear();
         dataAdapter.notifyDataSetChanged();
-        if (dataList.size() < 0 ) {
-            Toast.makeText(getActivity(),"服务器未响应",Toast.LENGTH_SHORT).show();
+        if (dataList.size() < 0) {
+            Toast.makeText(getActivity(), "服务器未响应", Toast.LENGTH_SHORT).show();
         }
         GetNews(travel_url, pageCount);
     }
+
     private void initFoodnews() {
         pageCount = 1;
         dataList.clear();
         dataAdapter.notifyDataSetChanged();
-        if (dataList.size() < 0 ) {
-            Toast.makeText(getActivity(),"服务器未响应",Toast.LENGTH_SHORT).show();
+        if (dataList.size() < 0) {
+            Toast.makeText(getActivity(), "服务器未响应", Toast.LENGTH_SHORT).show();
         }
         GetNews(food_url, pageCount);
     }
+
     private void initCarsnews() {
         pageCount = 1;
         dataList.clear();
         dataAdapter.notifyDataSetChanged();
-        if (dataList.size() < 0 ) {
-            Toast.makeText(getActivity(),"服务器未响应",Toast.LENGTH_SHORT).show();
+        if (dataList.size() < 0) {
+            Toast.makeText(getActivity(), "服务器未响应", Toast.LENGTH_SHORT).show();
         }
         GetNews(cars_url, pageCount);
     }

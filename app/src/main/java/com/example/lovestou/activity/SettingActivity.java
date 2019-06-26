@@ -19,6 +19,7 @@ public class SettingActivity extends AppCompatActivity {
     private RelativeLayout rl_modify_psw, rl_security_setting, rl_exit_login;
     public static SettingActivity instance = null;
     private SwipeBackLayout layout;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -28,6 +29,7 @@ public class SettingActivity extends AppCompatActivity {
         instance = this;
         init();
     }
+
     private void init() {
         tv_main_title = (TextView) findViewById(R.id.tv_main_title);
         tv_main_title.setText("设置");

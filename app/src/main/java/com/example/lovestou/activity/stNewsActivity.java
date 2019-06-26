@@ -27,7 +27,6 @@ public class stNewsActivity extends AppCompatActivity {
     private List<VideoBean> videoList = new ArrayList<>();
     private int page = 1;
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

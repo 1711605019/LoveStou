@@ -39,7 +39,7 @@ public class NewsWebActivity extends AppCompatActivity {
         overridePendingTransition(R.anim.push_left_in, R.anim.push_left_out);
 
         webView = findViewById(R.id.webView);
-        String url = NewsInterface.WEB_SITE +itemsBean.getHref();
+        String url = NewsInterface.WEB_SITE + itemsBean.getHref();
         webView.getSettings().setJavaScriptCanOpenWindowsAutomatically(true);//设置js可以直接打开窗口，如window.open()，默认为false
         webView.getSettings().setJavaScriptEnabled(true);//是否允许JavaScript脚本运行，默认为false。设置true时，会提醒可能造成XSS漏洞
         webView.getSettings().setSupportZoom(true);//是否可以缩放，默认true
@@ -107,7 +107,7 @@ public class NewsWebActivity extends AppCompatActivity {
                 String s = new Gson().toJson(itemsBean);
                 SharedPreferences sp = getSharedPreferences("xxx", MODE_PRIVATE);
                 String json = sp.getString("sc", "");
-                if (isChecked){
+                if (isChecked) {
                     if (json.equals("")) {
                         List<DataBean.ItemsBean> list = new ArrayList<>();
                         list.add(itemsBean);
@@ -116,24 +116,24 @@ public class NewsWebActivity extends AppCompatActivity {
                         //从数据库取出来的
                         List<DataBean.ItemsBean> list = new Gson().fromJson(json, new TypeToken<List<DataBean.ItemsBean>>() {
                         }.getType());
-                        if (!list.contains(itemsBean)){
+                        if (!list.contains(itemsBean)) {
                             list.add(itemsBean);
-                        }else {
+                        } else {
 
                         }
                         sp.edit().putString("sc", new Gson().toJson(list)).apply();
                     }
                     //
-                }else {
+                } else {
                     if (json.equals("")) {
 
                     } else {
                         //从数据库取出来的
                         List<DataBean.ItemsBean> list = new Gson().fromJson(json, new TypeToken<List<DataBean.ItemsBean>>() {
                         }.getType());
-                        if (list.contains(itemsBean)){
+                        if (list.contains(itemsBean)) {
                             list.remove(itemsBean);
-                        }else {
+                        } else {
 
                         }
                         sp.edit().putString("sc", new Gson().toJson(list)).apply();
@@ -158,13 +158,12 @@ public class NewsWebActivity extends AppCompatActivity {
             //从数据库取出来的
             List<DataBean.ItemsBean> list = new Gson().fromJson(json, new TypeToken<List<DataBean.ItemsBean>>() {
             }.getType());
-            if (list.contains(itemsBean)){
-               ck_collection.setChecked(true);
+            if (list.contains(itemsBean)) {
+                ck_collection.setChecked(true);
             }
             sp.edit().putString("sc", new Gson().toJson(list)).apply();
         }
     }
-
 
 
     @Override

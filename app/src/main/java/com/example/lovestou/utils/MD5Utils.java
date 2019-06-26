@@ -4,9 +4,11 @@ import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 
 public class MD5Utils {
+
     /**
      * md5加密的算法
      */
+
     public static String md5(String text) {
         MessageDigest digest = null;
         try {

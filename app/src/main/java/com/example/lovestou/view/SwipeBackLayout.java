@@ -21,18 +21,19 @@ import java.util.LinkedList;
 import java.util.List;
 
 
-
 public class SwipeBackLayout extends FrameLayout {
     private View mContentView;
-    private int mTouchSlop,downX,downY,tempX,viewWidth;
+    private int mTouchSlop, downX, downY, tempX, viewWidth;
     private Scroller mScroller;
-    private boolean isSilding,isFinish;
+    private boolean isSilding, isFinish;
     private Drawable mShadowDrawable;
     private Activity mActivity;
     private List<ViewPager> mViewPagers = new LinkedList<ViewPager>();
+
     public SwipeBackLayout(Context context, AttributeSet attrs) {
         this(context, attrs, 0);
     }
+
     public SwipeBackLayout(Context context, AttributeSet attrs, int defStyle) {
         super(context, attrs, defStyle);
         //触发移动事件的最短距离，如果小于这个距离就不触发移动控件
@@ -40,6 +41,7 @@ public class SwipeBackLayout extends FrameLayout {
         mScroller = new Scroller(context);
         mShadowDrawable = getResources().getDrawable(R.drawable.shadow_left);
     }
+
     public void attachToActivity(Activity activity) {
         mActivity = activity;
         TypedArray a = activity.getTheme().obtainStyledAttributes(
@@ -54,9 +56,11 @@ public class SwipeBackLayout extends FrameLayout {
         setContentView(decorChild);
         decor.addView(this);
     }
+
     private void setContentView(View decorChild) {
         mContentView = (View) decorChild.getParent();
     }
+
     /**
      * 事件拦截操作
      */
@@ -83,6 +87,7 @@ public class SwipeBackLayout extends FrameLayout {
         }
         return super.onInterceptTouchEvent(ev);
     }
+
     @Override
     public boolean onTouchEvent(MotionEvent event) {
         switch (event.getAction()) {
@@ -111,6 +116,7 @@ public class SwipeBackLayout extends FrameLayout {
         }
         return true;
     }
+
     /**
      * 获取SwipeBackLayout里面的ViewPager的集合
      */
@@ -125,11 +131,11 @@ public class SwipeBackLayout extends FrameLayout {
             }
         }
     }
+
     /**
      * 返回touch的ViewPager
      */
-    private ViewPager getTouchViewPager(List<ViewPager> mViewPagers, MotionEvent ev)
-    {
+    private ViewPager getTouchViewPager(List<ViewPager> mViewPagers, MotionEvent ev) {
         if (mViewPagers == null || mViewPagers.size() == 0) {
             return null;
         }
@@ -142,6 +148,7 @@ public class SwipeBackLayout extends FrameLayout {
         }
         return null;
     }
+
     @Override
     protected void onLayout(boolean changed, int l, int t, int r, int b) {
         super.onLayout(changed, l, t, r, b);
@@ -150,11 +157,12 @@ public class SwipeBackLayout extends FrameLayout {
             getAlLViewPager(mViewPagers, this);
         }
     }
+
     @Override
     protected void dispatchDraw(Canvas canvas) {
         super.dispatchDraw(canvas);
         if (mShadowDrawable != null && mContentView != null) {
-            int left = mContentView.getLeft()- mShadowDrawable.getIntrinsicWidth();
+            int left = mContentView.getLeft() - mShadowDrawable.getIntrinsicWidth();
             int right = left + mShadowDrawable.getIntrinsicWidth();
             int top = mContentView.getTop();
             int bottom = mContentView.getBottom();
@@ -162,6 +170,7 @@ public class SwipeBackLayout extends FrameLayout {
             mShadowDrawable.draw(canvas);
         }
     }
+
     /**
      * 滚动出界面
      */
@@ -172,6 +181,7 @@ public class SwipeBackLayout extends FrameLayout {
                 Math.abs(delta));
         postInvalidate();
     }
+
     /**
      * 滚动到起始位置
      */
@@ -181,6 +191,7 @@ public class SwipeBackLayout extends FrameLayout {
                 Math.abs(delta));
         postInvalidate();
     }
+
     @Override
     public void computeScroll() {
         //调用startScroll()方法时，scroller.computeScrollOffset()返回为true，

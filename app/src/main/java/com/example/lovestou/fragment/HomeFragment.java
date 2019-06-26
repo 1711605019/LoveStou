@@ -41,11 +41,8 @@ public class HomeFragment extends Fragment {
     private View homeView;
     private Banner banner;
     private MarqueeView marqueeView;
-    private List<Integer> imgs;
-
     private ImageView stNews_img1, stNews_img2, today_img1, today_img2;
     private TextView stNews_title1, stNews_title2, today_title1, today_title2;
-
     private LinearLayout ll_fuwu, ll_gongkai, ll_tousu, ll_daohang, ll_stNews, ll_today;
 
     public HomeFragment() {
@@ -185,8 +182,6 @@ public class HomeFragment extends Fragment {
                             Glide.with(getActivity()).load(today_imgs.get(1)).placeholder(R.drawable.error).into(today_img2);
                         }
                     });
-
-
                 } catch (Exception e) {
                     e.printStackTrace();
                 }

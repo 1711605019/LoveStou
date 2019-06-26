@@ -9,13 +9,12 @@
     app:cardPreventCornerOverlap="false"
     app:cardUseCompatPadding="true">
 
-
     <LinearLayout
         android:id="@+id/ll_tousu3211"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:gravity="center_horizontal"
         android:background="@color/fenge"
+        android:gravity="center_horizontal"
         android:orientation="vertical">
 
         <ImageView
@@ -24,16 +23,16 @@
             android:layout_height="120dp"
             android:layout_margin="5dp"
             android:scaleType="fitXY"
-            android:src="@drawable/error"/>
+            android:src="@drawable/error" />
 
         <TextView
             android:id="@+id/homeNews_title"
             android:layout_width="150dp"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
+            android:ellipsize="end"
             android:gravity="center"
             android:lines="2"
-            android:ellipsize="end"
             android:text="高考恰逢端午 五万考生赴考 2019-06-07"
             android:textColor="@color/fontColor"
             android:textSize="12sp" />

@@ -27,6 +27,7 @@ public class ChangeUserInfoActivity extends AppCompatActivity {
     private EditText et_content;
     private ImageView iv_delete;
     private SwipeBackLayout layout;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -36,6 +37,7 @@ public class ChangeUserInfoActivity extends AppCompatActivity {
         //设置此界面为竖屏
         init();
     }
+
     private void init() {
         //从个人资料界面传递过来的标题和内容
         title = getIntent().getStringExtra("title");
@@ -84,7 +86,7 @@ public class ChangeUserInfoActivity extends AppCompatActivity {
                             ChangeUserInfoActivity.this.finish();
                         } else {
                             Toast.makeText(ChangeUserInfoActivity.this,
-                                    "昵称不能为空",Toast.LENGTH_SHORT).show();
+                                    "昵称不能为空", Toast.LENGTH_SHORT).show();
                         }
                         break;
                     case 2:
@@ -103,6 +105,7 @@ public class ChangeUserInfoActivity extends AppCompatActivity {
             }
         });
     }
+
     /**
      * 监听个人资料修改界面输入的文字
      */
@@ -161,10 +164,12 @@ public class ChangeUserInfoActivity extends AppCompatActivity {
                         break;
                 }
             }
+
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count,
                                           int after) {
             }
+
             @Override
             public void afterTextChanged(Editable arg0) {
             }

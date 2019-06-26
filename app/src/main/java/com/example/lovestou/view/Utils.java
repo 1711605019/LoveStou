@@ -11,7 +11,7 @@ class Utils {
 
     public static int convertDPtoPixels(Context context, int dp) {
         Resources resource = context.getResources();
-        return(int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, dp, resource.getDisplayMetrics());
+        return (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, dp, resource.getDisplayMetrics());
     }
 
 }

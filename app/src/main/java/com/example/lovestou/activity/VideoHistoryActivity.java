@@ -47,10 +47,10 @@ public class VideoHistoryActivity extends AppCompatActivity {
         GridLayoutManager gridLayoutManager = new GridLayoutManager(getApplicationContext(), 2);
         recyclerView.setLayoutManager(gridLayoutManager);
         List<VideoBean> videoList = getHistory();
-        videoNewsAdapter = new VideoNewsAdapter(this,videoList);
+        videoNewsAdapter = new VideoNewsAdapter(this, videoList);
         if (videoList != null) {
             recyclerView.setAdapter(videoNewsAdapter);
-        }else {
+        } else {
             Toast.makeText(this, "没有观看记录！", Toast.LENGTH_SHORT).show();
         }
 

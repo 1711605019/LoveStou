@@ -30,22 +30,27 @@ public class ImageViewRoundOval extends ImageView {
     public static final int TYPE_ROUND = 1;    //圆角矩形
     public static final int TYPE_OVAL = 2;     //椭圆形
     public static final int DEFAUT_ROUND_RADIUS = 10;  //默认圆角大小
+
     public ImageViewRoundOval(Context context) {
         this(context, null);
     }
+
     public ImageViewRoundOval(Context context, AttributeSet attrs) {
         this(context, attrs, 0);
     }
+
     public ImageViewRoundOval(Context context, AttributeSet attrs, int defStyle) {
         super(context, attrs, defStyle);
         initView();
     }
+
     private void initView() {
         mPaint = new Paint();
         mPaint.setAntiAlias(true);
         mMatrix = new Matrix();
         mRoundRadius = DEFAUT_ROUND_RADIUS;
     }
+
     @Override
     protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
         super.onMeasure(widthMeasureSpec, heightMeasureSpec);
@@ -56,6 +61,7 @@ public class ImageViewRoundOval extends ImageView {
             setMeasuredDimension(mWidth, mWidth);
         }
     }
+
     @Override
     protected void onDraw(Canvas canvas) {
         if (null == getDrawable()) {
@@ -67,15 +73,17 @@ public class ImageViewRoundOval extends ImageView {
         } else if (mType == TYPE_ROUND) {
             mPaint.setColor(Color.RED);
             canvas.drawRoundRect(mRect, mRoundRadius, mRoundRadius, mPaint);
-        }else if(mType == TYPE_OVAL){
+        } else if (mType == TYPE_OVAL) {
             canvas.drawOval(mRect, mPaint);
         }
     }
+
     @Override
     protected void onSizeChanged(int w, int h, int oldw, int oldh) {
         super.onSizeChanged(w, h, oldw, oldh);
         mRect = new RectF(0, 0, getWidth(), getHeight());
     }
+
     /**
      * 设置BitmapShader
      */
@@ -105,8 +113,10 @@ public class ImageViewRoundOval extends ImageView {
         mBitmapShader.setLocalMatrix(mMatrix);
         mPaint.setShader(mBitmapShader);
     }
+
     /**
      * drawable转bitmap
+     *
      * @param drawable
      */
     private Bitmap drawableToBitmap(Drawable drawable) {
@@ -122,15 +132,18 @@ public class ImageViewRoundOval extends ImageView {
         drawable.draw(canvas);
         return bitmap;
     }
+
     public int getType() {
         return mType;
     }
+
     /**
      * 设置图片类型：圆形、圆角矩形、椭圆形
+     *
      * @param mType
      */
     public void setType(int mType) {
-        if(this.mType != mType){
+        if (this.mType != mType) {
             this.mType = mType;
             invalidate();
         }

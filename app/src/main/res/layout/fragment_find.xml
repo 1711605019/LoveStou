@@ -16,6 +16,7 @@
         android:text="发现"
         android:textColor="@android:color/white"
         android:textSize="18sp" />
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -106,8 +107,8 @@
         </LinearLayout>
 
 
-
     </LinearLayout>
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -196,7 +197,6 @@
 
 
         </LinearLayout>
-
 
 
     </LinearLayout>

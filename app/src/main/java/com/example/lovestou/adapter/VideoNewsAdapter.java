@@ -24,6 +24,7 @@ public class VideoNewsAdapter extends RecyclerView.Adapter<VideoNewsAdapter.View
         this.videoList = videoList;
         this.context = context;
     }
+
     public void addData(List<VideoBean> videoList) {
         if (null != videoList) {
             this.videoList.addAll(videoList);
@@ -41,16 +42,16 @@ public class VideoNewsAdapter extends RecyclerView.Adapter<VideoNewsAdapter.View
 
     @Override
     public VideoNewsAdapter.ViewHolder onCreateViewHolder(ViewGroup viewGroup, int i) {
-        View view = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.video_item,viewGroup,false);
+        View view = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.video_item, viewGroup, false);
         ViewHolder holder = new ViewHolder(view);
         return holder;
     }
 
     @Override
-    public void onBindViewHolder( ViewHolder viewHolder, int i) {
+    public void onBindViewHolder(ViewHolder viewHolder, int i) {
         VideoBean videoBean = videoList.get(i);
-        String t = videoBean.getTitle().substring(0, videoBean.getTitle().length()-10);
-        String time = videoBean.getTitle().substring(videoBean.getTitle().length()-10);
+        String t = videoBean.getTitle().substring(0, videoBean.getTitle().length() - 10);
+        String time = videoBean.getTitle().substring(videoBean.getTitle().length() - 10);
         viewHolder.textView.setText(t);
 
         Glide
@@ -65,7 +66,7 @@ public class VideoNewsAdapter extends RecyclerView.Adapter<VideoNewsAdapter.View
                 Intent intent = new Intent(context, VideoActivity.class);
                 VideoBean videoBean1 = videoList.get(i);
                 VideoActivity.videoBean = videoBean1;
-                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK );
+                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                 context.startActivity(intent);
             }
         });
@@ -75,11 +76,12 @@ public class VideoNewsAdapter extends RecyclerView.Adapter<VideoNewsAdapter.View
     public int getItemCount() {
         return videoList.size();
     }
+
     class ViewHolder extends RecyclerView.ViewHolder {
         ImageView imageView;
         TextView textView;
 
-        public ViewHolder(View view){
+        public ViewHolder(View view) {
             super(view);
             imageView = view.findViewById(R.id.homeNews_img);
             textView = view.findViewById(R.id.homeNews_title);

@@ -32,11 +32,11 @@ import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 
-public class UserInfoActivity extends AppCompatActivity implements View.OnClickListener{
-    private TextView tv_main_title,tv_back;
+public class UserInfoActivity extends AppCompatActivity implements View.OnClickListener {
+    private TextView tv_main_title, tv_back;
     private SwipeBackLayout layout;
     private TextView tv_nickName, tv_signature, tv_user_name, tv_sex;
-    private RelativeLayout rl_nickName, rl_sex, rl_signature,rl_head, rl_title_bar;
+    private RelativeLayout rl_nickName, rl_sex, rl_signature, rl_head, rl_title_bar;
     private String spUserName;
     private static final int CHANGE_NICKNAME = 1;   //修改昵称的自定义常量
     private static final int CHANGE_SIGNATURE = 2; //修改签名的自定义常量
@@ -46,6 +46,7 @@ public class UserInfoActivity extends AppCompatActivity implements View.OnClickL
     private ImageViewRoundOval iv_photo;
     private Bitmap head;                                //头像Bitmap
     private static String path = "/sdcard/TopLine/myHead/"; //sd路径
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -58,13 +59,14 @@ public class UserInfoActivity extends AppCompatActivity implements View.OnClickL
         initData();
         setListener();
     }
-    private void init(){
-        tv_main_title= (TextView)findViewById(R.id.tv_main_title);
+
+    private void init() {
+        tv_main_title = (TextView) findViewById(R.id.tv_main_title);
         tv_main_title.setText("个人资料");
-        rl_title_bar= (RelativeLayout)findViewById(R.id.title_bar);
+        rl_title_bar = (RelativeLayout) findViewById(R.id.title_bar);
         rl_title_bar.setBackgroundColor(getResources().getColor(R.color.
                 rdTextColorPress));
-        tv_back= (TextView) findViewById(R.id.tv_back);
+        tv_back = (TextView) findViewById(R.id.tv_back);
         tv_back.setVisibility(View.VISIBLE);
         rl_nickName = (RelativeLayout) findViewById(R.id.rl_nickName);
         rl_sex = (RelativeLayout) findViewById(R.id.rl_sex);
@@ -73,9 +75,10 @@ public class UserInfoActivity extends AppCompatActivity implements View.OnClickL
         tv_user_name = (TextView) findViewById(R.id.tv_user_name);
         tv_sex = (TextView) findViewById(R.id.tv_sex);
         tv_signature = (TextView) findViewById(R.id.tv_signature);
-        rl_head= (RelativeLayout) findViewById(R.id.rl_head);
+        rl_head = (RelativeLayout) findViewById(R.id.rl_head);
         iv_photo = (ImageViewRoundOval) findViewById(R.id.iv_head_icon);
     }
+
     /**
      * 获取数据
      */
@@ -95,6 +98,7 @@ public class UserInfoActivity extends AppCompatActivity implements View.OnClickL
         }
         setValue(bean);
     }
+
     /**
      * 为界面控件设置值
      */
@@ -112,6 +116,7 @@ public class UserInfoActivity extends AppCompatActivity implements View.OnClickL
             iv_photo.setImageResource(R.drawable.header);
         }
     }
+
     /**
      * 设置控件的点击监听事件
      */
@@ -122,6 +127,7 @@ public class UserInfoActivity extends AppCompatActivity implements View.OnClickL
         rl_signature.setOnClickListener(this);
         rl_head.setOnClickListener(this);
     }
+
     /**
      * 控件的点击事件
      */
@@ -138,7 +144,7 @@ public class UserInfoActivity extends AppCompatActivity implements View.OnClickL
                 bdName.putString("title", "昵称");
                 bdName.putInt("flag", 1);                           //flag传递1时表示是修改昵称
                 //跳转到个人资料修改界面
-                enterActivityForResult(ChangeUserInfoActivity.class,CHANGE_NICKNAME, bdName);
+                enterActivityForResult(ChangeUserInfoActivity.class, CHANGE_NICKNAME, bdName);
                 break;
             case R.id.rl_sex:       //性别的点击事件
                 String sex = tv_sex.getText().toString(); //获取性别控件上的数据
@@ -151,7 +157,7 @@ public class UserInfoActivity extends AppCompatActivity implements View.OnClickL
                 bdSignature.putString("title", "签名");
                 bdSignature.putInt("flag", 2);                            //flag传递2时表示是修改签名
                 //跳转到个人资料修改界面
-                enterActivityForResult(ChangeUserInfoActivity.class,CHANGE_SIGNATURE, bdSignature);
+                enterActivityForResult(ChangeUserInfoActivity.class, CHANGE_SIGNATURE, bdSignature);
                 break;
             case R.id.rl_head:       //头像的点击事件
                 showTypeDialog();
@@ -160,6 +166,7 @@ public class UserInfoActivity extends AppCompatActivity implements View.OnClickL
                 break;
         }
     }
+
     private void showTypeDialog() {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         final AlertDialog dialog = builder.create();
@@ -182,7 +189,7 @@ public class UserInfoActivity extends AppCompatActivity implements View.OnClickL
                 Intent intent2 = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
                 intent2.putExtra(MediaStore.EXTRA_OUTPUT,
                         Uri.fromFile(new File(Environment.getExternalStorageDirectory(),
-                                spUserName+"_head.jpg")));
+                                spUserName + "_head.jpg")));
                 startActivityForResult(intent2, 4); //采用ForResult打开
                 dialog.dismiss();
             }
@@ -190,41 +197,44 @@ public class UserInfoActivity extends AppCompatActivity implements View.OnClickL
         dialog.setView(view);
         dialog.show();
     }
+
     /**
      * 设置性别的弹出框
      */
-    private void sexDialog(String sex){
-        int sexFlag=0;
-        if("男".equals(sex)){
-            sexFlag=0;
-        }else if("女".equals(sex)){
-            sexFlag=1;
+    private void sexDialog(String sex) {
+        int sexFlag = 0;
+        if ("男".equals(sex)) {
+            sexFlag = 0;
+        } else if ("女".equals(sex)) {
+            sexFlag = 1;
         }
-        final String items[]={"男","女"};
-        AlertDialog.Builder builder=new AlertDialog.Builder(this);//先得到构造器
+        final String items[] = {"男", "女"};
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);//先得到构造器
         builder.setTitle("性别"); //设置标题
-        builder.setSingleChoiceItems(items,sexFlag,new DialogInterface
+        builder.setSingleChoiceItems(items, sexFlag, new DialogInterface
                 .OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 dialog.dismiss();
                 //第二个参数which是默认选中的哪个项
-                Toast.makeText(UserInfoActivity.this,items[which],
+                Toast.makeText(UserInfoActivity.this, items[which],
                         Toast.LENGTH_SHORT).show();
                 setSex(items[which]);
             }
         });
         builder.create().show();
     }
+
     /**
      * 更新界面上的性别数据
      */
-    private void setSex(String sex){
+    private void setSex(String sex) {
         tv_sex.setText(sex);
         //更新数据库中的性别字段
-        DBUtils.getInstance(UserInfoActivity.this).updateUserInfo("sex",sex,
+        DBUtils.getInstance(UserInfoActivity.this).updateUserInfo("sex", sex,
                 spUserName);
     }
+
     /**
      * 获取回传数据时需使用的跳转方法，第一个参数to表示需要跳转到的界面，
      * 第二个参数requestCode表示一个请求码，第三个参数b表示跳转时传递的数据
@@ -234,13 +244,14 @@ public class UserInfoActivity extends AppCompatActivity implements View.OnClickL
         i.putExtras(b);
         startActivityForResult(i, requestCode);
     }
+
     /**
      * 回传数据
      */
     private String new_info; //最新数据
+
     @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data)
-    {
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         switch (requestCode) {
             case CROP_PHOTO1:
@@ -250,8 +261,8 @@ public class UserInfoActivity extends AppCompatActivity implements View.OnClickL
                 break;
             case CROP_PHOTO2:
                 if (resultCode == RESULT_OK) {
-                    File temp = new File(Environment.getExternalStorageDirectory() +"/"+
-                            spUserName+"_head.jpg");
+                    File temp = new File(Environment.getExternalStorageDirectory() + "/" +
+                            spUserName + "_head.jpg");
                     cropPhoto(Uri.fromFile(temp)); //裁剪图片
                 }
                 break;
@@ -260,10 +271,10 @@ public class UserInfoActivity extends AppCompatActivity implements View.OnClickL
                     Bundle extras = data.getExtras();
                     head = extras.getParcelable("data");
                     if (head != null) {
-                        String fileName=setPicToView(head); //保存在SD卡中
+                        String fileName = setPicToView(head); //保存在SD卡中
                         //保存头像地址到数据库中
                         DBUtils.getInstance(UserInfoActivity.this).updateUserInfo("head",
-                                fileName,spUserName);
+                                fileName, spUserName);
                         iv_photo.setImageBitmap(head); //用ImageView显示出来
                         //发送广播更新“我”的界面中的头像
                         Intent intent = new Intent(UpdateUserInfoReceiver.ACTION.UPDATE_USERINFO);
@@ -299,6 +310,7 @@ public class UserInfoActivity extends AppCompatActivity implements View.OnClickL
                 break;
         }
     }
+
     /**
      * 调用系统的裁剪功能
      */
@@ -315,6 +327,7 @@ public class UserInfoActivity extends AppCompatActivity implements View.OnClickL
         intent.putExtra("return-data", true);
         startActivityForResult(intent, SAVE_PHOTO);
     }
+
     private String setPicToView(Bitmap mBitmap) {
         String sdStatus = Environment.getExternalStorageState();
         if (!sdStatus.equals(Environment.MEDIA_MOUNTED)) { //检测sd是否可用
@@ -323,7 +336,7 @@ public class UserInfoActivity extends AppCompatActivity implements View.OnClickL
         FileOutputStream b = null;
         File file = new File(path);
         file.mkdirs(); //创建文件夹
-        String fileName = path + spUserName+"_head.jpg"; //图片名字
+        String fileName = path + spUserName + "_head.jpg"; //图片名字
         try {
             b = new FileOutputStream(fileName);
             mBitmap.compress(Bitmap.CompressFormat.JPEG, 100, b); //把数据写入文件
