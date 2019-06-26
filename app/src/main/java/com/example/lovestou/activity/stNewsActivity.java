@@ -24,7 +24,7 @@ public class stNewsActivity extends AppCompatActivity {
     private XRecyclerView recyclerView;
     private ImageButton imageButton;
     private VideoNewsAdapter adapter;
-    private List<VideoBean> stNewsList = new ArrayList<>();
+    private List<VideoBean> videoList = new ArrayList<>();
     private int page = 1;
 
 
@@ -51,13 +51,13 @@ public class stNewsActivity extends AppCompatActivity {
                         String href = "http://st.cutv.com" + elements.get(j).select("a").attr("href");
 
                         VideoBean bean = new VideoBean(title, img, href);
-                        stNewsList.add(bean);
+                        videoList.add(bean);
                     }
                     runOnUiThread(new Runnable() {
                         @Override
                         public void run() {
                             page++;
-                            adapter = new VideoNewsAdapter(getApplicationContext(), stNewsList);
+                            adapter = new VideoNewsAdapter(getApplicationContext(), videoList);
                             recyclerView.setAdapter(adapter);
                         }
                     });
@@ -81,7 +81,7 @@ public class stNewsActivity extends AppCompatActivity {
         GridLayoutManager gridLayoutManager = new GridLayoutManager(getApplicationContext(), 2);
         recyclerView.setLayoutManager(gridLayoutManager);
 
-        adapter = new VideoNewsAdapter(this, stNewsList);
+        adapter = new VideoNewsAdapter(this, videoList);
         recyclerView.setAdapter(adapter);
         recyclerView.setRefreshProgressStyle(ProgressStyle.BallSpinFadeLoader);
         // 可以设置是否开启加载更多/下拉刷新
@@ -124,7 +124,7 @@ public class stNewsActivity extends AppCompatActivity {
                         String href = "http://st.cutv.com" + elements.get(j).select("a").attr("href");
 
                         VideoBean bean = new VideoBean(title, img, href);
-                        stNewsList.add(bean);
+                        videoList.add(bean);
                     }
                     runOnUiThread(new Runnable() {
                         @Override
@@ -132,7 +132,7 @@ public class stNewsActivity extends AppCompatActivity {
                             //  adapter = new stNewsAdapter(getApplicationContext(),stNewsList);
                             //recyclerView.setAdapter(adapter);
                             if (adapter != null) {
-                                adapter.addData(stNewsList);
+                                adapter.addData(videoList);
                                 recyclerView.loadMoreComplete();
                                 page += 1;
                                 adapter.notifyDataSetChanged();

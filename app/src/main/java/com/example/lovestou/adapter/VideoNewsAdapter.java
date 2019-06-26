@@ -18,23 +18,23 @@ import java.util.List;
 
 public class VideoNewsAdapter extends RecyclerView.Adapter<VideoNewsAdapter.ViewHolder> {
     private Context context;
-    private List<VideoBean> todayList;
+    private List<VideoBean> videoList;
 
-    public VideoNewsAdapter(Context context, List<VideoBean> todayList) {
-        this.todayList = todayList;
+    public VideoNewsAdapter(Context context, List<VideoBean> videoList) {
+        this.videoList = videoList;
         this.context = context;
     }
-    public void addData(List<VideoBean> todayList) {
-        if (null != todayList) {
-            this.todayList.addAll(todayList);
+    public void addData(List<VideoBean> videoList) {
+        if (null != videoList) {
+            this.videoList.addAll(videoList);
             notifyDataSetChanged();
         }
     }
 
-    public void setData(List<VideoBean> todayList) {
-        if (null != todayList) {
-            this.todayList.clear();
-            this.todayList.addAll(todayList);
+    public void setData(List<VideoBean> videoList) {
+        if (null != videoList) {
+            this.videoList.clear();
+            this.videoList.addAll(videoList);
             notifyDataSetChanged();
         }
     }
@@ -48,7 +48,7 @@ public class VideoNewsAdapter extends RecyclerView.Adapter<VideoNewsAdapter.View
 
     @Override
     public void onBindViewHolder( ViewHolder viewHolder, int i) {
-        VideoBean videoBean = todayList.get(i);
+        VideoBean videoBean = videoList.get(i);
         String t = videoBean.getTitle().substring(0, videoBean.getTitle().length()-10);
         String time = videoBean.getTitle().substring(videoBean.getTitle().length()-10);
         viewHolder.textView.setText(t);
@@ -63,9 +63,8 @@ public class VideoNewsAdapter extends RecyclerView.Adapter<VideoNewsAdapter.View
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(context, VideoActivity.class);
-                intent.putExtra("url", videoBean.getHref());
-                intent.putExtra("title",t);
-                intent.putExtra("time",time);
+                VideoBean videoBean1 = videoList.get(i);
+                VideoActivity.videoBean = videoBean1;
                 intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK );
                 context.startActivity(intent);
             }
@@ -74,7 +73,7 @@ public class VideoNewsAdapter extends RecyclerView.Adapter<VideoNewsAdapter.View
 
     @Override
     public int getItemCount() {
-        return todayList.size();
+        return videoList.size();
     }
     class ViewHolder extends RecyclerView.ViewHolder {
         ImageView imageView;

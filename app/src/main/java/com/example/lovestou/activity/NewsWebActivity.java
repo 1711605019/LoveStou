@@ -1,6 +1,5 @@
 package com.example.lovestou.activity;
 
-import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.os.Build;
@@ -145,11 +144,6 @@ public class NewsWebActivity extends AppCompatActivity {
         ck_collection.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
-
-                getShoucang();
-
-
                 if (ck_collection.isChecked()) {
                     Toast.makeText(NewsWebActivity.this, "已收藏", Toast.LENGTH_SHORT).show();
                 } else {
@@ -171,13 +165,7 @@ public class NewsWebActivity extends AppCompatActivity {
         }
     }
 
-    private List<DataBean.ItemsBean> getShoucang() {
-        SharedPreferences sp = getSharedPreferences("xxx", MODE_PRIVATE);
-        String json = sp.getString("sc", "");
-        List<DataBean.ItemsBean> list = new Gson().fromJson(json, new TypeToken<List<DataBean.ItemsBean>>() {
-        }.getType());
-        return list;
-    }
+
 
     @Override
     public void finish() {

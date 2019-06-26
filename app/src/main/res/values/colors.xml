@@ -8,7 +8,12 @@
     <color name="orgTheme">#FEB21F</color>
     <color name="fenge">#f5f5f5</color>
     <color name="fontColor">#bfbfbf</color>
-
+    <color name="register_hint_text_color">#a3a3a3</color>
+    <color name="divider_line_color">#ebebeb</color>
+    <color name="register_bg_color">#f6f6f6</color>
     <color name="transparent">#00ffffff</color>
+    <color name="rdTextColorPress">#22ABF1</color>
+    <color name="constellation_info_color">#7f8080</color>
+    <color name="register_btn_color">#d6d7d7</color>
 
 </resources>

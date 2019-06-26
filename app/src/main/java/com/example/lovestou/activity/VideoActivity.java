@@ -1,12 +1,12 @@
 package com.example.lovestou.activity;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.media.MediaPlayer;
-import android.net.Uri;
 import android.os.Build;
+import android.os.Bundle;
 import android.support.annotation.RequiresApi;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,13 +14,18 @@ import android.webkit.WebResourceRequest;
 import android.webkit.WebResourceResponse;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
-import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.lovestou.R;
+import com.example.lovestou.bean.VideoBean;
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
 import com.universalvideoview.UniversalMediaController;
 import com.universalvideoview.UniversalVideoView;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class VideoActivity extends AppCompatActivity implements UniversalVideoView.VideoViewCallback {
     private static final String TAG = "MainActivity";
@@ -33,29 +38,26 @@ public class VideoActivity extends AppCompatActivity implements UniversalVideoVi
     View mVideoLayout;
     private ImageView iv_hmst;
     private WebView webView;
-    private TextView tv_title,tv_time;
+    private TextView tv_title, tv_time;
     private int mSeekPosition;
     private int cachedHeight;
     private boolean isFullscreen;
+
+    public static VideoBean videoBean;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_video);
         overridePendingTransition(R.anim.push_left_in, R.anim.push_left_out);
 
-         Intent intent = getIntent();
-         String url = intent.getStringExtra("url");
-         String title = intent.getStringExtra("title");
-         String time = intent.getStringExtra("time");
-
         tv_title = findViewById(R.id.tv_title);
         tv_time = findViewById(R.id.tv_time);
-        tv_title.setText(title);
-        tv_time.setText(time);
+        tv_title.setText(videoBean.getTitle().substring(0, videoBean.getTitle().length()-10));
+        tv_time.setText(videoBean.getTitle().substring(videoBean.getTitle().length()-10));
         webView = findViewById(R.id.webview_video);
         webView.getSettings().setJavaScriptEnabled(true);
-        webView.setLayerType(View.LAYER_TYPE_HARDWARE,null);
-        webView.loadUrl(url);
+        webView.setLayerType(View.LAYER_TYPE_HARDWARE, null);
+        webView.loadUrl(videoBean.getHref());
         webView.setWebViewClient(new WebViewClient() {
             @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
             @Override
@@ -63,11 +65,12 @@ public class VideoActivity extends AppCompatActivity implements UniversalVideoVi
                 view.loadUrl(request.getUrl().toString());
                 return true;
             }
+
             @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
             @Override
             public WebResourceResponse shouldInterceptRequest(WebView view, WebResourceRequest request) {
                 String s = request.getUrl().toString();
-                if (s.endsWith(".mp4")){
+                if (s.endsWith(".mp4")) {
                     runOnUiThread(new Runnable() {
                         @Override
                         public void run() {
@@ -86,7 +89,7 @@ public class VideoActivity extends AppCompatActivity implements UniversalVideoVi
         iv_hmst.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent1 = new Intent(VideoActivity.this,HmstVideoActivity.class);
+                Intent intent1 = new Intent(VideoActivity.this, HmstVideoActivity.class);
                 startActivity(intent1);
             }
         });
@@ -106,8 +109,26 @@ public class VideoActivity extends AppCompatActivity implements UniversalVideoVi
             }
         });
 
-    }
 
+
+        SharedPreferences hsp = getSharedPreferences("xxVideo", MODE_PRIVATE);
+        String json = hsp.getString("ls", "");
+        if (json.equals("")) {
+            List<VideoBean> list = new ArrayList<>();
+            list.add(videoBean);
+            hsp.edit().putString("ls", new Gson().toJson(list)).apply();
+        } else {
+            //从数据库取出来的
+            List<VideoBean> list = new Gson().fromJson(json, new TypeToken<List<VideoBean>>() {
+            }.getType());
+            if (!list.contains(videoBean)){
+                list.add(videoBean);
+            }else {
+
+            }
+            hsp.edit().putString("sc", new Gson().toJson(list)).apply();
+        }
+    }
 
     //    暂停
     @Override
@@ -147,6 +168,7 @@ public class VideoActivity extends AppCompatActivity implements UniversalVideoVi
         Log.d(TAG, "onSaveInstanceState Position=" + mVideoView.getCurrentPosition());
         outState.putInt(SEEK_POSITION_KEY, mSeekPosition);
     }
+
     //当恢复情况状态
     @Override
     protected void onRestoreInstanceState(Bundle outState) {
@@ -156,7 +178,6 @@ public class VideoActivity extends AppCompatActivity implements UniversalVideoVi
     }
 
     //全屏和默认的切换
-
     public void onScaleChange(boolean isFullscreen) {
         this.isFullscreen = isFullscreen;//是否是全屏
         if (isFullscreen) {
@@ -186,7 +207,6 @@ public class VideoActivity extends AppCompatActivity implements UniversalVideoVi
         }
     }
 
-
     public void onPause(MediaPlayer mediaPlayer) { // 视频暂停
         Log.d(TAG, "onPause UniversalVideoView callback");
     }
@@ -214,7 +234,6 @@ public class VideoActivity extends AppCompatActivity implements UniversalVideoVi
             super.onBackPressed();
         }
     }
-
 
     @Override
     public void onPointerCaptureChanged(boolean hasCapture) {
