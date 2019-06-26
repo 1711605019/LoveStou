@@ -43,10 +43,10 @@ public class HomeFragment extends Fragment {
     private MarqueeView marqueeView;
     private List<Integer> imgs;
 
-    private ImageView stNews_img1,stNews_img2,today_img1,today_img2;
-    private TextView stNews_title1,stNews_title2,today_title1,today_title2;
+    private ImageView stNews_img1, stNews_img2, today_img1, today_img2;
+    private TextView stNews_title1, stNews_title2, today_title1, today_title2;
 
-    private LinearLayout ll_fuwu,ll_gongkai,ll_tousu,ll_daohang,ll_stNews,ll_today;
+    private LinearLayout ll_fuwu, ll_gongkai, ll_tousu, ll_daohang, ll_stNews, ll_today;
 
     public HomeFragment() {
         // Required empty public constructor
@@ -79,8 +79,8 @@ public class HomeFragment extends Fragment {
                 String url = "http://www.gdzwfw.gov.cn/portal/index?region=440500";
                 String name = "政务服务";
                 Intent intent = new Intent(getActivity(), HomeWebActivity.class);
-                intent.putExtra("url",url);
-                intent.putExtra("name",name);
+                intent.putExtra("url", url);
+                intent.putExtra("name", name);
                 startActivity(intent);
             }
         });
@@ -90,8 +90,8 @@ public class HomeFragment extends Fragment {
                 String url = "http://admin.st.gov.cn/u/consult/index/cnst/zfpy";
                 String name = "作风投诉";
                 Intent intent = new Intent(getActivity(), HomeWebActivity.class);
-                intent.putExtra("url",url);
-                intent.putExtra("name",name);
+                intent.putExtra("url", url);
+                intent.putExtra("name", name);
                 startActivity(intent);
             }
         });
@@ -101,8 +101,8 @@ public class HomeFragment extends Fragment {
                 String url = "http://www.shantou.gov.cn/cnst/index.shtml?s=1";
                 String name = "政务公开";
                 Intent intent = new Intent(getActivity(), BannerWebActivity.class);
-                intent.putExtra("url",url);
-                intent.putExtra("name",name);
+                intent.putExtra("url", url);
+                intent.putExtra("name", name);
                 startActivity(intent);
             }
         });
@@ -112,8 +112,8 @@ public class HomeFragment extends Fragment {
                 String url = "http://www.shantou.gov.cn/cnst/index.shtml?s=7";
                 String name = "部门导航";
                 Intent intent = new Intent(getActivity(), BannerWebActivity.class);
-                intent.putExtra("url",url);
-                intent.putExtra("name",name);
+                intent.putExtra("url", url);
+                intent.putExtra("name", name);
                 startActivity(intent);
             }
         });
@@ -134,6 +134,7 @@ public class HomeFragment extends Fragment {
             }
         });
     }
+
     private void initVideo() {
         stNews_img1 = homeView.findViewById(R.id.stNews_img1);
         stNews_img2 = homeView.findViewById(R.id.stNews_img2);
@@ -161,14 +162,14 @@ public class HomeFragment extends Fragment {
                             List<String> stNews_imgs = new ArrayList<>();
                             List<String> today_titles = new ArrayList<>();
                             List<String> today_imgs = new ArrayList<>();
-                            for (int i = 0; i < 2;i ++) {
+                            for (int i = 0; i < 2; i++) {
                                 String stNews_t = eles_stNews.get(i).select("a").attr("title");
                                 String stNews_img = eles_stNews.get(i).select("img").attr("src");
                                 String today_t = eles_today.get(i).select("a").attr("title");
                                 String today_img = eles_today.get(i).select("img").attr("src");
 
-                                String stNews_title = stNews_t.substring(0,stNews_t.length()-10);
-                                String today_title = today_t.substring(0,today_t.length()-10);
+                                String stNews_title = stNews_t.substring(0, stNews_t.length() - 10);
+                                String today_title = today_t.substring(0, today_t.length() - 10);
                                 stNews_titles.add(stNews_title);
                                 stNews_imgs.add(stNews_img);
                                 today_titles.add(today_title);
@@ -192,6 +193,7 @@ public class HomeFragment extends Fragment {
             }
         }).start();
     }
+
     private void initNotice() {
         marqueeView = homeView.findViewById(R.id.marqueeView);
         new Thread(new Runnable() {
@@ -202,9 +204,9 @@ public class HomeFragment extends Fragment {
                     Elements elements = doc.select("div.wzlm_right").select("ul").select("li");
                     List<String> notice = new ArrayList<>();
                     List<String> noHref = new ArrayList<>();
-                    for (int i = 0 ;i < 10 ;i ++) {
+                    for (int i = 0; i < 10; i++) {
                         String no = elements.get(i).select("a").text();
-                        String hr = "http://www.shantou.gov.cn"+elements.get(i).select("a").attr("href");
+                        String hr = "http://www.shantou.gov.cn" + elements.get(i).select("a").attr("href");
                         notice.add(no);
                         noHref.add(hr);
                     }
@@ -223,6 +225,7 @@ public class HomeFragment extends Fragment {
             }
         }).start();
     }
+
     private void initBanner() {
         banner = homeView.findViewById(R.id.banner);
         banner.setBannerStyle(BannerConfig.CIRCLE_INDICATOR);
@@ -244,6 +247,7 @@ public class HomeFragment extends Fragment {
         });
 
     }
+
     private void initBannerView() {
         new Thread(new Runnable() {
             @Override

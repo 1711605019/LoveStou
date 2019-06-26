@@ -13,7 +13,6 @@ import com.bumptech.glide.Glide;
 import com.example.lovestou.R;
 import com.example.lovestou.activity.NewsWebActivity;
 import com.example.lovestou.bean.DataBean;
-import com.example.lovestou.utils.NewsInterface;
 
 import java.util.ArrayList;
 import java.util.List;

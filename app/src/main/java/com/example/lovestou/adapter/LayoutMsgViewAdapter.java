@@ -22,7 +22,6 @@ public class LayoutMsgViewAdapter extends BaseAdapter {
     private LayoutInflater layoutInflater;
 
 
-
     public LayoutMsgViewAdapter(List<MsgItem> objects, Context context) {
         this.objects = objects;
         this.context = context;
@@ -50,21 +49,20 @@ public class LayoutMsgViewAdapter extends BaseAdapter {
             convertView = layoutInflater.inflate(R.layout.layout_msg_view, null);
             convertView.setTag(new ViewHolder(convertView));
         }
-        initializeViews((MsgItem)getItem(position), (ViewHolder) convertView.getTag());
+        initializeViews((MsgItem) getItem(position), (ViewHolder) convertView.getTag());
         return convertView;
     }
 
     private void initializeViews(MsgItem object, ViewHolder holder) {
-
         holder.leftMsg.setText(object.getResult().getContent());
         holder.rightMsg.setText(object.getMyself());
     }
 
     protected class ViewHolder {
         private LinearLayout leftLayout;
-    private TextView leftMsg;
-    private LinearLayout rightLayout;
-    private TextView rightMsg;
+        private TextView leftMsg;
+        private LinearLayout rightLayout;
+        private TextView rightMsg;
 
         public ViewHolder(View view) {
             leftLayout = (LinearLayout) view.findViewById(R.id.left_layout);
