@@ -86,9 +86,9 @@ public class UserInfoActivity extends AppCompatActivity implements View.OnClickL
         if (bean == null) {
             bean = new UserBean();
             bean.setUserName(spUserName);
-            bean.setNickName("问答精灵");
+            bean.setNickName("用户10086");
             bean.setSex("男");
-            bean.setSignature("传智播客问答精灵");
+            bean.setSignature("我用键盘成就你的梦想");
             iv_photo.setImageResource(R.drawable.header);
             //保存用户信息到数据库
             DBUtils.getInstance(this).saveUserInfo(bean);

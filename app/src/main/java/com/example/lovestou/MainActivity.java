@@ -23,6 +23,7 @@ import com.bumptech.glide.Glide;
 import com.example.lovestou.activity.ChatActivity;
 import com.example.lovestou.activity.CollectionActivity;
 import com.example.lovestou.activity.LoginActivity;
+import com.example.lovestou.activity.SettingActivity;
 import com.example.lovestou.activity.UserInfoActivity;
 import com.example.lovestou.activity.VideoHistoryActivity;
 import com.example.lovestou.fragment.FindFragment;
@@ -47,7 +48,7 @@ public class MainActivity extends AppCompatActivity {
     private SpaceTabLayout spaceTabLayout;
     private ViewPager viewPager;
     private List<Fragment> fragmentList;
-    private RelativeLayout rl_robot,rl_collection,rl_history;
+    private RelativeLayout rl_robot,rl_collection,rl_history,rl_me,rl_Setting;
     private TextView tv_login,tv_weather,tv_temp;
     private ImageView iv_weather;
 
@@ -136,6 +137,37 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        rl_Setting = findViewById(R.id.rl_setting);
+        rl_Setting.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (isLogin) {
+                    //跳转到设置界面
+                    Intent settingIntent = new Intent(MainActivity.this, SettingActivity.class);
+                    startActivityForResult(settingIntent, 1);
+                } else {
+                    Toast.makeText(MainActivity.this, "您还未登录，请先登录",
+                            Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
+
+        rl_me = findViewById(R.id.rl_me);
+        rl_me.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (isLogin) {
+                    //跳转到个人资料界面
+                    Intent userinfo = new Intent(MainActivity.this, UserInfoActivity.class);
+                    startActivity(userinfo);
+                } else {
+                    //跳转到登录界面
+                    Intent login = new Intent(MainActivity.this, LoginActivity.class);
+                    startActivityForResult(login, 1);
+                }
+            }
+        });
+
         tv_login = findViewById(R.id.tv_login);
         iv_login = findViewById(R.id.iv_login);
         iv_login.setOnClickListener(new View.OnClickListener() {
@@ -150,7 +182,6 @@ public class MainActivity extends AppCompatActivity {
                     Intent login = new Intent(MainActivity.this, LoginActivity.class);
                     startActivityForResult(login, 1);
                 }
-
             }
         });
         setLoginParams(isLogin);
