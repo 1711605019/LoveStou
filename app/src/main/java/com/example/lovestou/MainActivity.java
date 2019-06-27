@@ -23,6 +23,7 @@ import com.bumptech.glide.Glide;
 import com.example.lovestou.activity.ChatActivity;
 import com.example.lovestou.activity.CollectionActivity;
 import com.example.lovestou.activity.LoginActivity;
+import com.example.lovestou.activity.AboutActivity;
 import com.example.lovestou.activity.SettingActivity;
 import com.example.lovestou.activity.UserInfoActivity;
 import com.example.lovestou.activity.VideoHistoryActivity;
@@ -48,7 +49,7 @@ public class MainActivity extends AppCompatActivity {
     private SpaceTabLayout spaceTabLayout;
     private ViewPager viewPager;
     private List<Fragment> fragmentList;
-    private RelativeLayout rl_robot, rl_collection, rl_history, rl_me, rl_Setting;
+    private RelativeLayout rl_robot, rl_collection, rl_history, rl_me, rl_Setting,rl_about;
     private TextView tv_login, tv_weather, tv_temp;
     private ImageView iv_weather;
 
@@ -107,6 +108,15 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void initView() {
+        rl_about = findViewById(R.id.rl_about);
+        rl_about.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent about = new Intent(MainActivity.this, AboutActivity.class);
+                startActivity(about);
+            }
+        });
+
         rl_robot = findViewById(R.id.rl_robot);
         rl_robot.setOnClickListener(new View.OnClickListener() {
             @Override

@@ -23,7 +23,8 @@
         android:roundIcon="@mipmap/love_icon"
         android:supportsRtl="true"
         android:theme="@style/Theme.Design.Light.NoActionBar">
-        <activity android:name=".activity.ModifyPswActivity"></activity>
+        <activity android:name=".activity.AboutActivity"></activity>
+        <activity android:name=".activity.ModifyPswActivity" />
         <activity android:name=".activity.SettingActivity" />
         <activity android:name=".activity.ChangeUserInfoActivity" />
         <activity android:name=".activity.UserInfoActivity" />

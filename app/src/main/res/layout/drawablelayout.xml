@@ -195,7 +195,7 @@
                     android:background="#ffeeff" />
 
                 <RelativeLayout
-                    android:id="@+id/rl_saoyisao"
+                    android:id="@+id/rl_about"
                     android:layout_width="fill_parent"
                     android:layout_height="50dp"
                     android:layout_marginLeft="8dp"
@@ -206,7 +206,7 @@
                         android:layout_height="wrap_content"
                         android:layout_centerVertical="true"
                         android:layout_marginLeft="8dp"
-                        android:text="关于我们"
+                        android:text="关于"
                         android:textSize="14sp" />
 
                     <ImageView
