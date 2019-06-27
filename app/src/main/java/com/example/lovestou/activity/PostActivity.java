@@ -5,8 +5,10 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.ImageButton;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -23,6 +25,7 @@ import java.util.List;
 
 import me.james.biuedittext.BiuEditText;
 
+import static android.view.View.GONE;
 import static android.view.View.VISIBLE;
 
 public class PostActivity extends AppCompatActivity {
@@ -36,6 +39,7 @@ public class PostActivity extends AppCompatActivity {
     private View header_view;
     private SearchItemAdapter searchItemAdapter;
     private TextView tv_deleteAll;
+    private LinearLayout ll_content;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,7 +58,7 @@ public class PostActivity extends AppCompatActivity {
         tv_city = findViewById(R.id.tv_city);
         tv_town = findViewById(R.id.tv_town);
         ib_return = findViewById(R.id.ib_return);
-
+        ll_content = findViewById(R.id.ll_content);
 
         listView = findViewById(R.id.mRecyclerView);
         LayoutInflater inflater = (LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE);
@@ -73,6 +77,7 @@ public class PostActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 listView.setVisibility(VISIBLE);
+                ll_content.setVisibility(GONE);
             }
         });
 
@@ -90,13 +95,16 @@ public class PostActivity extends AppCompatActivity {
                 String postNumber = "https://api.jisuapi.com/zipcode/query?appkey=96df8b4b4f2d3890&zipcode=" + input;
                 GetPostInfo(postNumber);
 
-                if (input != null) {
+                if (!input.equals("")) {
                     HistoryBean bean = new HistoryBean(input);
                     historyList.add(bean);
                     searchItemAdapter = new SearchItemAdapter(historyList, PostActivity.this);
                     listView.setAdapter(searchItemAdapter);
-                    listView.setVisibility(View.GONE);
+                    listView.setVisibility(GONE);
                 }
+                InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+                imm.hideSoftInputFromWindow(ed_input.getWindowToken(), 0);
+
             }
         });
     }
@@ -110,6 +118,7 @@ public class PostActivity extends AppCompatActivity {
                         tv_province.setText(bean.getResult().get(0).getProvince());
                         tv_city.setText(bean.getResult().get(0).getCity());
                         tv_town.setText(bean.getResult().get(0).getTown());
+                        ll_content.setVisibility(VISIBLE);
                     }
                 } catch (Exception e) {
                     Toast.makeText(PostActivity.this, e.getMessage(), Toast.LENGTH_SHORT).show();
@@ -118,7 +127,7 @@ public class PostActivity extends AppCompatActivity {
 
             @Override
             public void BackResultFail(Exception errow) {
-                Toast.makeText(PostActivity.this, "请输入正确的手机号码", Toast.LENGTH_SHORT).show();
+                Toast.makeText(PostActivity.this, "请输入正确的邮政编码", Toast.LENGTH_SHORT).show();
             }
 
             @Override

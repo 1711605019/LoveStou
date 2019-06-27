@@ -44,6 +44,10 @@ dependencies {
     implementation 'com.linsea:universalvideoview:1.1.0@aar'
     implementation 'com.haibin:calendarview:3.6.3'
     implementation 'de.hdodenhof:circleimageview:3.0.0'
+    implementation 'com.github.PhilJay:MPAndroidChart:v3.1.0'
 
 
+}
+repositories {
+    maven { url 'https://jitpack.io' }
 }

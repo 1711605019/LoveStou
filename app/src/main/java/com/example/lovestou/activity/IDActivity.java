@@ -5,8 +5,10 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.ImageButton;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -36,6 +38,7 @@ public class IDActivity extends AppCompatActivity {
     private View header_view;
     private SearchItemAdapter searchItemAdapter;
     private TextView tv_deleteAll;
+    private LinearLayout ll_content;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,6 +56,7 @@ public class IDActivity extends AppCompatActivity {
         tv_town = findViewById(R.id.tv_town);
         tv_sex = findViewById(R.id.tv_sex);
         tv_birth = findViewById(R.id.tv_birth);
+        ll_content = findViewById(R.id.ll_content);
 
         listView = findViewById(R.id.mRecyclerView);
         LayoutInflater inflater = (LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE);
@@ -72,6 +76,7 @@ public class IDActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 listView.setVisibility(VISIBLE);
+                ll_content.setVisibility(View.GONE);
             }
         });
 
@@ -91,11 +96,15 @@ public class IDActivity extends AppCompatActivity {
                 String sfzNumber = "https://api.jisuapi.com/idcard/query?appkey=c3a90638dc954cb9&idcard=" + input;
                 GetSfzInfo(sfzNumber);
 
-                HistoryBean bean = new HistoryBean(input);
-                historyList.add(bean);
-                searchItemAdapter = new SearchItemAdapter(historyList, IDActivity.this);
-                listView.setAdapter(searchItemAdapter);
-                listView.setVisibility(View.GONE);
+                if (!input.equals("")) {
+                    HistoryBean bean = new HistoryBean(input);
+                    historyList.add(bean);
+                    searchItemAdapter = new SearchItemAdapter(historyList, IDActivity.this);
+                    listView.setAdapter(searchItemAdapter);
+                    listView.setVisibility(View.GONE);
+                }
+                InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+                imm.hideSoftInputFromWindow(ed_input.getWindowToken(), 0);
             }
         });
     }
@@ -111,6 +120,7 @@ public class IDActivity extends AppCompatActivity {
                         tv_town.setText(bean.getResult().getTown());
                         tv_sex.setText(bean.getResult().getSex());
                         tv_birth.setText(bean.getResult().getBirth());
+                        ll_content.setVisibility(VISIBLE);
                     }
                 } catch (Exception e) {
                     Toast.makeText(IDActivity.this, e.getMessage(), Toast.LENGTH_SHORT).show();

@@ -5,8 +5,10 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.ImageButton;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -23,6 +25,7 @@ import java.util.List;
 
 import me.james.biuedittext.BiuEditText;
 
+import static android.view.View.GONE;
 import static android.view.View.VISIBLE;
 
 public class PhoneActivity extends AppCompatActivity {
@@ -36,6 +39,7 @@ public class PhoneActivity extends AppCompatActivity {
     private View header_view;
     private SearchItemAdapter searchItemAdapter;
     private TextView tv_deleteAll;
+    private LinearLayout ll_content;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,6 +58,7 @@ public class PhoneActivity extends AppCompatActivity {
         tv_company = findViewById(R.id.tv_company);
         tv_areacode = findViewById(R.id.tv_areacode);
         ib_return = findViewById(R.id.ib_return);
+        ll_content = findViewById(R.id.ll_content);
 
         listView = findViewById(R.id.mRecyclerView);
         LayoutInflater inflater = (LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE);
@@ -72,6 +77,7 @@ public class PhoneActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 listView.setVisibility(VISIBLE);
+                ll_content.setVisibility(GONE);
             }
         });
 
@@ -88,13 +94,15 @@ public class PhoneActivity extends AppCompatActivity {
                 String input = ed_input.getText().toString().trim();
                 String phoneNumber = "https://api.jisuapi.com/shouji/query?appkey=c3a90638dc954cb9&shouji=" + input;
                 GetPhoneInfo(phoneNumber);
-                if (input != null) {
+                if (!input.equals("")) {
                     HistoryBean bean = new HistoryBean(input);
                     historyList.add(bean);
                     searchItemAdapter = new SearchItemAdapter(historyList, PhoneActivity.this);
                     listView.setAdapter(searchItemAdapter);
-                    listView.setVisibility(View.GONE);
+                    listView.setVisibility(GONE);
                 }
+                InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+                imm.hideSoftInputFromWindow(ed_input.getWindowToken(), 0);
             }
         });
     }
@@ -109,6 +117,7 @@ public class PhoneActivity extends AppCompatActivity {
                         tv_city.setText(bean.getResult().getCity());
                         tv_company.setText(bean.getResult().getCompany());
                         tv_areacode.setText(bean.getResult().getAreacode());
+                        ll_content.setVisibility(VISIBLE);
                     }
                 } catch (Exception e) {
                     Toast.makeText(PhoneActivity.this, e.getMessage(), Toast.LENGTH_SHORT).show();
